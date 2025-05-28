@@ -5,17 +5,17 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#f3effb',
-          100: '#e9e0f8',
-          200: '#d4c1f0',
-          300: '#b89be4',
-          400: '#9871d6',
-          500: '#6B46C1', // Main primary color
-          600: '#5f3fae',
-          700: '#4e348f',
-          800: '#3e2a72',
-          900: '#33235f',
-          950: '#1f1439',
+          50: '#e6e3ff',
+          100: '#c7c2f5',
+          200: '#a8a0eb',
+          300: '#897de1',
+          400: '#6a5bd7',
+          500: '#4b39cd', // Main primary color
+          600: '#3d2ea4',
+          700: '#30237b',
+          800: '#221852',
+          900: '#150d29',
+          950: '#020043', // Darkest variant using the specified color
         },
         secondary: {
           50: '#f8fafc',
@@ -79,7 +79,7 @@ export default {
       boxShadow: {
         subtle: '0 2px 10px rgba(0, 0, 0, 0.05)',
         card: '0 4px 20px rgba(0, 0, 0, 0.08)',
-        feature: '0 8px 30px rgba(107, 70, 193, 0.12)',
+        feature: '0 8px 30px rgba(2, 0, 67, 0.12)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -102,7 +102,7 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-pattern': 'linear-gradient(135deg, rgba(107, 70, 193, 0.15) 0%, rgba(79, 209, 197, 0.1) 100%)',
+        'hero-pattern': 'linear-gradient(135deg, rgba(2, 0, 67, 0.15) 0%, rgba(75, 57, 205, 0.1) 100%)',
       },
     },
   },

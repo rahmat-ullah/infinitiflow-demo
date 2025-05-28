@@ -190,7 +190,7 @@ const customerMetrics: CustomerMetric[] = [
     value: "15+",
     description: "Industry recognitions",
     icon: Award,
-    color: "from-purple-500 to-violet-500"
+    color: "from-[#e6e3ff] to-[#e6e3ff]"
   }
 ];
 
@@ -384,7 +384,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Stories of Success
-              <span className="block bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary-600 to-[#020043] bg-clip-text text-transparent">
                 From Real Customers
               </span>
             </h1>
@@ -572,7 +572,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-3xl p-12 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-primary-600 to-[#020043] rounded-3xl p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-black opacity-10"></div>
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">

@@ -49,11 +49,10 @@ const Integrations: React.FC = () => {
             <motion.div
               key={logo.id}
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10, delay: index * 0.1 }}
               className="p-4 grayscale hover:grayscale-0 transition-all duration-300"
             >
               <img

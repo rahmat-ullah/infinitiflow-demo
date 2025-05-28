@@ -118,7 +118,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <motion.button
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-[#020043] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onViewAllTestimonials}

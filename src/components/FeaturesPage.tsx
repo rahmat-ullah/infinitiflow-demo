@@ -17,7 +17,8 @@ import {
   Wand2,
   Languages,
   TrendingUp,
-  RefreshCw
+  RefreshCw,
+  Target
 } from 'lucide-react';
 
 interface Feature {
@@ -59,32 +60,32 @@ const AIContentAnimation = () => {
   }, [isTyping, fullText]);
 
   return (
-    <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl">
+    <div className="bg-gradient-to-br from-[#e6e3ff] to-blue-50 p-6 rounded-xl">
       <div className="flex items-center space-x-2 mb-4">
-        <Brain className="text-purple-600" size={20} />
-        <span className="text-sm font-medium text-purple-600">AI Writing Assistant</span>
+        <Brain className="text-[#020043]" size={20} />
+        <span className="text-sm font-medium text-[#020043]">AI Writing Assistant</span>
       </div>
       <div className="bg-white rounded-lg p-4 shadow-sm border">
         <div className="h-32 relative">
           <p className="text-gray-700 text-sm leading-relaxed">
             {text}
-            <span className="animate-pulse text-purple-600">|</span>
+            <span className="animate-pulse text-[#020043]">|</span>
           </p>
         </div>
         <div className="flex items-center justify-between mt-4 pt-4 border-t">
           <div className="flex space-x-2">
             <motion.div 
-              className="w-2 h-2 bg-purple-400 rounded-full"
+              className="w-2 h-2 bg-[#020043] rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 1 }}
             />
             <motion.div 
-              className="w-2 h-2 bg-blue-400 rounded-full"
+              className="w-2 h-2 bg-[#020043] rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 1, delay: 0.3 }}
             />
             <motion.div 
-              className="w-2 h-2 bg-green-400 rounded-full"
+              className="w-2 h-2 bg-[#020043] rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ repeat: Infinity, duration: 1, delay: 0.6 }}
             />
@@ -273,10 +274,10 @@ const ContentRepurposingAnimation = () => {
   const [isTransforming, setIsTransforming] = useState(false);
   
   const formats = {
-    blog: { icon: '📝', name: 'Blog Post', color: 'bg-blue-100' },
+    blog: { icon: '📝', name: 'Blog Post', color: 'bg-[#e6e3ff]' },
     social: { icon: '📱', name: 'Social Media', color: 'bg-pink-100' },
     email: { icon: '📧', name: 'Email', color: 'bg-green-100' },
-    video: { icon: '🎥', name: 'Video Script', color: 'bg-purple-100' }
+    video: { icon: '🎥', name: 'Video Script', color: 'bg-[#e6e3ff]' }
   } as const;
   
   type FormatKey = keyof typeof formats;
@@ -297,7 +298,7 @@ const ContentRepurposingAnimation = () => {
   }, [currentFormat]);
 
   return (
-    <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl">
+    <div className="bg-gradient-to-br from-pink-50 to-[#e6e3ff] p-6 rounded-xl">
       <div className="flex items-center space-x-2 mb-4">
         <RefreshCw className="text-pink-600" size={20} />
         <span className="text-sm font-medium text-pink-600">Content Repurposing</span>
@@ -367,8 +368,8 @@ const features: Feature[] = [
       "Built-in fact-checking and accuracy validation",
       "Contextual understanding for better relevance"
     ],
-    color: "text-purple-600",
-    gradient: "from-purple-500 to-pink-500"
+    color: "text-[#020043]",
+    gradient: "from-[#020043] to-pink-500"
   },
   {
     id: 2,
@@ -407,9 +408,9 @@ const features: Feature[] = [
   {
     id: 4,
     title: "SEO Optimization",
-    description: "Built-in SEO tools that analyze and enhance your content for better search rankings.",
+    description: "Automatically optimize your content for search engines with built-in SEO recommendations.",
     detailedDescription: "Maximize your content's visibility with our integrated SEO optimization suite. Our AI analyzes search trends, competitor content, and ranking factors to suggest improvements. From keyword density to meta descriptions, every aspect of your content is optimized for search engines while maintaining readability for humans.",
-    icon: TrendingUp,
+    icon: Target,
     animation: SEOOptimizationAnimation,
     benefits: [
       "Keyword research and optimization",
@@ -418,15 +419,15 @@ const features: Feature[] = [
       "Content structure recommendations",
       "Performance tracking and analytics"
     ],
-    color: "text-yellow-600",
-    gradient: "from-yellow-500 to-orange-500"
+    color: "text-[#020043]",
+    gradient: "from-[#020043] to-pink-500"
   },
   {
     id: 5,
     title: "Content Repurposing",
-    description: "Transform existing content into different formats to maximize your content strategy.",
+    description: "Transform your content across multiple formats and platforms with intelligent adaptation.",
     detailedDescription: "Maximize the value of your existing content by automatically transforming it into multiple formats. Turn a blog post into social media content, email newsletters, video scripts, or infographics. Our intelligent repurposing engine maintains the core message while adapting the format, tone, and structure for each specific platform.",
-    icon: RefreshCw,
+    icon: Repeat,
     animation: ContentRepurposingAnimation,
     benefits: [
       "One-click format transformation",
@@ -435,8 +436,8 @@ const features: Feature[] = [
       "Increase content reach and engagement",
       "Save time and resources"
     ],
-    color: "text-pink-600",
-    gradient: "from-pink-500 to-purple-500"
+    color: "text-orange-600",
+    gradient: "from-pink-500 to-[#020043]"
   }
 ];
 
@@ -513,7 +514,7 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({ onBackToHome }) => {
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Transform Your Content
-              <span className="block bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary-600 to-[#020043] bg-clip-text text-transparent">
                 With AI Intelligence
               </span>
             </h1>
@@ -617,7 +618,7 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({ onBackToHome }) => {
           transition={{ duration: 0.6 }}
           className="mt-24 text-center"
         >
-          <div className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-3xl p-12 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-primary-600 to-[#020043] rounded-3xl p-12 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-black opacity-10"></div>
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">

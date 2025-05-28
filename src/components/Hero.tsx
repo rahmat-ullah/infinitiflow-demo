@@ -26,10 +26,10 @@ const Hero: React.FC = () => {
           fpsLimit: 120,
           particles: {
             color: {
-              value: "#6B46C1",
+              value: "#020043",
             },
             links: {
-              color: "#6B46C1",
+              color: "#020043",
               distance: 150,
               enable: true,
               opacity: 0.2,

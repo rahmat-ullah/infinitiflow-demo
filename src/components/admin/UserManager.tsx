@@ -145,13 +145,13 @@ const UserManager: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm p-4 border border-gray-100">
+        <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Admins</p>
-              <p className="text-2xl font-bold text-purple-600">{users.filter(u => u.role === 'admin').length}</p>
+              <p className="text-sm font-medium text-gray-600">Admins</p>
+              <p className="text-2xl font-bold text-[#020043]">{users.filter(u => u.role === 'admin').length}</p>
             </div>
-            <Shield className="h-8 w-8 text-purple-600" />
+            <Shield className="h-8 w-8 text-[#020043]" />
           </div>
         </div>
       </div>
@@ -194,8 +194,8 @@ const UserManager: React.FC = () => {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      user.role === 'admin'
-                        ? 'bg-purple-100 text-purple-800'
+                      user.role === 'admin' 
+                        ? 'bg-[#e6e3ff] text-[#020043]'
                         : user.role === 'moderator'
                         ? 'bg-blue-100 text-blue-800'
                         : 'bg-gray-100 text-gray-800'

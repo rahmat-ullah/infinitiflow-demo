@@ -198,7 +198,7 @@ const ROICalculatorPage: React.FC<ROICalculatorPageProps> = ({ onBackToHome }) =
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Calculate Your
-              <span className="block bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary-600 to-[#020043] bg-clip-text text-transparent">
                 InfinitiFlow ROI
               </span>
             </h1>
@@ -376,7 +376,7 @@ const ROICalculatorPage: React.FC<ROICalculatorPageProps> = ({ onBackToHome }) =
           <div className="mt-12 text-center">
             <motion.button
               onClick={() => setShowResults(true)}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-[#020043] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -429,13 +429,13 @@ const ROICalculatorPage: React.FC<ROICalculatorPageProps> = ({ onBackToHome }) =
                 </p>
               </div>
               
-              <div className="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-2xl shadow-lg border border-purple-200">
+              <div className="bg-gradient-to-r from-[#e6e3ff] to-[#e6e3ff] p-6 rounded-2xl shadow-lg border border-[#c7c2f5]">
                 <div className="flex items-center justify-between mb-4">
-                  <Target className="text-purple-600" size={32} />
-                  <span className="text-purple-600 text-sm font-medium">Total Benefit</span>
+                  <Target className="text-[#020043]" size={32} />
+                  <span className="text-[#020043] text-sm font-medium">Total Benefit</span>
                 </div>
-                <h3 className="text-lg font-semibold text-purple-800 mb-2">5-Year Benefit</h3>
-                <p className="text-4xl font-bold text-purple-600">
+                <h3 className="text-lg font-semibold text-[#020043] mb-2">5-Year Benefit</h3>
+                <p className="text-4xl font-bold text-[#020043]">
                   {formatCurrency(totalFiveYearBenefit)}
                 </p>
               </div>
@@ -542,7 +542,7 @@ const ROICalculatorPage: React.FC<ROICalculatorPageProps> = ({ onBackToHome }) =
 
             {/* CTA Section */}
             <div className="text-center">
-              <div className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-3xl p-12 text-white relative overflow-hidden">
+              <div className="bg-gradient-to-r from-primary-600 to-[#020043] rounded-3xl p-12 text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-black opacity-10"></div>
                 <div className="relative z-10">
                   <CheckCircle size={64} className="mx-auto mb-6 opacity-90" />
