@@ -5,13 +5,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Button from './ui/Button';
 import { useAdminStore } from '../store/adminStore';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onROICalculatorClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onROICalculatorClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const { incrementLogoClick, isAdminMode } = useAdminStore();
   
   const navigation = [
     { name: 'Features', href: 'features' },
+    { name: 'ROI Calculator', href: 'roi-calculator', isPage: true },
     { name: 'Testimonials', href: 'testimonials' },
     { name: 'Pricing', href: 'pricing' },
     { name: 'FAQ', href: 'faq' },
@@ -44,6 +49,12 @@ const Header: React.FC = () => {
     };
   }, []);
 
+  const handleNavigationClick = (item: typeof navigation[0]) => {
+    if (item.isPage && item.href === 'roi-calculator' && onROICalculatorClick) {
+      onROICalculatorClick();
+    }
+  };
+
   const isScrolled = scrollPosition > 10;
 
   return (
@@ -64,17 +75,27 @@ const Header: React.FC = () => {
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                spy={true}
-                smooth={true}
-                offset={-80}
-                duration={500}
-                className={`text-gray-600 hover:text-primary-600 transition-colors cursor-pointer font-medium text-sm`}
-              >
-                {item.name}
-              </Link>
+              item.isPage ? (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigationClick(item)}
+                  className="text-gray-600 hover:text-primary-600 transition-colors cursor-pointer font-medium text-sm"
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  spy={true}
+                  smooth={true}
+                  offset={-80}
+                  duration={500}
+                  className="text-gray-600 hover:text-primary-600 transition-colors cursor-pointer font-medium text-sm"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             {isAdminMode && (
               <Link
@@ -123,18 +144,31 @@ const Header: React.FC = () => {
           >
             <div className="px-4 pt-2 pb-4 space-y-1 sm:px-6">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  spy={true}
-                  smooth={true}
-                  offset={-80}
-                  duration={500}
-                  className="block py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md px-3"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                item.isPage ? (
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      handleNavigationClick(item);
+                      setIsOpen(false);
+                    }}
+                    className="block w-full text-left py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md px-3"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    className="block py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md px-3"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               {isAdminMode && (
                 <Link

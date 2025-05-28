@@ -14,12 +14,14 @@ import FloatingActionButton from './components/FloatingActionButton';
 import AdminPanel from './components/admin/AdminPanel';
 import FeaturesPage from './components/FeaturesPage';
 import TestimonialsPage from './components/TestimonialsPage';
+import ROICalculatorPage from './components/ROICalculatorPage';
 import { useAdminStore } from './store/adminStore';
 
 function App() {
   const { isAdminMode } = useAdminStore();
   const [showFeaturesPage, setShowFeaturesPage] = useState(false);
   const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
+  const [showROICalculatorPage, setShowROICalculatorPage] = useState(false);
 
   if (isAdminMode) {
     return <AdminPanel />;
@@ -41,9 +43,17 @@ function App() {
     );
   }
 
+  if (showROICalculatorPage) {
+    return (
+      <ROICalculatorPage 
+        onBackToHome={() => setShowROICalculatorPage(false)} 
+      />
+    );
+  }
+
   return (
     <div className="font-sans antialiased text-gray-900 bg-white">
-      <Header />
+      <Header onROICalculatorClick={() => setShowROICalculatorPage(true)} />
       <Hero />
       <Features onViewAllFeatures={() => setShowFeaturesPage(true)} />
       <Stats />
