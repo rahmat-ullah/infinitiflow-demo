@@ -15,6 +15,7 @@ import AdminPanel from './components/admin/AdminPanel';
 import FeaturesPage from './components/FeaturesPage';
 import TestimonialsPage from './components/TestimonialsPage';
 import ROICalculatorPage from './components/ROICalculatorPage';
+import UseCasesPage from './components/UseCasesPage';
 import { useAdminStore } from './store/adminStore';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   const [showFeaturesPage, setShowFeaturesPage] = useState(false);
   const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
   const [showROICalculatorPage, setShowROICalculatorPage] = useState(false);
+  const [showUseCasesPage, setShowUseCasesPage] = useState(false);
 
   if (isAdminMode) {
     return <AdminPanel />;
@@ -51,9 +53,20 @@ function App() {
     );
   }
 
+  if (showUseCasesPage) {
+    return (
+      <UseCasesPage 
+        onBackToHome={() => setShowUseCasesPage(false)} 
+      />
+    );
+  }
+
   return (
     <div className="font-sans antialiased text-gray-900 bg-white">
-      <Header onROICalculatorClick={() => setShowROICalculatorPage(true)} />
+      <Header 
+        onROICalculatorClick={() => setShowROICalculatorPage(true)}
+        onUseCasesClick={() => setShowUseCasesPage(true)}
+      />
       <Hero />
       <Features onViewAllFeatures={() => setShowFeaturesPage(true)} />
       <Stats />

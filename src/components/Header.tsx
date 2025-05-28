@@ -7,15 +7,17 @@ import { useAdminStore } from '../store/adminStore';
 
 interface HeaderProps {
   onROICalculatorClick?: () => void;
+  onUseCasesClick?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onROICalculatorClick }) => {
+const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const { incrementLogoClick, isAdminMode } = useAdminStore();
   
   const navigation = [
     { name: 'Features', href: 'features' },
+    { name: 'Use Cases', href: 'use-cases', isPage: true },
     { name: 'ROI Calculator', href: 'roi-calculator', isPage: true },
     { name: 'Testimonials', href: 'testimonials' },
     { name: 'Pricing', href: 'pricing' },
@@ -52,6 +54,8 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick }) => {
   const handleNavigationClick = (item: typeof navigation[0]) => {
     if (item.isPage && item.href === 'roi-calculator' && onROICalculatorClick) {
       onROICalculatorClick();
+    } else if (item.isPage && item.href === 'use-cases' && onUseCasesClick) {
+      onUseCasesClick();
     }
   };
 
