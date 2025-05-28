@@ -13,11 +13,13 @@ import Footer from './components/Footer';
 import FloatingActionButton from './components/FloatingActionButton';
 import AdminPanel from './components/admin/AdminPanel';
 import FeaturesPage from './components/FeaturesPage';
+import TestimonialsPage from './components/TestimonialsPage';
 import { useAdminStore } from './store/adminStore';
 
 function App() {
   const { isAdminMode } = useAdminStore();
   const [showFeaturesPage, setShowFeaturesPage] = useState(false);
+  const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
 
   if (isAdminMode) {
     return <AdminPanel />;
@@ -31,13 +33,21 @@ function App() {
     );
   }
 
+  if (showTestimonialsPage) {
+    return (
+      <TestimonialsPage 
+        onBackToHome={() => setShowTestimonialsPage(false)} 
+      />
+    );
+  }
+
   return (
     <div className="font-sans antialiased text-gray-900 bg-white">
       <Header />
       <Hero />
       <Features onViewAllFeatures={() => setShowFeaturesPage(true)} />
       <Stats />
-      <Testimonials />
+      <Testimonials onViewAllTestimonials={() => setShowTestimonialsPage(true)} />
       <Integrations />
       <CTASection />
       <Pricing />

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MessageSquare, ArrowRight } from 'lucide-react';
 import TestimonialCard from './ui/TestimonialCard';
 import AnimatedTitle from './ui/AnimatedTitle';
 import { testimonials } from '../data/content';
 
-const Testimonials: React.FC = () => {
+interface TestimonialsProps {
+  onViewAllTestimonials?: () => void;
+}
+
+const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Auto-rotate testimonials
@@ -104,6 +108,28 @@ const Testimonials: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* View All Testimonials Button */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <motion.button
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onViewAllTestimonials}
+          >
+            <span>View All Success Stories</span>
+            <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+          <p className="text-sm text-gray-500 mt-3">
+            Discover detailed customer journeys and video testimonials
+          </p>
+        </motion.div>
       </div>
     </section>
   );
