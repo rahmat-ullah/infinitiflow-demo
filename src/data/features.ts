@@ -1,10 +1,14 @@
 import { Feature } from '../types/features';
-import { Brain, LayoutTemplate, Languages, TrendingUp, RefreshCw } from 'lucide-react';
+import { Brain, LayoutTemplate, Languages, TrendingUp, RefreshCw, Mail, Share2, Target, Calendar } from 'lucide-react';
 import AIContentAnimation from '../components/features/AIContentAnimation';
 import SmartTemplatesAnimation from '../components/features/SmartTemplatesAnimation';
 import MultiLanguageAnimation from '../components/features/MultiLanguageAnimation';
 import SEOOptimizationAnimation from '../components/features/SEOOptimizationAnimation';
 import ContentRepurposingAnimation from '../components/features/ContentRepurposingAnimation';
+import EmailMarketingAnimation from '../components/features/EmailMarketingAnimation';
+import SocialMediaAnimation from '../components/features/SocialMediaAnimation';
+import CopywritingAnimation from '../components/features/CopywritingAnimation';
+import ContentStrategyAnimation from '../components/features/ContentStrategyAnimation';
 
 export const features: Feature[] = [
   {
@@ -91,5 +95,73 @@ export const features: Feature[] = [
     ],
     color: "text-pink-600",
     gradient: "from-pink-500 to-purple-500"
+  },
+  {
+    id: 6,
+    title: "Email Marketing Automation",
+    description: "Create personalized email campaigns that engage audiences and boost conversion rates.",
+    detailedDescription: "Craft compelling email campaigns with AI-powered subject line generation, personalized content, and optimal send time recommendations. Our email marketing suite includes automated sequences, A/B testing capabilities, and advanced analytics to maximize your email performance and drive revenue growth.",
+    icon: Mail,
+    animation: EmailMarketingAnimation,
+    benefits: [
+      "AI-generated subject lines that increase open rates by 55%",
+      "Personalized content for each subscriber segment",
+      "Automated drip campaigns and sequences",
+      "Advanced A/B testing for optimization",
+      "Real-time performance analytics and insights"
+    ],
+    color: "text-indigo-600",
+    gradient: "from-indigo-500 to-blue-500"
+  },
+  {
+    id: 7,
+    title: "Social Media Content Engine",
+    description: "Generate platform-optimized social media content with trending hashtags and engagement strategies.",
+    detailedDescription: "Scale your social media presence with AI-powered content creation for every major platform. Our social media engine understands platform-specific best practices, trending topics, and audience preferences to create engaging posts that drive interaction and grow your following across all channels.",
+    icon: Share2,
+    animation: SocialMediaAnimation,
+    benefits: [
+      "Platform-specific content optimization",
+      "Trending hashtag recommendations",
+      "Visual content suggestions and captions",
+      "Optimal posting time recommendations",
+      "Cross-platform content adaptation"
+    ],
+    color: "text-purple-600",
+    gradient: "from-purple-500 to-pink-500"
+  },
+  {
+    id: 8,
+    title: "High-Converting Copywriting",
+    description: "Create persuasive sales copy and marketing materials that drive conversions and revenue.",
+    detailedDescription: "Transform your marketing efforts with AI-powered copywriting that converts. Our advanced algorithms analyze successful campaigns, consumer psychology, and market trends to generate compelling headlines, product descriptions, and sales pages that drive action and increase your bottom line.",
+    icon: Target,
+    animation: CopywritingAnimation,
+    benefits: [
+      "Conversion-optimized headlines and CTAs",
+      "Psychology-driven persuasive copy",
+      "A/B testing variations for optimization",
+      "Industry-specific copywriting frameworks",
+      "Real-time conversion tracking and insights"
+    ],
+    color: "text-red-600",
+    gradient: "from-red-500 to-orange-500"
+  },
+  {
+    id: 9,
+    title: "Content Strategy & Planning",
+    description: "Develop comprehensive content strategies with AI-powered insights and performance analytics.",
+    detailedDescription: "Elevate your content marketing with intelligent strategy planning and execution. Our AI analyzes your audience, competitors, and market trends to create data-driven content calendars, identify content gaps, and recommend high-impact topics that align with your business goals and drive measurable results.",
+    icon: Calendar,
+    animation: ContentStrategyAnimation,
+    benefits: [
+      "AI-powered content calendar planning",
+      "Competitive content gap analysis",
+      "Performance prediction and optimization",
+      "Multi-channel content distribution strategies",
+      "ROI tracking and content attribution"
+    ],
+    color: "text-cyan-600",
+    gradient: "from-cyan-500 to-blue-500"
   }
 ]; 
