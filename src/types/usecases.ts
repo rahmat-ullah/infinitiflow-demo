@@ -29,7 +29,7 @@ export interface IndustrySolution {
   id: string;
   title: string;
   description: string;
-  icon: string;
-  specialFeatures: string[];
-  commonUseCases: string[];
+  icon: LucideIcon;
+  features: string[];
+  useCases: string[];
 } 

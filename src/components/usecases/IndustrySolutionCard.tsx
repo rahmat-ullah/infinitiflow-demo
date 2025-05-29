@@ -18,7 +18,9 @@ const IndustrySolutionCard: React.FC<IndustrySolutionCardProps> = ({ solution, i
       className="bg-white p-6 rounded-xl border border-gray-200 hover:border-primary-200 hover:shadow-lg transition-all duration-300"
     >
       <div className="flex items-center space-x-3 mb-4">
-        <div className="text-3xl">{solution.icon}</div>
+        <div className="text-primary-600">
+          <solution.icon size={32} />
+        </div>
         <div>
           <h3 className="text-xl font-semibold text-gray-900">{solution.title}</h3>
         </div>
@@ -30,15 +32,15 @@ const IndustrySolutionCard: React.FC<IndustrySolutionCardProps> = ({ solution, i
         <div>
           <h4 className="font-medium text-gray-900 mb-2">Specialized Features:</h4>
           <div className="space-y-2">
-            {solution.specialFeatures.slice(0, 3).map((feature, featureIndex) => (
+            {solution.features?.slice(0, 3).map((feature, featureIndex) => (
               <div key={featureIndex} className="flex items-center space-x-2">
                 <CheckCircle2 size={16} className="text-green-500 flex-shrink-0" />
                 <span className="text-sm text-gray-700">{feature}</span>
               </div>
             ))}
-            {solution.specialFeatures.length > 3 && (
+            {solution.features && solution.features.length > 3 && (
               <span className="text-sm text-primary-600 font-medium">
-                +{solution.specialFeatures.length - 3} more features
+                +{solution.features.length - 3} more features
               </span>
             )}
           </div>
@@ -47,7 +49,7 @@ const IndustrySolutionCard: React.FC<IndustrySolutionCardProps> = ({ solution, i
         <div>
           <h4 className="font-medium text-gray-900 mb-2">Common Use Cases:</h4>
           <div className="flex flex-wrap gap-2">
-            {solution.commonUseCases.map((useCase, useCaseIndex) => (
+            {solution.useCases?.map((useCase, useCaseIndex) => (
               <span
                 key={useCaseIndex}
                 className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full"

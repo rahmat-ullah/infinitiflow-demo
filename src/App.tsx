@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Stats from './components/Stats';
-import Testimonials from './components/Testimonials';
+import TestimonialsV2 from './components/TestimonialsV2';
 import Integrations from './components/Integrations';
 import CTASection from './components/CTASection';
 import Pricing from './components/Pricing';
@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 import FloatingActionButton from './components/FloatingActionButton';
 import AdminPanel from './components/admin/AdminPanel';
 import FeaturesPage from './components/FeaturesPage';
-import TestimonialsPage from './components/TestimonialsPage';
+import TestimonialsPageV2 from './components/TestimonialsPageV2';
 import ROICalculatorPage from './components/ROICalculatorPage';
 import UseCasesPage from './components/UseCasesPage';
 import { useAdminStore } from './store/adminStore';
@@ -39,7 +39,7 @@ function App() {
 
   if (showTestimonialsPage) {
     return (
-      <TestimonialsPage 
+      <TestimonialsPageV2 
         onBackToHome={() => setShowTestimonialsPage(false)} 
       />
     );
@@ -70,7 +70,7 @@ function App() {
       <Hero />
       <Features onViewAllFeatures={() => setShowFeaturesPage(true)} />
       <Stats />
-      <Testimonials onViewAllTestimonials={() => setShowTestimonialsPage(true)} />
+      <TestimonialsV2 onViewAllTestimonials={() => setShowTestimonialsPage(true)} />
       <Integrations />
       <CTASection />
       <Pricing />

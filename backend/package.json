@@ -12,7 +12,8 @@
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "seed": "node src/scripts/seedDatabase.js"
+    "seed": "node src/scripts/seedDatabase.js",
+    "seed:testimonials": "node src/scripts/seedTestimonials.js"
   },
   "keywords": [
     "ai",

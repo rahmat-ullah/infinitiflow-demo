@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, Users, Building2, Filter } from 'lucide-react';
-import { useCases, roleSolutions, industrySolutions } from '../data/usecases';
+import { Sparkles, Zap, Users, Building2, Filter, AlertCircle, Loader2, Wifi, WifiOff } from 'lucide-react';
 import { UseCase } from '../types/usecases';
+import { useUseCases } from '../hooks/useUseCases';
+import { apiClient } from '../services/api';
 import PageHeader from './ui/PageHeader';
 import PageHero from './ui/PageHero';
 import PageCTA from './ui/PageCTA';
@@ -18,24 +19,141 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedUseCase, setSelectedUseCase] = useState<UseCase | null>(null);
+  const [backendStatus, setBackendStatus] = useState<'checking' | 'connected' | 'disconnected'>('checking');
 
-  const categories = [
-    { id: 'all', label: 'All Use Cases' },
-    { id: 'content', label: 'Content Creation' },
-    { id: 'marketing', label: 'Marketing' },
-    { id: 'sales', label: 'Sales' },
-    { id: 'strategy', label: 'Strategy' }
-  ];
+  const {
+    useCases,
+    roleSolutions,
+    industrySolutions,
+    categories,
+    featuredUseCase,
+    loading,
+    error,
+    fetchUseCases
+  } = useUseCases();
 
-  const filteredUseCases = selectedCategory === 'all' 
-    ? useCases 
-    : useCases.filter(useCase => useCase.category === selectedCategory);
+  // Check backend connection status
+  useEffect(() => {
+    const checkBackendConnection = async () => {
+      try {
+        await apiClient.checkHealth();
+        setBackendStatus('connected');
+      } catch (error) {
+        console.error('Backend connection failed:', error);
+        setBackendStatus('disconnected');
+      }
+    };
 
-  const featuredUseCase = useCases.find(uc => uc.featured);
+    checkBackendConnection();
+  }, []);
+
+  // Filter use cases when category changes
+  useEffect(() => {
+    fetchUseCases({ category: selectedCategory });
+  }, [selectedCategory, fetchUseCases]);
 
   const handleUseCaseClick = (useCase: UseCase) => {
     setSelectedUseCase(useCase);
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <PageHeader 
+          title="Use Cases"
+          icon={Sparkles}
+          onBackToHome={onBackToHome}
+        />
+        
+        <div className="container mx-auto px-4 py-16">
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-primary-600" />
+              <p className="text-gray-600">Loading use cases...</p>
+              
+              {/* Backend Status Indicator */}
+              <div className="mt-4 flex items-center justify-center space-x-2">
+                {backendStatus === 'checking' && (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
+                    <span className="text-xs text-gray-500">Connecting to backend...</span>
+                  </>
+                )}
+                {backendStatus === 'connected' && (
+                  <>
+                    <Wifi className="w-4 h-4 text-green-500" />
+                    <span className="text-xs text-green-600">Backend connected</span>
+                  </>
+                )}
+                {backendStatus === 'disconnected' && (
+                  <>
+                    <WifiOff className="w-4 h-4 text-red-500" />
+                    <span className="text-xs text-red-600">Backend disconnected</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <PageHeader 
+          title="Use Cases"
+          icon={Sparkles}
+          onBackToHome={onBackToHome}
+        />
+        
+        <div className="container mx-auto px-4 py-16">
+          <div className="flex items-center justify-center">
+            <div className="text-center max-w-md">
+              <AlertCircle className="w-8 h-8 mx-auto mb-4 text-red-500" />
+              <p className="text-red-600 font-medium">Failed to load use cases</p>
+              <p className="text-gray-600 mt-2">{error}</p>
+              
+              {/* Backend Status */}
+              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  {backendStatus === 'connected' ? (
+                    <>
+                      <Wifi className="w-4 h-4 text-green-500" />
+                      <span className="text-sm text-green-600">Backend: Connected</span>
+                    </>
+                  ) : (
+                    <>
+                      <WifiOff className="w-4 h-4 text-red-500" />
+                      <span className="text-sm text-red-600">Backend: Disconnected</span>
+                    </>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500">
+                  Backend URL: http://localhost:5001/api
+                </p>
+                {backendStatus === 'disconnected' && (
+                  <p className="text-xs text-red-500 mt-1">
+                    Make sure the backend server is running on port 5001
+                  </p>
+                )}
+              </div>
+              
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-4 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
@@ -119,7 +237,7 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             layout
           >
-            {filteredUseCases.map((useCase, index) => (
+            {useCases.map((useCase, index) => (
               <motion.div
                 key={useCase.id}
                 layout
@@ -136,155 +254,127 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* No results message */}
+          {useCases.length === 0 && !loading && (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No use cases found for the selected category.</p>
+            </div>
+          )}
         </section>
 
         {/* Solutions by Role */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
-                <Users size={16} className="inline-block mr-2" />
-                Solutions by Role
-              </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Tailored solutions for every marketing role
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Get role-specific AI tools and workflows designed for your unique challenges and objectives.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {roleSolutions.map((solution, index) => (
-              <RoleSolutionCard
-                key={solution.id}
-                solution={solution}
-                index={index}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Solutions by Industry */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
-                <Building2 size={16} className="inline-block mr-2" />
-                Solutions by Industry
-              </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Industry-specific AI solutions
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Specialized features and workflows designed for the unique needs of your industry.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {industrySolutions.map((solution, index) => (
-              <IndustrySolutionCard
-                key={solution.id}
-                solution={solution}
-                index={index}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <PageCTA 
-          title="Get started with InfinitiFlow today"
-          description="Join thousands of marketers who are already transforming their content strategy with our AI-powered platform."
-          primaryButton={{
-            text: "Start Free Trial",
-            onClick: () => console.log('Start Free Trial clicked')
-          }}
-          secondaryButton={{
-            text: "Get a Demo",
-            onClick: () => console.log('Get a Demo clicked')
-          }}
-        />
-      </div>
-
-      {/* Use Case Detail Modal (if needed) */}
-      {selectedUseCase && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          onClick={() => setSelectedUseCase(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold text-gray-900">{selectedUseCase.title}</h3>
-              <button
-                onClick={() => setSelectedUseCase(null)}
-                className="text-gray-400 hover:text-gray-600"
+        {roleSolutions.length > 0 && (
+          <section className="mb-16">
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
               >
-                ×
-              </button>
+                <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
+                  <Users size={16} className="inline-block mr-2" />
+                  Solutions by Role
+                </span>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Tailored solutions for every marketing role
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Get role-specific AI tools and workflows designed for your unique challenges and objectives.
+                </p>
+              </motion.div>
             </div>
-            
-            <p className="text-gray-600 mb-6">{selectedUseCase.description}</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              {selectedUseCase.metrics.map((metric, index) => (
-                <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary-600 mb-1">{metric.value}</div>
-                  <div className="text-sm font-medium text-gray-900 mb-1">{metric.label}</div>
-                  <div className="text-xs text-gray-500">{metric.description}</div>
-                </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {roleSolutions.map((solution, index) => (
+                <RoleSolutionCard
+                  key={solution.id}
+                  solution={solution}
+                  index={index}
+                />
               ))}
             </div>
-            
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Benefits:</h4>
-                <ul className="space-y-2">
-                  {selectedUseCase.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span className="text-green-500 mt-1">✓</span>
-                      <span className="text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Examples:</h4>
-                <ul className="space-y-2">
-                  {selectedUseCase.examples.map((example, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span className="text-blue-500 mt-1">•</span>
-                      <span className="text-gray-700">{example}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          </section>
+        )}
+
+        {/* Solutions by Industry */}
+        {industrySolutions.length > 0 && (
+          <section className="mb-16">
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-block bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
+                  <Building2 size={16} className="inline-block mr-2" />
+                  Solutions by Industry
+                </span>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Industry-specific AI solutions
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Specialized features and workflows designed for the unique needs of your industry.
+                </p>
+              </motion.div>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {industrySolutions.map((solution, index) => (
+                <IndustrySolutionCard
+                  key={solution.id}
+                  solution={solution}
+                  index={index}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Data Source & Connection Status */}
+        <div className="text-center py-4 mb-8">
+          <div className="flex items-center justify-center space-x-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+              Connected to Backend API
+            </span>
+            
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              {backendStatus === 'connected' ? (
+                <>
+                  <Wifi className="w-3 h-3 mr-1" />
+                  Backend Online
+                </>
+              ) : (
+                <>
+                  <WifiOff className="w-3 h-3 mr-1" />
+                  Backend Offline
+                </>
+              )}
+            </span>
+          </div>
+          
+          <p className="text-xs text-gray-500 mt-2">
+            API: http://localhost:5001/api | Frontend: http://localhost:5174
+          </p>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <PageCTA 
+        title="Ready to transform your content creation?"
+        description="Join thousands of marketers who are already using InfinitiFlow to create better content faster."
+        primaryButton={{
+          text: "Get Started Free",
+          onClick: () => console.log('Get started clicked')
+        }}
+        secondaryButton={{
+          text: "View All Features",
+          onClick: () => console.log('View features clicked')
+        }}
+      />
     </div>
   );
 };

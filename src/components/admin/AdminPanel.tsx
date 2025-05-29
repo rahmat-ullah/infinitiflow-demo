@@ -5,13 +5,15 @@ import {
   FileText, 
   Users, 
   Settings,
-  ChevronLeft
+  ChevronLeft,
+  Layers
 } from 'lucide-react';
 import { useAdminStore } from '../../store/adminStore';
 import Dashboard from './Dashboard';
 import ContentManager from './ContentManager';
 import UserManager from './UserManager';
 import SettingsPanel from './SettingsPanel';
+import UseCasesManager from './UseCasesManager';
 
 const AdminPanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -21,6 +23,7 @@ const AdminPanel: React.FC = () => {
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
     { id: 'content', name: 'Content', icon: FileText },
     { id: 'users', name: 'Users', icon: Users },
+    { id: 'use-cases', name: 'Use Cases', icon: Layers },
     { id: 'settings', name: 'Settings', icon: Settings },
   ];
 
@@ -34,6 +37,8 @@ const AdminPanel: React.FC = () => {
         return <UserManager />;
       case 'settings':
         return <SettingsPanel />;
+      case 'use-cases':
+        return <UseCasesManager />;
       default:
         return <Dashboard />;
     }

@@ -44,7 +44,12 @@ app.use(helmet({
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    process.env.CORS_ORIGIN
+  ].filter(Boolean),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
@@ -123,8 +128,13 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    // Connect to database
-    await connectDB();
+    // Try to connect to database (optional for static data)
+    try {
+      await connectDB();
+      logger.info('Database connected successfully');
+    } catch (dbError) {
+      logger.warn('Database connection failed, continuing with static data only:', dbError.message);
+    }
     
     // Start listening
     app.listen(PORT, () => {
