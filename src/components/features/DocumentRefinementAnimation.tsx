@@ -85,10 +85,10 @@ const DocumentRefinementAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-accent-800 dark:to-indigo-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-400 to-indigo-400 transform -rotate-12 scale-150"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-400 to-indigo-400 dark:from-accent-700 dark:to-indigo-700 transform -rotate-12 scale-150"></div>
       </div>
 
       {/* Document Preview */}
@@ -96,32 +96,32 @@ const DocumentRefinementAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-48 h-44 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-48 h-44 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
         {/* Document Header */}
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-2">
-            <FileText className="w-4 h-4 text-blue-600" />
-            <span className="text-xs font-semibold text-gray-700">
+            <FileText className="w-4 h-4 text-blue-600 dark:text-accent-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
               {showBefore ? documentBefore.title : documentAfter.title}
             </span>
           </div>
           
           {/* Quality Score */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500">Quality Score:</span>
-            <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Quality Score:</span>
+            <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
               <motion.div
                 initial={{ width: `${documentBefore.score}%` }}
                 animate={{ width: `${showBefore ? documentBefore.score : documentAfter.score}%` }}
                 transition={{ duration: 1 }}
                 className={`h-1.5 rounded-full ${
-                  showBefore ? 'bg-red-400' : 'bg-green-500'
+                  showBefore ? 'bg-red-400 dark:bg-error-500' : 'bg-green-500 dark:bg-success-500'
                 }`}
               />
             </div>
             <span className={`text-xs font-bold ${
-              showBefore ? 'text-red-600' : 'text-green-600'
+              showBefore ? 'text-red-600 dark:text-error-400' : 'text-green-600 dark:text-success-400'
             }`}>
               {showBefore ? documentBefore.score : documentAfter.score}%
             </span>
@@ -140,8 +140,8 @@ const DocumentRefinementAnimation: React.FC = () => {
                 className="space-y-1"
               >
                 {documentBefore.issues.map((issue, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-red-600">
-                    <div className="w-1 h-1 bg-red-400 rounded-full"></div>
+                  <div key={i} className="flex items-center gap-2 text-xs text-red-600 dark:text-error-400">
+                    <div className="w-1 h-1 bg-red-400 dark:bg-error-500 rounded-full"></div>
                     {issue}
                   </div>
                 ))}
@@ -155,7 +155,7 @@ const DocumentRefinementAnimation: React.FC = () => {
                 className="space-y-1"
               >
                 {documentAfter.improvements.map((improvement, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-green-600">
+                  <div key={i} className="flex items-center gap-2 text-xs text-green-600 dark:text-success-400">
                     <CheckCircle className="w-3 h-3" />
                     {improvement}
                   </div>
@@ -171,7 +171,7 @@ const DocumentRefinementAnimation: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowBefore(!showBefore)}
-            className="absolute bottom-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 transition-colors"
+            className="absolute bottom-2 right-2 bg-blue-500 dark:bg-accent-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 dark:hover:bg-accent-600 transition-colors"
           >
             {showBefore ? 'After' : 'Before'}
           </motion.button>
@@ -185,16 +185,16 @@ const DocumentRefinementAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
-                <Wand2 className="w-8 h-8 text-blue-500" />
+                <Wand2 className="w-8 h-8 text-blue-500 dark:text-accent-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Document...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Document...</div>
               <div className="space-y-2 w-32">
                 {['Structure', 'Flow', 'Readability'].map((item, i) => (
                   <motion.div
@@ -202,9 +202,9 @@ const DocumentRefinementAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.5, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1"
                   >
-                    <div className="bg-blue-500 h-1 rounded-full"></div>
+                    <div className="bg-blue-500 dark:bg-accent-500 h-1 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -220,17 +220,18 @@ const DocumentRefinementAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-44 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-44 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Wand2 className="w-4 h-4 text-blue-500" />
-              <span className="text-sm font-semibold text-gray-700">Refinement Options</span>
+              <Wand2 className="w-4 h-4 text-blue-500 dark:text-accent-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Refinement Options</span>
             </div>
 
             <div className="space-y-2 mb-4">
               {refinementOptions.map((option, i) => {
                 const Icon = option.icon;
                 const isSelected = selectedRefinements.includes(option.id);
+                const darkColor = option.color.replace('-500', '-600');
                 
                 return (
                   <motion.button
@@ -241,18 +242,18 @@ const DocumentRefinementAnimation: React.FC = () => {
                     onClick={() => handleRefinementToggle(option.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${option.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${option.color} dark:${darkColor} text-white shadow-lg scale-105`
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <Icon className="w-3 h-3" />
+                      <Icon className={`w-3 h-3 ${isSelected ? 'text-white': option.color.replace('bg-','text-')} dark:${isSelected ? 'text-white' : option.color.replace('bg-','text-').replace('-500','-400')}`} />
                       <span className="text-xs font-medium">{option.label}</span>
-                      <span className="ml-auto text-xs opacity-75">{option.improvement}</span>
+                      <span className={`ml-auto text-xs ${isSelected ? 'opacity-75' : 'opacity-75 dark:text-gray-400'}`}>{option.improvement}</span>
                     </div>
-                    <div className="text-xs opacity-75">{option.description}</div>
+                    <div className={`text-xs ${isSelected ? 'opacity-75 dark:text-white/80' : 'opacity-75 dark:text-gray-400'}`}>{option.description}</div>
                   </motion.button>
                 );
               })}
@@ -266,8 +267,8 @@ const DocumentRefinementAnimation: React.FC = () => {
               disabled={selectedRefinements.length === 0}
               className={`w-full py-2 px-3 rounded-lg text-xs font-medium transition-all duration-200 ${
                 selectedRefinements.length > 0
-                  ? 'bg-blue-500 text-white hover:bg-blue-600 shadow-lg'
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  ? 'bg-blue-500 dark:bg-accent-600 text-white hover:bg-blue-600 dark:hover:bg-accent-700 shadow-lg'
+                  : 'bg-gray-200 dark:bg-secondary-600 text-gray-400 dark:text-gray-500 cursor-not-allowed'
               }`}
               whileHover={selectedRefinements.length > 0 ? { scale: 1.02 } : {}}
               whileTap={selectedRefinements.length > 0 ? { scale: 0.98 } : {}}
@@ -285,7 +286,7 @@ const DocumentRefinementAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -298,14 +299,15 @@ const DocumentRefinementAnimation: React.FC = () => {
                   scale: { duration: 1, repeat: Infinity }
                 }}
               >
-                <Wand2 className="w-8 h-8 text-blue-500" />
+                <Wand2 className="w-8 h-8 text-blue-500 dark:text-accent-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Refining Document...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Refining Document...</div>
               
               <div className="space-y-2 w-40">
                 {selectedRefinements.map((id, i) => {
                   const option = refinementOptions.find(opt => opt.id === id);
                   if (!option) return null;
+                  const darkColor = option.color.replace('-500', '-600');
                   
                   return (
                     <motion.div
@@ -315,15 +317,15 @@ const DocumentRefinementAnimation: React.FC = () => {
                       transition={{ delay: i * 0.3 }}
                       className="flex items-center gap-2"
                     >
-                      <div className={`w-2 h-2 rounded-full ${option.color}`} />
-                      <span className="text-xs text-gray-600">{option.label}</span>
+                      <div className={`w-2 h-2 rounded-full ${option.color} dark:${darkColor}`} />
+                      <span className="text-xs text-gray-600 dark:text-gray-400">{option.label}</span>
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "100%" }}
                         transition={{ delay: i * 0.3 + 0.5, duration: 1 }}
-                        className="flex-1 bg-gray-200 rounded-full h-1"
+                        className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1"
                       >
-                        <div className={`${option.color} h-1 rounded-full`} />
+                        <div className={`${option.color} dark:${darkColor} h-1 rounded-full`} />
                       </motion.div>
                     </motion.div>
                   );
@@ -341,22 +343,23 @@ const DocumentRefinementAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, type: "spring" }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-4 border border-white/50"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-4 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-              <span className="text-sm font-semibold text-gray-700">Refinement Complete</span>
-              <div className="ml-auto text-xs text-gray-500">+47 quality points</div>
+              <CheckCircle className="w-4 h-4 text-green-500 dark:text-success-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Refinement Complete</span>
+              <div className="ml-auto text-xs text-gray-500 dark:text-gray-400">+47 quality points</div>
             </div>
             
             <div className="flex gap-4 text-xs">
               <div className="flex-1">
-                <div className="text-gray-500 mb-1">Improvements Applied:</div>
+                <div className="text-gray-500 dark:text-gray-400 mb-1">Improvements Applied:</div>
                 <div className="flex flex-wrap gap-1">
                   {selectedRefinements.map(id => {
                     const option = refinementOptions.find(opt => opt.id === id);
+                    const darkColor = option?.color.replace('-500', '-600');
                     return (
-                      <span key={id} className={`px-2 py-1 rounded-full text-white ${option?.color} text-xs`}>
+                      <span key={id} className={`px-2 py-1 rounded-full text-white ${option?.color} dark:${darkColor} text-xs`}>
                         {option?.label}
                       </span>
                     );
@@ -365,8 +368,8 @@ const DocumentRefinementAnimation: React.FC = () => {
               </div>
               
               <div className="text-right">
-                <div className="text-gray-500 mb-1">Overall Score:</div>
-                <div className="text-lg font-bold text-green-600">
+                <div className="text-gray-500 dark:text-gray-400 mb-1">Quality Score:</div>
+                <div className="text-lg font-bold text-green-600 dark:text-success-400">
                   {documentBefore.score}% → {documentAfter.score}%
                 </div>
               </div>

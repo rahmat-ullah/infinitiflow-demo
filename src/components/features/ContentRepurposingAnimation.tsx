@@ -6,10 +6,10 @@ const ContentRepurposingAnimation: React.FC = () => {
   const [isTransforming, setIsTransforming] = useState(false);
   
   const formats = {
-    blog: { icon: '📝', name: 'Blog Post', color: 'bg-blue-100' },
-    social: { icon: '📱', name: 'Social Media', color: 'bg-pink-100' },
-    email: { icon: '📧', name: 'Email', color: 'bg-green-100' },
-    video: { icon: '🎥', name: 'Video Script', color: 'bg-purple-100' }
+    blog: { icon: '📝', name: 'Blog Post', color: 'bg-blue-100 dark:bg-accent-800/60' },
+    social: { icon: '📱', name: 'Social Media', color: 'bg-pink-100 dark:bg-pink-800/60' },
+    email: { icon: '📧', name: 'Email', color: 'bg-green-100 dark:bg-success-800/60' },
+    video: { icon: '🎥', name: 'Video Script', color: 'bg-purple-100 dark:bg-primary-800/60' }
   } as const;
   
   type FormatKey = keyof typeof formats;
@@ -30,24 +30,24 @@ const ContentRepurposingAnimation: React.FC = () => {
   }, [currentFormat]);
 
   return (
-    <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl">
+    <div className="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-900 dark:to-purple-800 p-6 rounded-xl">
       <div className="flex items-center space-x-2 mb-4">
-        <RefreshCw className="text-pink-600" size={20} />
-        <span className="text-sm font-medium text-pink-600">Content Repurposing</span>
+        <RefreshCw className="text-pink-600 dark:text-pink-400" size={20} />
+        <span className="text-sm font-medium text-pink-600 dark:text-pink-400">Content Repurposing</span>
       </div>
       <div className="relative">
         <div className="flex items-center justify-center space-x-4">
           <div className="text-center">
-            <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-2">
+            <div className="w-16 h-16 bg-gray-100 dark:bg-secondary-700 rounded-lg flex items-center justify-center mb-2">
               <span className="text-2xl">📄</span>
             </div>
-            <span className="text-xs font-medium">Original</span>
+            <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Original</span>
           </div>
           
           <motion.div
             animate={{ rotate: isTransforming ? 360 : 0 }}
             transition={{ duration: 1 }}
-            className="text-pink-500"
+            className="text-pink-500 dark:text-pink-400"
           >
             <ArrowRight size={20} />
           </motion.div>
@@ -60,13 +60,13 @@ const ContentRepurposingAnimation: React.FC = () => {
             >
               <span className="text-2xl">{formats[currentFormat].icon}</span>
             </motion.div>
-            <span className="text-xs font-medium">{formats[currentFormat].name}</span>
+            <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{formats[currentFormat].name}</span>
           </div>
         </div>
         
         {isTransforming && (
           <motion.div
-            className="absolute inset-0 bg-white bg-opacity-50 rounded-lg flex items-center justify-center"
+            className="absolute inset-0 bg-white bg-opacity-50 dark:bg-secondary-800 dark:bg-opacity-50 rounded-lg flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -74,7 +74,7 @@ const ContentRepurposingAnimation: React.FC = () => {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              className="text-pink-500"
+              className="text-pink-500 dark:text-pink-400"
             >
               <Wand2 size={24} />
             </motion.div>

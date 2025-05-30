@@ -108,10 +108,10 @@ const ContentImprovementAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-yellow-50 via-orange-50 to-amber-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-yellow-50 via-orange-50 to-amber-50 dark:from-yellow-900 dark:via-orange-800 dark:to-amber-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-400 to-orange-400 transform rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-400 to-orange-400 dark:from-yellow-700 dark:to-orange-700 transform rotate-12 scale-150"></div>
       </div>
 
       {/* Content Preview Panel */}
@@ -119,19 +119,19 @@ const ContentImprovementAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-44 h-48 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-44 h-48 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
         {/* Content Header */}
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-yellow-600" />
-            <span className="text-xs font-semibold text-gray-700">Content Analysis</span>
+            <Sparkles className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Content Analysis</span>
           </div>
           
           {/* Overall Score */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500">Overall Score:</span>
-            <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Overall Score:</span>
+            <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
               <motion.div
                 initial={{ width: `${contentBefore.metrics.overall}%` }}
                 animate={{ width: `${getDisplayMetrics().overall}%` }}
@@ -157,7 +157,7 @@ const ContentImprovementAnimation: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="text-xs text-gray-700 leading-relaxed"
+              className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed"
             >
               "{getDisplayContent().text}"
             </motion.div>
@@ -175,26 +175,26 @@ const ContentImprovementAnimation: React.FC = () => {
               <motion.div
                 key={key}
                 className={`flex items-center gap-2 p-1 rounded cursor-pointer transition-all ${
-                  isHovered ? 'bg-yellow-50' : ''
+                  isHovered ? 'bg-yellow-50 dark:bg-yellow-700/20' : ''
                 }`}
                 onMouseEnter={() => setActiveMetric(key)}
                 onMouseLeave={() => setActiveMetric(null)}
                 whileHover={{ scale: 1.02 }}
               >
-                <span className="text-xs text-gray-600 capitalize w-16">{key}:</span>
-                <div className="flex-1 bg-gray-200 rounded-full h-1">
+                <span className="text-xs text-gray-600 dark:text-gray-400 capitalize w-16">{key}:</span>
+                <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1">
                   <motion.div
                     initial={{ width: `${contentBefore.metrics[key as keyof typeof contentBefore.metrics]}%` }}
                     animate={{ width: `${value}%` }}
                     transition={{ duration: 0.8 }}
-                    className={`h-1 rounded-full ${
+                    className={`h-1 rounded-full ${ // Dynamic color, leave as is for now
                       isSelected && showImproved 
-                        ? suggestion?.color.replace('bg-', 'bg-') || 'bg-orange-400'
+                        ? suggestion?.color.replace('bg-', 'bg-') || 'bg-orange-400' 
                         : 'bg-orange-400'
                     }`}
                   />
                 </div>
-                <span className="text-xs font-medium text-gray-700 w-8">{value}%</span>
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300 w-8">{value}%</span>
               </motion.div>
             );
           })}
@@ -206,7 +206,7 @@ const ContentImprovementAnimation: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowImproved(!showImproved)}
-            className="absolute bottom-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-yellow-600 transition-colors"
+            className="absolute bottom-2 right-2 bg-yellow-500 dark:bg-yellow-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-yellow-600 dark:hover:bg-yellow-700 transition-colors"
           >
             {showImproved ? 'Original' : 'Improved'}
           </motion.button>
@@ -220,7 +220,7 @@ const ContentImprovementAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -233,9 +233,9 @@ const ContentImprovementAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Sparkles className="w-8 h-8 text-yellow-500" />
+                <Sparkles className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Content Quality...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Content Quality...</div>
               <div className="space-y-2 w-36">
                 {['Engagement', 'Clarity', 'Persuasion', 'Impact'].map((item, i) => (
                   <motion.div
@@ -243,9 +243,9 @@ const ContentImprovementAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.4, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 dark:from-yellow-600 dark:to-orange-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -261,17 +261,18 @@ const ContentImprovementAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-48 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-48 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <TrendingUp className="w-4 h-4 text-yellow-500" />
-              <span className="text-sm font-semibold text-gray-700">Improvement Suggestions</span>
+              <TrendingUp className="w-4 h-4 text-yellow-500 dark:text-yellow-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Improvement Suggestions</span>
             </div>
 
             <div className="space-y-2 mb-4">
               {improvementSuggestions.map((suggestion, i) => {
                 const Icon = suggestion.icon;
                 const isSelected = selectedImprovements.includes(suggestion.id);
+                const darkColor = suggestion.color.replace('-500', '-600');
                 
                 return (
                   <motion.button
@@ -282,24 +283,24 @@ const ContentImprovementAnimation: React.FC = () => {
                     onClick={() => handleImprovementToggle(suggestion.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${suggestion.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${suggestion.color} dark:${darkColor} text-white shadow-lg scale-105` // Assuming -600 exists for dark variant
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <Icon className="w-3 h-3" />
+                      <Icon className={`w-3 h-3 ${isSelected ? 'text-white' : suggestion.color.replace('bg-','text-') } dark:${isSelected ? 'text-white' : suggestion.color.replace('bg-','text-').replace('-500','-400')}`} />
                       <span className="text-xs font-medium">{suggestion.label}</span>
-                      <span className="ml-auto text-xs opacity-75">{suggestion.impact}</span>
+                      <span className={`ml-auto text-xs ${isSelected ? 'opacity-75' : 'opacity-75 dark:text-gray-400'}`}>{suggestion.impact}</span>
                     </div>
-                    <div className="text-xs opacity-75">{suggestion.description}</div>
+                    <div className={`text-xs ${isSelected ? 'opacity-75 dark:text-white/80' : 'opacity-75 dark:text-gray-400'}`}>{suggestion.description}</div>
                     <div className="flex items-center gap-1 mt-1">
-                      <span className="text-xs opacity-75">{suggestion.before}%</span>
-                      <div className="flex-1 h-1 bg-white/30 rounded-full">
-                        <div className={`h-1 rounded-full bg-white/60 w-[${suggestion.before}%]`}></div>
+                      <span className={`text-xs ${isSelected ? 'opacity-75 dark:text-white/80' : 'opacity-75 dark:text-gray-400'}`}>{suggestion.before}%</span>
+                      <div className={`flex-1 h-1 ${isSelected ? 'bg-white/30' : 'bg-gray-300 dark:bg-gray-500'} rounded-full`}>
+                        <div className={`h-1 rounded-full ${isSelected ? 'bg-white/60' : suggestion.color} w-[${suggestion.before}%]`}></div>
                       </div>
-                      <span className="text-xs opacity-75">→ {suggestion.after}%</span>
+                      <span className={`text-xs ${isSelected ? 'opacity-75 dark:text-white/80' : 'opacity-75 dark:text-gray-400'}`}>→ {suggestion.after}%</span>
                     </div>
                   </motion.button>
                 );
@@ -314,8 +315,8 @@ const ContentImprovementAnimation: React.FC = () => {
               disabled={selectedImprovements.length === 0}
               className={`w-full py-2 px-3 rounded-lg text-xs font-medium transition-all duration-200 ${
                 selectedImprovements.length > 0
-                  ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 shadow-lg'
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 shadow-lg' // Active button gradient should be fine
+                  : 'bg-gray-200 dark:bg-secondary-600 text-gray-400 dark:text-gray-500 cursor-not-allowed'
               }`}
               whileHover={selectedImprovements.length > 0 ? { scale: 1.02 } : {}}
               whileTap={selectedImprovements.length > 0 ? { scale: 0.98 } : {}}
@@ -333,7 +334,7 @@ const ContentImprovementAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -346,14 +347,15 @@ const ContentImprovementAnimation: React.FC = () => {
                   scale: { duration: 1, repeat: Infinity }
                 }}
               >
-                <Sparkles className="w-8 h-8 text-yellow-500" />
+                <Sparkles className="w-8 h-8 text-yellow-500 dark:text-yellow-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Enhancing Content...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Enhancing Content...</div>
               
               <div className="space-y-2 w-44">
                 {selectedImprovements.map((id, i) => {
                   const suggestion = improvementSuggestions.find(opt => opt.id === id);
                   if (!suggestion) return null;
+                  const darkColor = suggestion.color.replace('-500', '-600');
                   
                   return (
                     <motion.div
@@ -363,15 +365,15 @@ const ContentImprovementAnimation: React.FC = () => {
                       transition={{ delay: i * 0.3 }}
                       className="flex items-center gap-2"
                     >
-                      <div className={`w-2 h-2 rounded-full ${suggestion.color}`} />
-                      <span className="text-xs text-gray-600">{suggestion.label}</span>
+                      <div className={`w-2 h-2 rounded-full ${suggestion.color} dark:${darkColor}`} />
+                      <span className="text-xs text-gray-600 dark:text-gray-400">{suggestion.label}</span>
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "100%" }}
                         transition={{ delay: i * 0.3 + 0.5, duration: 1 }}
-                        className="flex-1 bg-gray-200 rounded-full h-1"
+                        className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1"
                       >
-                        <div className={`${suggestion.color} h-1 rounded-full`} />
+                        <div className={`${suggestion.color} dark:${darkColor} h-1 rounded-full`} />
                       </motion.div>
                     </motion.div>
                   );
@@ -389,24 +391,25 @@ const ContentImprovementAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, type: "spring" }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-4 border border-white/50"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-4 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-              <span className="text-sm font-semibold text-gray-700">Content Enhanced</span>
-              <div className="ml-auto text-xs text-gray-500">
+              <CheckCircle className="w-4 h-4 text-green-500 dark:text-success-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Content Enhanced</span>
+              <div className="ml-auto text-xs text-gray-500 dark:text-gray-400">
                 +{contentAfter.metrics.overall - contentBefore.metrics.overall} points
               </div>
             </div>
             
             <div className="flex gap-4 text-xs">
               <div className="flex-1">
-                <div className="text-gray-500 mb-1">Improvements Applied:</div>
+                <div className="text-gray-500 dark:text-gray-400 mb-1">Improvements Applied:</div>
                 <div className="flex flex-wrap gap-1">
                   {selectedImprovements.map(id => {
                     const suggestion = improvementSuggestions.find(opt => opt.id === id);
+                    const darkColor = suggestion?.color.replace('-500', '-600');
                     return (
-                      <span key={id} className={`px-2 py-1 rounded-full text-white ${suggestion?.color} text-xs`}>
+                      <span key={id} className={`px-2 py-1 rounded-full text-white ${suggestion?.color} dark:${darkColor} text-xs`}>
                         {suggestion?.label}
                       </span>
                     );
@@ -415,8 +418,8 @@ const ContentImprovementAnimation: React.FC = () => {
               </div>
               
               <div className="text-right">
-                <div className="text-gray-500 mb-1">Quality Score:</div>
-                <div className="text-lg font-bold text-green-600">
+                <div className="text-gray-500 dark:text-gray-400 mb-1">Quality Score:</div>
+                <div className="text-lg font-bold text-green-600 dark:text-success-400">
                   {contentBefore.metrics.overall}% → {contentAfter.metrics.overall}%
                 </div>
               </div>

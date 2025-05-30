@@ -225,10 +225,10 @@ const ComplianceCheckerAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-emerald-900 dark:via-green-800 dark:to-teal-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-emerald-400 to-green-400 transform rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-emerald-400 to-green-400 dark:from-emerald-700 dark:to-green-700 transform rotate-12 scale-150"></div>
       </div>
 
       {/* Compliance Dashboard */}
@@ -236,12 +236,12 @@ const ComplianceCheckerAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-44 h-36 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-44 h-36 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-1">
-            <Shield className="w-4 h-4 text-emerald-600" />
-            <span className="text-xs font-semibold text-gray-700">Compliance Status</span>
+            <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Compliance Status</span>
           </div>
         </div>
 
@@ -250,10 +250,10 @@ const ComplianceCheckerAnimation: React.FC = () => {
             <div className="space-y-2">
               {/* Overall Score */}
               <div className="text-center">
-                <div className={`text-lg font-bold ${getScoreColor(complianceMetrics.overallScore)}`}>
+                <div className={`text-lg font-bold ${getScoreColor(complianceMetrics.overallScore).replace('text-','dark:text-')}`}>
                   {complianceMetrics.overallScore}%
                 </div>
-                <div className="text-xs text-gray-600">Overall Score</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Overall Score</div>
               </div>
 
               {/* Category Scores */}
@@ -265,10 +265,10 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   return (
                     <div key={catId} className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
-                        <span className="text-xs">{category?.icon}</span>
-                        <span className="text-xs text-gray-700">{category?.label}</span>
+                        <span className="text-xs">{category?.icon}</span> {/* Emoji, no color change */}
+                        <span className="text-xs text-gray-700 dark:text-gray-300">{category?.label}</span>
                       </div>
-                      <span className={`text-xs font-medium ${getScoreColor(score)}`}>
+                      <span className={`text-xs font-medium ${getScoreColor(score).replace('text-','dark:text-')}`}>
                         {score}%
                       </span>
                     </div>
@@ -277,14 +277,14 @@ const ComplianceCheckerAnimation: React.FC = () => {
               </div>
 
               {/* Issues Summary */}
-              <div className="pt-2 border-t border-gray-100">
+              <div className="pt-2 border-t border-gray-100 dark:border-secondary-700">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Issues:</span>
+                  <span className="text-gray-600 dark:text-gray-400">Issues:</span>
                   <div className="flex gap-2">
-                    <span className="px-1 py-0.5 bg-red-100 text-red-700 rounded">
+                    <span className="px-1 py-0.5 bg-red-100 dark:bg-error-700/30 text-red-700 dark:text-error-300 rounded">
                       {complianceMetrics.criticalIssues}
                     </span>
-                    <span className="px-1 py-0.5 bg-gray-100 text-gray-700 rounded">
+                    <span className="px-1 py-0.5 bg-gray-100 dark:bg-secondary-600 text-gray-700 dark:text-gray-300 rounded">
                       {complianceMetrics.totalIssues}
                     </span>
                   </div>
@@ -299,9 +299,9 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   className="w-8 h-8 mx-auto mb-2"
                 >
-                  <Shield className="w-full h-full text-emerald-500" />
+                  <Shield className="w-full h-full text-emerald-500 dark:text-emerald-400" />
                 </motion.div>
-                <div className="text-xs text-gray-600">Analyzing...</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Analyzing...</div>
               </div>
             </div>
           )}
@@ -315,7 +315,7 @@ const ComplianceCheckerAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -328,9 +328,9 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <FileText className="w-8 h-8 text-emerald-500" />
+                <FileText className="w-8 h-8 text-emerald-500 dark:text-emerald-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Document...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Document...</div>
               <div className="space-y-2 w-40">
                 {['Document structure', 'Content extraction', 'Compliance mapping'].map((item, i) => (
                   <motion.div
@@ -338,9 +338,9 @@ const ComplianceCheckerAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.6, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-emerald-400 to-green-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-emerald-400 to-green-500 dark:from-emerald-600 dark:to-green-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -356,16 +356,17 @@ const ComplianceCheckerAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-52 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-52 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Settings className="w-4 h-4 text-emerald-500" />
-              <span className="text-sm font-semibold text-gray-700">Compliance Categories</span>
+              <Settings className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Compliance Categories</span>
             </div>
 
             <div className="space-y-1 max-h-36 overflow-y-auto">
               {complianceCategories.map((category, i) => {
                 const isSelected = selectedCategories.includes(category.id);
+                const darkColor = category.color.replace('-500', '-600'); // Assuming -600 exists for dark variant
                 
                 return (
                   <motion.button
@@ -376,8 +377,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                     onClick={() => handleCategoryToggle(category.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${category.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${category.color} dark:${darkColor} text-white shadow-lg scale-105`
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -388,21 +389,22 @@ const ComplianceCheckerAnimation: React.FC = () => {
                         <span className="text-xs font-medium">{category.label}</span>
                       </div>
                       <div className="flex items-center gap-1">
+                        {/* Dynamic risk level color needs JS theme awareness */}
                         <span className={`text-xs px-1 py-0.5 rounded ${
-                          isSelected ? 'bg-white/20 text-white' : getRiskLevelColor(category.riskLevel)
+                          isSelected ? 'bg-white/20 text-white' : `${getRiskLevelColor(category.riskLevel).replace('text-','bg-').replace('-600','-100')} ${getRiskLevelColor(category.riskLevel)}`
                         }`}>
                           {category.riskLevel}
                         </span>
                         <div className={`w-3 h-3 rounded border-2 ${
                           isSelected 
                             ? 'bg-white border-white' 
-                            : 'border-gray-300'
+                            : 'border-gray-300 dark:border-gray-500'
                         }`}>
                           {isSelected && <CheckCircle className="w-full h-full text-current" />}
                         </div>
                       </div>
                     </div>
-                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
+                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
                       {category.description}
                     </div>
                   </motion.button>
@@ -420,30 +422,30 @@ const ComplianceCheckerAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-72"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-72"
           >
             <div className="flex items-center gap-3 mb-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
-                <Zap className="w-6 h-6 text-emerald-500" />
+                <Zap className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
               </motion.div>
               <div>
-                <div className="text-sm font-medium text-gray-700">Compliance Checking</div>
-                <div className="text-xs text-gray-500">🔍 Validating against {selectedCategories.length} standards...</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Compliance Checking</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">🔍 Validating against {selectedCategories.length} standards...</div>
               </div>
             </div>
 
             {/* Progress Bar */}
             <div className="space-y-3">
-              <div className="flex justify-between text-xs text-gray-600">
+              <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
                 <span>Validation Progress</span>
                 <span>{analysisProgress.toFixed(0)}%</span>
               </div>
-              <div className="bg-gray-200 rounded-full h-2">
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <motion.div
-                  className="bg-gradient-to-r from-emerald-400 to-green-500 h-2 rounded-full"
+                  className="bg-gradient-to-r from-emerald-400 to-green-500 dark:from-emerald-600 dark:to-green-700 h-2 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${analysisProgress}%` }}
                   transition={{ duration: 0.3 }}
@@ -463,11 +465,11 @@ const ComplianceCheckerAnimation: React.FC = () => {
                     className="flex items-center gap-2 text-xs"
                   >
                     {analysisProgress > (i + 1) * 25 ? (
-                      <CheckCircle className="w-3 h-3 text-green-500" />
+                      <CheckCircle className="w-3 h-3 text-green-500 dark:text-success-400" />
                     ) : (
-                      <div className="w-3 h-3 border border-gray-300 rounded-full" />
+                      <div className="w-3 h-3 border border-gray-300 dark:border-gray-500 rounded-full" />
                     )}
-                    <span className={analysisProgress > i * 25 ? 'text-gray-700' : 'text-gray-400'}>
+                    <span className={analysisProgress > i * 25 ? 'text-gray-700 dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'}>
                       {step}
                     </span>
                   </motion.div>
@@ -485,48 +487,48 @@ const ComplianceCheckerAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-80"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-80"
           >
             <div className="flex items-center gap-3 mb-4">
-              <BarChart3 className="w-6 h-6 text-emerald-500" />
+              <BarChart3 className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
               <div>
-                <div className="text-sm font-medium text-gray-700">Compliance Report</div>
-                <div className="text-xs text-gray-500">Generating findings and recommendations</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Compliance Report</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Generating findings and recommendations</div>
               </div>
             </div>
 
             {/* Sample Report */}
-            <div className="bg-gray-50 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
-              <div className="text-xs font-medium text-gray-600 mb-2">Key Findings:</div>
+            <div className="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
+              <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Key Findings:</div>
               <div className="space-y-1">
                 <div className="flex items-start gap-2">
-                  <XCircle className="w-3 h-3 text-red-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-xs text-gray-700">Missing GDPR compliance statement</span>
+                  <XCircle className="w-3 h-3 text-red-500 dark:text-error-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Missing GDPR compliance statement</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="w-3 h-3 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-xs text-gray-700">Unapproved vendor reference found</span>
+                  <AlertTriangle className="w-3 h-3 text-orange-500 dark:text-warning-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Unapproved vendor reference found</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="w-3 h-3 text-yellow-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-xs text-gray-700">Inconsistent date formatting</span>
+                  <AlertTriangle className="w-3 h-3 text-yellow-500 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Inconsistent date formatting</span>
                 </div>
               </div>
             </div>
 
             {/* Compliance Scores Preview */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="text-center p-2 bg-red-50 rounded">
-                <div className="text-xs font-bold text-red-600">65%</div>
-                <div className="text-xs text-gray-600">Regulatory</div>
+              <div className="text-center p-2 bg-red-50 dark:bg-error-700/20 rounded">
+                <div className="text-xs font-bold text-red-600 dark:text-error-300">65%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Regulatory</div>
               </div>
-              <div className="text-center p-2 bg-yellow-50 rounded">
-                <div className="text-xs font-bold text-yellow-600">88%</div>
-                <div className="text-xs text-gray-600">Style</div>
+              <div className="text-center p-2 bg-yellow-50 dark:bg-warning-700/20 rounded">
+                <div className="text-xs font-bold text-yellow-600 dark:text-warning-300">88%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Style</div>
               </div>
-              <div className="text-center p-2 bg-orange-50 rounded">
-                <div className="text-xs font-bold text-orange-600">76%</div>
-                <div className="text-xs text-gray-600">Policy</div>
+              <div className="text-center p-2 bg-orange-50 dark:bg-orange-700/20 rounded"> {/* Assuming orange is like warning */}
+                <div className="text-xs font-bold text-orange-600 dark:text-orange-300">76%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Policy</div>
               </div>
             </div>
           </motion.div>
@@ -540,15 +542,15 @@ const ComplianceCheckerAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Result Controls */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-emerald-600" />
-                  <span className="text-sm font-semibold text-gray-700">Compliance Results</span>
-                  <span className="text-xs px-2 py-1 rounded bg-emerald-500 text-white">
+                  <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Compliance Results</span>
+                  <span className="text-xs px-2 py-1 rounded bg-emerald-500 dark:bg-emerald-600 text-white">
                     {complianceMetrics.totalIssues} issues
                   </span>
                 </div>
@@ -557,7 +559,7 @@ const ComplianceCheckerAnimation: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     onClick={() => setShowDetailedView(!showDetailedView)}
-                    className="bg-emerald-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-emerald-600 transition-colors"
+                    className="bg-emerald-500 dark:bg-emerald-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-emerald-600 dark:hover:bg-emerald-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -567,7 +569,7 @@ const ComplianceCheckerAnimation: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-gray-400 hover:text-gray-600 p-1"
+                    className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -583,8 +585,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Overall</div>
-                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.overallScore)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Overall</div>
+                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.overallScore).replace('text-','dark:text-')}`}>
                     {complianceMetrics.overallScore}%
                   </div>
                 </motion.div>
@@ -594,8 +596,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   transition={{ delay: 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Regulatory</div>
-                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.regulatory)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Regulatory</div>
+                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.regulatory).replace('text-','dark:text-')}`}>
                     {complianceMetrics.regulatory}%
                   </div>
                 </motion.div>
@@ -605,8 +607,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   transition={{ delay: 0.2 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Style</div>
-                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.style)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Style</div>
+                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.style).replace('text-','dark:text-')}`}>
                     {complianceMetrics.style}%
                   </div>
                 </motion.div>
@@ -616,8 +618,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   transition={{ delay: 0.3 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Policy</div>
-                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.policy)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Policy</div>
+                  <div className={`text-xs font-bold ${getScoreColor(complianceMetrics.policy).replace('text-','dark:text-')}`}>
                     {complianceMetrics.policy}%
                   </div>
                 </motion.div>
@@ -627,8 +629,8 @@ const ComplianceCheckerAnimation: React.FC = () => {
                   transition={{ delay: 0.4 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Critical</div>
-                  <div className="text-xs font-bold text-red-600">
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Critical</div>
+                  <div className="text-xs font-bold text-red-600 dark:text-error-300">
                     {complianceMetrics.criticalIssues}
                   </div>
                 </motion.div>
@@ -652,19 +654,20 @@ const ComplianceCheckerAnimation: React.FC = () => {
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="border border-gray-200 rounded-lg p-2 hover:bg-gray-50 transition-colors"
+                        className="border border-gray-200 dark:border-secondary-600 rounded-lg p-2 hover:bg-gray-50 dark:hover:bg-secondary-700/50 transition-colors"
                         whileHover={{ scale: 1.01 }}
                       >
                         <div className="flex items-center justify-between mb-1">
                           <div className="flex items-center gap-2">
+                            {/* Dynamic severity color/icon needs JS theme awareness */}
                             <span className={`p-1 rounded ${getSeverityColor(issue.severity)}`}>
                               {getSeverityIcon(issue.severity)}
                             </span>
-                            <span className="text-xs font-medium text-gray-800">{issue.title}</span>
+                            <span className="text-xs font-medium text-gray-800 dark:text-gray-200">{issue.title}</span>
                           </div>
-                          <span className="text-xs text-gray-500">Line {issue.line}</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">Line {issue.line}</span>
                         </div>
-                        <div className="text-xs text-gray-600 line-clamp-1 pl-6">
+                        <div className="text-xs text-gray-600 dark:text-gray-300 line-clamp-1 pl-6">
                           {issue.description}
                         </div>
                       </motion.div>
@@ -684,24 +687,25 @@ const ComplianceCheckerAnimation: React.FC = () => {
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.05 }}
-                        className="border border-gray-200 rounded-lg p-2"
+                        className="border border-gray-200 dark:border-secondary-600 rounded-lg p-2"
                       >
                         <div className="flex items-center justify-between mb-1">
                           <div className="flex items-center gap-2">
                             <span className={`p-1 rounded ${getSeverityColor(issue.severity)}`}>
                               {getSeverityIcon(issue.severity)}
                             </span>
-                            <span className="text-xs font-medium text-gray-800">{issue.title}</span>
+                            <span className="text-xs font-medium text-gray-800 dark:text-gray-200">{issue.title}</span>
+                            {/* Dynamic category color needs JS theme awareness */}
                             <span className={`text-xs px-1 py-0.5 rounded ${getCategoryById(issue.category)?.color} text-white`}>
                               {getCategoryById(issue.category)?.label}
                             </span>
                           </div>
-                          <span className="text-xs text-gray-500">Line {issue.line}</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">Line {issue.line}</span>
                         </div>
-                        <div className="text-xs text-gray-600 mb-1 pl-6">
+                        <div className="text-xs text-gray-600 dark:text-gray-300 mb-1 pl-6">
                           {issue.description}
                         </div>
-                        <div className="text-xs text-green-700 bg-green-50 p-1 rounded pl-6">
+                        <div className="text-xs text-green-700 dark:text-success-300 bg-green-50 dark:bg-success-700/20 p-1 rounded pl-6">
                           💡 {issue.suggestion}
                         </div>
                       </motion.div>
@@ -719,7 +723,7 @@ const ComplianceCheckerAnimation: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-emerald-500 text-white p-2 rounded-full shadow-lg"
+          className="absolute top-4 right-4 bg-emerald-500 dark:bg-emerald-600 text-white p-2 rounded-full shadow-lg"
         >
           <Shield className="w-4 h-4" />
         </motion.div>

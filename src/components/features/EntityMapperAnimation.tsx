@@ -259,10 +259,10 @@ const EntityMapperAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 dark:from-orange-900 dark:via-red-800 dark:to-pink-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-orange-400 to-red-400 transform -rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-orange-400 to-red-400 dark:from-orange-700 dark:to-red-700 transform -rotate-12 scale-150"></div>
       </div>
 
       {/* Entity Analytics Dashboard */}
@@ -270,12 +270,12 @@ const EntityMapperAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-44 h-36 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-44 h-36 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-1">
-            <MapPin className="w-4 h-4 text-orange-600" />
-            <span className="text-xs font-semibold text-gray-700">Entity Analytics</span>
+            <MapPin className="w-4 h-4 text-orange-600 dark:text-warning-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Entity Analytics</span>
           </div>
         </div>
 
@@ -284,48 +284,48 @@ const EntityMapperAnimation: React.FC = () => {
             <div className="space-y-2">
               {/* Total Entities */}
               <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">
+                <div className="text-lg font-bold text-orange-600 dark:text-warning-400">
                   {entityMetrics.totalEntities}
                 </div>
-                <div className="text-xs text-gray-600">Total Entities</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Total Entities</div>
               </div>
 
               {/* Entity Breakdown */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <Users className="w-3 h-3 text-blue-500" />
-                    <span className="text-xs text-gray-700">People</span>
+                    <Users className="w-3 h-3 text-blue-500 dark:text-accent-400" />
+                    <span className="text-xs text-gray-700 dark:text-gray-300">People</span>
                   </div>
-                  <span className="text-xs font-medium text-blue-600">
+                  <span className="text-xs font-medium text-blue-600 dark:text-accent-400">
                     {entityMetrics.people}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <Building2 className="w-3 h-3 text-purple-500" />
-                    <span className="text-xs text-gray-700">Orgs</span>
+                    <Building2 className="w-3 h-3 text-purple-500 dark:text-primary-400" /> {/* Assuming purple is primary-like */}
+                    <span className="text-xs text-gray-700 dark:text-gray-300">Orgs</span>
                   </div>
-                  <span className="text-xs font-medium text-purple-600">
+                  <span className="text-xs font-medium text-purple-600 dark:text-primary-400">
                     {entityMetrics.organizations}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <Globe className="w-3 h-3 text-green-500" />
-                    <span className="text-xs text-gray-700">Places</span>
+                    <Globe className="w-3 h-3 text-green-500 dark:text-success-400" />
+                    <span className="text-xs text-gray-700 dark:text-gray-300">Places</span>
                   </div>
-                  <span className="text-xs font-medium text-green-600">
+                  <span className="text-xs font-medium text-green-600 dark:text-success-400">
                     {entityMetrics.locations}
                   </span>
                 </div>
               </div>
 
               {/* Relationships */}
-              <div className="pt-2 border-t border-gray-100">
+              <div className="pt-2 border-t border-gray-100 dark:border-secondary-700">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Links:</span>
-                  <span className="px-1 py-0.5 bg-orange-100 text-orange-700 rounded">
+                  <span className="text-gray-600 dark:text-gray-400">Links:</span>
+                  <span className="px-1 py-0.5 bg-orange-100 dark:bg-orange-700/30 text-orange-700 dark:text-orange-300 rounded">
                     {entityMetrics.relationships}
                   </span>
                 </div>
@@ -339,9 +339,9 @@ const EntityMapperAnimation: React.FC = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   className="w-8 h-8 mx-auto mb-2"
                 >
-                  <MapPin className="w-full h-full text-orange-500" />
+                  <MapPin className="w-full h-full text-orange-500 dark:text-warning-400" />
                 </motion.div>
-                <div className="text-xs text-gray-600">Scanning...</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Scanning...</div>
               </div>
             </div>
           )}
@@ -355,7 +355,7 @@ const EntityMapperAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -368,9 +368,9 @@ const EntityMapperAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Network className="w-8 h-8 text-orange-500" />
+                <Network className="w-8 h-8 text-orange-500 dark:text-warning-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Document Structure...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Document Structure...</div>
               <div className="space-y-2 w-40">
                 {['Text preprocessing', 'Language analysis', 'Pattern recognition'].map((item, i) => (
                   <motion.div
@@ -378,9 +378,9 @@ const EntityMapperAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.6, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-orange-400 to-red-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-orange-400 to-red-500 dark:from-orange-600 dark:to-red-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -396,17 +396,18 @@ const EntityMapperAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-52 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-52 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Tag className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-semibold text-gray-700">Entity Types</span>
+              <Tag className="w-4 h-4 text-orange-500 dark:text-warning-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Entity Types</span>
             </div>
 
             <div className="space-y-1 max-h-36 overflow-y-auto">
               {entityTypes.map((type, i) => {
                 const isSelected = selectedEntityTypes.includes(type.id);
                 const IconComponent = type.icon;
+                const darkColor = type.color.replace('-500', '-600');
                 
                 return (
                   <motion.button
@@ -417,27 +418,27 @@ const EntityMapperAnimation: React.FC = () => {
                     onClick={() => handleEntityTypeToggle(type.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${type.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${type.color} dark:${darkColor} text-white shadow-lg scale-105`
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
-                        <IconComponent className="w-3 h-3" />
+                        <IconComponent className={`w-3 h-3 ${isSelected ? 'text-white' : type.color.replace('bg-','text-')} dark:${isSelected ? 'text-white' : type.color.replace('bg-','text-').replace('-500','-400')}`} />
                         <span className="text-xs font-medium">{type.label}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <span className={`text-xs px-1 py-0.5 rounded ${
-                          isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-600'
+                          isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 dark:bg-secondary-600 text-gray-600 dark:text-gray-300'
                         }`}>
                           {type.count}
                         </span>
                         <div className={`w-3 h-3 rounded border-2 ${
                           isSelected 
                             ? 'bg-white border-white' 
-                            : 'border-gray-300'
+                            : 'border-gray-300 dark:border-gray-500'
                         }`}>
                           {isSelected && (
                             <motion.div
@@ -449,7 +450,7 @@ const EntityMapperAnimation: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
+                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
                       {type.description}
                     </div>
                   </motion.button>
@@ -467,30 +468,30 @@ const EntityMapperAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-72"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-72"
           >
             <div className="flex items-center gap-3 mb-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
-                <Zap className="w-6 h-6 text-orange-500" />
+                <Zap className="w-6 h-6 text-orange-500 dark:text-warning-400" />
               </motion.div>
               <div>
-                <div className="text-sm font-medium text-gray-700">Entity Detection</div>
-                <div className="text-xs text-gray-500">🔍 Scanning for {selectedEntityTypes.length} entity types...</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Entity Detection</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">🔍 Scanning for {selectedEntityTypes.length} entity types...</div>
               </div>
             </div>
 
             {/* Progress Bar */}
             <div className="space-y-3">
-              <div className="flex justify-between text-xs text-gray-600">
+              <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
                 <span>Detection Progress</span>
                 <span>{detectionProgress.toFixed(0)}%</span>
               </div>
-              <div className="bg-gray-200 rounded-full h-2">
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <motion.div
-                  className="bg-gradient-to-r from-orange-400 to-red-500 h-2 rounded-full"
+                  className="bg-gradient-to-r from-orange-400 to-red-500 dark:from-orange-600 dark:to-red-700 h-2 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${detectionProgress}%` }}
                   transition={{ duration: 0.3 }}
@@ -510,11 +511,11 @@ const EntityMapperAnimation: React.FC = () => {
                     className="flex items-center gap-2 text-xs"
                   >
                     {detectionProgress > (i + 1) * 25 ? (
-                      <div className="w-3 h-3 bg-green-500 rounded-full" />
+                      <div className="w-3 h-3 bg-green-500 dark:bg-success-400 rounded-full" />
                     ) : (
-                      <div className="w-3 h-3 border border-gray-300 rounded-full" />
+                      <div className="w-3 h-3 border border-gray-300 dark:border-gray-500 rounded-full" />
                     )}
-                    <span className={detectionProgress > i * 25 ? 'text-gray-700' : 'text-gray-400'}>
+                    <span className={detectionProgress > i * 25 ? 'text-gray-700 dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'}>
                       {step}
                     </span>
                   </motion.div>
@@ -532,48 +533,48 @@ const EntityMapperAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-80"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-80"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Network className="w-6 h-6 text-orange-500" />
+              <Network className="w-6 h-6 text-orange-500 dark:text-warning-400" />
               <div>
-                <div className="text-sm font-medium text-gray-700">Entity Relationship Mapping</div>
-                <div className="text-xs text-gray-500">Building entity connections and context</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Entity Relationship Mapping</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Building entity connections and context</div>
               </div>
             </div>
 
             {/* Entity Relationship Preview */}
-            <div className="bg-gray-50 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
-              <div className="text-xs font-medium text-gray-600 mb-2">Detected Relationships:</div>
+            <div className="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
+              <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Detected Relationships:</div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">Sarah Johnson → CEO → TechCorp Inc.</span>
+                  <div className="w-2 h-2 bg-blue-500 dark:bg-accent-500 rounded-full"></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Sarah Johnson → CEO → TechCorp Inc.</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">TechCorp Inc. → Located in → San Francisco</span>
+                  <div className="w-2 h-2 bg-purple-500 dark:bg-primary-500 rounded-full"></div> {/* Assuming purple is primary-like */}
+                  <span className="text-xs text-gray-700 dark:text-gray-300">TechCorp Inc. → Located in → San Francisco</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">$2.5M → Funding for → TechCorp Inc.</span>
+                  <div className="w-2 h-2 bg-emerald-500 dark:bg-emerald-600 rounded-full"></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">$2.5M → Funding for → TechCorp Inc.</span>
                 </div>
               </div>
             </div>
 
             {/* Entity Count Preview */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="text-center p-2 bg-blue-50 rounded">
-                <div className="text-xs font-bold text-blue-600">1</div>
-                <div className="text-xs text-gray-600">People</div>
+              <div className="text-center p-2 bg-blue-50 dark:bg-accent-700/20 rounded">
+                <div className="text-xs font-bold text-blue-600 dark:text-accent-300">1</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">People</div>
               </div>
-              <div className="text-center p-2 bg-purple-50 rounded">
-                <div className="text-xs font-bold text-purple-600">1</div>
-                <div className="text-xs text-gray-600">Orgs</div>
+              <div className="text-center p-2 bg-purple-50 dark:bg-primary-700/20 rounded"> {/* Assuming purple is primary-like */}
+                <div className="text-xs font-bold text-purple-600 dark:text-primary-300">1</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Orgs</div>
               </div>
-              <div className="text-center p-2 bg-green-50 rounded">
-                <div className="text-xs font-bold text-green-600">1</div>
-                <div className="text-xs text-gray-600">Places</div>
+              <div className="text-center p-2 bg-green-50 dark:bg-success-700/20 rounded">
+                <div className="text-xs font-bold text-green-600 dark:text-success-300">1</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Places</div>
               </div>
             </div>
           </motion.div>
@@ -587,15 +588,15 @@ const EntityMapperAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Result Controls */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-orange-600" />
-                  <span className="text-sm font-semibold text-gray-700">Entity Map</span>
-                  <span className="text-xs px-2 py-1 rounded bg-orange-500 text-white">
+                  <MapPin className="w-4 h-4 text-orange-600 dark:text-warning-400" />
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Entity Map</span>
+                  <span className="text-xs px-2 py-1 rounded bg-orange-500 dark:bg-orange-600 text-white">
                     {entityMetrics.totalEntities} entities
                   </span>
                 </div>
@@ -603,7 +604,7 @@ const EntityMapperAnimation: React.FC = () => {
                   <motion.button
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-orange-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-orange-600 transition-colors"
+                    className="bg-orange-500 dark:bg-orange-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -613,7 +614,7 @@ const EntityMapperAnimation: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-gray-400 hover:text-gray-600 p-1"
+                    className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -627,6 +628,7 @@ const EntityMapperAnimation: React.FC = () => {
                 {entityTypes.map((type, i) => {
                   const count = entityMetrics[type.id as keyof typeof entityMetrics] as number || 0;
                   const IconComponent = type.icon;
+                  const darkTextColor = type.color.replace('bg-', 'text-').replace('-500', '-400');
                   
                   return (
                     <motion.div
@@ -637,9 +639,9 @@ const EntityMapperAnimation: React.FC = () => {
                       className="text-center"
                     >
                       <div className="flex items-center justify-center mb-1">
-                        <IconComponent className={`w-3 h-3 ${type.color.replace('bg-', 'text-')}`} />
+                        <IconComponent className={`w-3 h-3 ${type.color.replace('bg-', 'text-')} dark:${darkTextColor}`} />
                       </div>
-                      <div className={`text-xs font-bold ${type.color.replace('bg-', 'text-')}`}>
+                      <div className={`text-xs font-bold ${type.color.replace('bg-', 'text-')} dark:${darkTextColor}`}>
                         {count}
                       </div>
                     </motion.div>
@@ -651,35 +653,35 @@ const EntityMapperAnimation: React.FC = () => {
             {/* Highlighted Text Display */}
             <div className="p-3 max-h-24 overflow-auto">
               <div className="space-y-2">
-                <div className="text-xs font-medium text-gray-600 mb-2">Document with Detected Entities:</div>
-                <div className="text-xs text-gray-700 leading-relaxed bg-gray-50 p-2 rounded">
+                <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Document with Detected Entities:</div>
+                <div className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-secondary-700 p-2 rounded">
                   Following the meeting with{' '}
-                  <span className="bg-blue-200 px-1 rounded cursor-pointer hover:bg-blue-300 transition-colors"
+                  <span className="bg-blue-200 dark:bg-accent-700/40 px-1 rounded cursor-pointer hover:bg-blue-300 dark:hover:bg-accent-600/50 transition-colors"
                         onClick={() => setSelectedEntity(sampleEntities[0])}>
                     Sarah Johnson
                   </span>
                   , CEO of{' '}
-                  <span className="bg-purple-200 px-1 rounded cursor-pointer hover:bg-purple-300 transition-colors"
+                  <span className="bg-purple-200 dark:bg-primary-700/40 px-1 rounded cursor-pointer hover:bg-purple-300 dark:hover:bg-primary-600/50 transition-colors" // Assuming purple is primary-like
                         onClick={() => setSelectedEntity(sampleEntities[1])}>
                     TechCorp Inc.
                   </span>
                   {' '}based in{' '}
-                  <span className="bg-green-200 px-1 rounded cursor-pointer hover:bg-green-300 transition-colors"
+                  <span className="bg-green-200 dark:bg-success-700/40 px-1 rounded cursor-pointer hover:bg-green-300 dark:hover:bg-success-600/50 transition-colors"
                         onClick={() => setSelectedEntity(sampleEntities[2])}>
                     San Francisco
                   </span>
                   {' '}on{' '}
-                  <span className="bg-indigo-200 px-1 rounded cursor-pointer hover:bg-indigo-300 transition-colors"
+                  <span className="bg-indigo-200 dark:bg-indigo-700/40 px-1 rounded cursor-pointer hover:bg-indigo-300 dark:hover:bg-indigo-600/50 transition-colors"
                         onClick={() => setSelectedEntity(sampleEntities[3])}>
                     January 15, 2024
                   </span>
                   , we discussed the{' '}
-                  <span className="bg-emerald-200 px-1 rounded cursor-pointer hover:bg-emerald-300 transition-colors"
+                  <span className="bg-emerald-200 dark:bg-emerald-700/40 px-1 rounded cursor-pointer hover:bg-emerald-300 dark:hover:bg-emerald-600/50 transition-colors"
                         onClick={() => setSelectedEntity(sampleEntities[4])}>
                     $2.5M
                   </span>
                   {' '}Series A funding round. The company specializes in{' '}
-                  <span className="bg-gray-200 px-1 rounded cursor-pointer hover:bg-gray-300 transition-colors"
+                  <span className="bg-gray-200 dark:bg-secondary-600/40 px-1 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-secondary-500/50 transition-colors"
                         onClick={() => setSelectedEntity(sampleEntities[5])}>
                     React.js
                   </span>
@@ -693,23 +695,23 @@ const EntityMapperAnimation: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="bg-white border border-gray-200 rounded-lg p-2 mt-2"
+                      className="bg-white dark:bg-secondary-700 border border-gray-200 dark:border-secondary-600 rounded-lg p-2 mt-2"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
-                          <span className={`px-2 py-1 rounded text-xs font-medium ${getEntityColor(selectedEntity.type)} text-white`}>
+                          <span className={`px-2 py-1 rounded text-xs font-medium ${getEntityColor(selectedEntity.type).replace('-500', '-600')} dark:${getEntityColor(selectedEntity.type).replace('-500','-500')} text-white`}>
                             {selectedEntity.text}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
                             {selectedEntity.type} • {selectedEntity.category}
                           </span>
                         </div>
-                        <span className={`text-xs font-medium ${getConfidenceColor(selectedEntity.confidence)}`}>
+                        <span className={`text-xs font-medium ${getConfidenceColor(selectedEntity.confidence).replace('text-','dark:text-')}`}>
                           {(selectedEntity.confidence * 100).toFixed(0)}%
                         </span>
                       </div>
-                      <div className="text-xs text-gray-600 mb-1">{selectedEntity.context}</div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">{selectedEntity.context}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
                         Related: {selectedEntity.relationships.join(', ')}
                       </div>
                     </motion.div>
@@ -726,7 +728,7 @@ const EntityMapperAnimation: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-orange-500 text-white p-2 rounded-full shadow-lg"
+          className="absolute top-4 right-4 bg-orange-500 dark:bg-orange-600 text-white p-2 rounded-full shadow-lg"
         >
           <MapPin className="w-4 h-4" />
         </motion.div>

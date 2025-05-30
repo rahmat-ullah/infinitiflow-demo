@@ -74,10 +74,10 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-gray-50 via-slate-50 to-zinc-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-gray-50 via-slate-50 to-zinc-50 dark:from-gray-800 dark:via-slate-800 dark:to-zinc-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-400 to-slate-400 transform rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-400 to-slate-400 dark:from-gray-700 dark:to-slate-700 transform rotate-12 scale-150"></div>
       </div>
 
       {/* Source Text Panel */}
@@ -85,17 +85,17 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-44 h-32 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-44 h-32 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-1">
-            <Edit3 className="w-4 h-4 text-gray-600" />
-            <span className="text-xs font-semibold text-gray-700">Source Text</span>
+            <Edit3 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Source Text</span>
           </div>
         </div>
 
         <div className="p-3">
-          <div className="text-xs text-gray-600 leading-relaxed line-clamp-4">
+          <div className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-4">
             {sourceText}
           </div>
           
@@ -112,7 +112,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 + i * 0.2 }}
-                  className="inline-block bg-blue-100 text-blue-700 text-xs px-1 py-0.5 rounded mr-1"
+                  className="inline-block bg-blue-100 dark:bg-accent-700/30 text-blue-700 dark:text-accent-300 text-xs px-1 py-0.5 rounded mr-1"
                 >
                   {item}
                 </motion.div>
@@ -129,7 +129,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -142,9 +142,9 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Sparkles className="w-8 h-8 text-gray-600" />
+                <Sparkles className="w-8 h-8 text-gray-600 dark:text-gray-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Detecting Table Structure...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Detecting Table Structure...</div>
               <div className="space-y-2 w-32">
                 {['Columns', 'Rows', 'Headers'].map((item, i) => (
                   <motion.div
@@ -152,9 +152,9 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.5, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-gray-400 to-slate-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-gray-400 to-slate-500 dark:from-gray-600 dark:to-slate-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -170,31 +170,31 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-48 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-48 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Grid className="w-4 h-4 text-gray-600" />
-              <span className="text-sm font-semibold text-gray-700">Table Detected</span>
+              <Grid className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Table Detected</span>
             </div>
 
             <div className="space-y-2 mb-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-gray-600">Columns:</span>
-                <span className="font-medium text-gray-800">3</span>
+                <span className="text-gray-600 dark:text-gray-400">Columns:</span>
+                <span className="font-medium text-gray-800 dark:text-gray-200">3</span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-gray-600">Rows:</span>
-                <span className="font-medium text-gray-800">4</span>
+                <span className="text-gray-600 dark:text-gray-400">Rows:</span>
+                <span className="font-medium text-gray-800 dark:text-gray-200">4</span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-gray-600">Headers:</span>
-                <span className="font-medium text-green-600">✓ Detected</span>
+                <span className="text-gray-600 dark:text-gray-400">Headers:</span>
+                <span className="font-medium text-green-600 dark:text-success-400">✓ Detected</span>
               </div>
             </div>
 
             {/* Mini Table Preview */}
-            <div className="bg-gray-50 rounded-lg p-2">
-              <div className="text-xs text-gray-500 mb-1">Preview:</div>
+            <div className="bg-gray-50 dark:bg-secondary-700 rounded-lg p-2">
+              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Preview:</div>
               <div className="space-y-1">
                 {tableData.slice(0, 2).map((row, i) => (
                   <motion.div
@@ -202,10 +202,10 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.2 }}
-                    className={`flex gap-1 ${i === 0 ? 'font-medium' : ''}`}
+                    className={`flex gap-1 ${i === 0 ? 'font-medium dark:text-gray-100' : 'dark:text-gray-300'}`}
                   >
                     {row.map((cell, j) => (
-                      <div key={j} className="flex-1 text-xs truncate bg-white px-1 py-0.5 rounded">
+                      <div key={j} className={`flex-1 text-xs truncate ${i === 0 ? 'dark:text-gray-100' : 'dark:text-gray-300'} bg-white dark:bg-secondary-600 px-1 py-0.5 rounded`}>
                         {cell}
                       </div>
                     ))}
@@ -224,14 +224,14 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Table Controls */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Table className="w-4 h-4 text-gray-600" />
-                  <span className="text-sm font-semibold text-gray-700">Interactive Table Editor</span>
+                  <Table className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Interactive Table Editor</span>
                 </div>
                 {currentStep === 'generated' && (
                   <div className="flex items-center gap-1">
@@ -239,7 +239,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       onClick={() => setShowMarkdown(!showMarkdown)}
-                      className="bg-blue-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 transition-colors"
+                      className="bg-blue-500 dark:bg-accent-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 dark:hover:bg-accent-700 transition-colors"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -256,7 +256,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     onClick={addRow}
-                    className="bg-green-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-green-600 transition-colors"
+                    className="bg-green-500 dark:bg-success-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-green-600 dark:hover:bg-success-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -268,7 +268,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
                     onClick={removeRow}
-                    className="bg-red-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-red-600 transition-colors"
+                    className="bg-red-500 dark:bg-error-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-red-600 dark:hover:bg-error-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -280,7 +280,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
                     onClick={addColumn}
-                    className="bg-blue-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 transition-colors"
+                    className="bg-blue-500 dark:bg-accent-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-blue-600 dark:hover:bg-accent-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -292,7 +292,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
                     onClick={removeColumn}
-                    className="bg-orange-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-orange-600 transition-colors"
+                    className="bg-orange-500 dark:bg-warning-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-orange-600 dark:hover:bg-warning-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -327,9 +327,9 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                             key={`${rowIndex}-${colIndex}`}
                             className={`flex-1 relative ${
                               rowIndex === 0 
-                                ? 'bg-gray-100 font-medium' 
-                                : 'bg-gray-50 hover:bg-gray-100'
-                            } border border-gray-200 rounded cursor-pointer transition-all duration-200`}
+                                ? 'bg-gray-100 dark:bg-secondary-600 font-medium' 
+                                : 'bg-gray-50 dark:bg-secondary-700 hover:bg-gray-100 dark:hover:bg-secondary-600/80'
+                            } border border-gray-200 dark:border-secondary-600 rounded cursor-pointer transition-all duration-200`}
                             onClick={() => handleCellClick(rowIndex, colIndex)}
                             whileHover={{ scale: currentStep === 'editing' ? 1.02 : 1 }}
                             whileTap={{ scale: currentStep === 'editing' ? 0.98 : 1 }}
@@ -341,11 +341,11 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                                 onChange={(e) => setCellValue(e.target.value)}
                                 onBlur={() => handleCellEdit(cellValue)}
                                 onKeyPress={(e) => e.key === 'Enter' && handleCellEdit(cellValue)}
-                                className="w-full text-xs px-2 py-1 bg-white border-none outline-none rounded"
+                                className="w-full text-xs px-2 py-1 bg-white dark:bg-secondary-500 dark:text-gray-100 border-none outline-none rounded"
                                 autoFocus
                               />
                             ) : (
-                              <div className="text-xs px-2 py-1 truncate">
+                              <div className={`text-xs px-2 py-1 truncate ${rowIndex === 0 ? 'dark:text-gray-100' : 'dark:text-gray-300'}`}>
                                 {cell}
                               </div>
                             )}
@@ -353,7 +353,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                               <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="absolute inset-0 border-2 border-blue-400 rounded pointer-events-none"
+                                className="absolute inset-0 border-2 border-blue-400 dark:border-accent-500 rounded pointer-events-none"
                               />
                             )}
                           </motion.div>
@@ -367,19 +367,19 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="bg-gray-900 rounded-lg p-3"
+                    className="bg-gray-900 dark:bg-black rounded-lg p-3"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-medium text-gray-300">Markdown Output</span>
+                      <span className="text-xs font-medium text-gray-300 dark:text-gray-400">Markdown Output</span>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition-colors"
                       >
                         <Copy className="w-3 h-3" />
                       </motion.button>
                     </div>
-                    <pre className="text-xs text-green-400 font-mono leading-relaxed overflow-x-auto">
+                    <pre className="text-xs text-green-400 dark:text-success-400 font-mono leading-relaxed overflow-x-auto">
                       {markdownOutput}
                     </pre>
                   </motion.div>
@@ -395,7 +395,7 @@ ${tableData.slice(1).map(row => `| ${row.join(' | ')} |`).join('\n')}`;
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg"
+          className="absolute top-4 right-4 bg-green-500 dark:bg-success-600 text-white p-2 rounded-full shadow-lg"
         >
           <CheckCircle className="w-4 h-4" />
         </motion.div>
