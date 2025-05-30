@@ -307,7 +307,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">{testimonial.name}</h3>
                 <div className="flex items-center space-x-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={16} className="text-yellow-400 fill-current" /> /* Yellow star should be fine */
+                    <Star key={i} size={16} className="text-yellow-400 fill-current" />
                   ))}
                 </div>
               </div>
@@ -348,10 +348,6 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
     );
   };
 
-  // The return statement for TestimonialsPage starts here.
-  // The changes for page background and the inline PageHeader are already applied in previous steps.
-  // Now focusing on the Carousel and its navigation.
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-secondary-950 dark:via-secondary-900 dark:to-secondary-900">
       {/* Header */}
@@ -360,7 +356,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
           <div className="flex items-center justify-between">
             <button 
               onClick={onBackToHome}
-              className="flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
+              className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               <ChevronLeft size={20} className="mr-1" />
               Back to Home
@@ -373,47 +369,28 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
         </div>
       </div>
 
-      {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
-            initial={{ opacity: 0, y: 20 }}
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="mb-6"
           >
-            Success Stories from Our
-            <span className="bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent block">
-              Amazing Customers
+            <span className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium px-4 py-2 rounded-full mb-4">
+              <Heart size={16} className="inline-block mr-2" />
+              Customer Success Stories
             </span>
-          </motion.h1>
-          <motion.p
-            className="text-xl text-gray-600 dark:text-gray-300 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Discover how businesses worldwide are transforming their content strategy with InfinitiFlow. 
-            Real results, real impact, real success stories.
-          </motion.p>
-          <motion.div
-            className="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500 dark:text-gray-400"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="flex items-center">
-              <CheckCircle2 size={16} className="mr-2 text-green-500" />
-              50,000+ Happy Customers
-            </div>
-            <div className="flex items-center">
-              <TrendingUp size={16} className="mr-2 text-blue-500" />
-              98% Customer Satisfaction
-            </div>
-            <div className="flex items-center">
-              <Award size={16} className="mr-2 text-purple-500" />
-              15+ Industry Awards
-            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              Trusted by
+              <span className="block bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-400 dark:to-purple-400 bg-clip-text text-transparent">
+                Thousands of Creators
+              </span>
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Discover how businesses across industries are transforming their content strategy with InfinitiFlow.
+            </p>
           </motion.div>
         </div>
 
@@ -422,7 +399,7 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 mt-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {customerMetrics.map((metric) => {
             const IconComponent = metric.icon;
@@ -430,35 +407,32 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
               <motion.div
                 key={metric.id}
                 variants={itemVariants}
-                className="bg-white dark:bg-secondary-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-secondary-700 text-center"
+                className="bg-white dark:bg-secondary-800 rounded-2xl shadow-lg border border-gray-100 dark:border-secondary-700 p-6 text-center"
               >
-                <div className={`w-12 h-12 bg-gradient-to-r ${metric.color} rounded-lg flex items-center justify-center mx-auto mb-4`}>
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${metric.color} mb-4`}>
                   <IconComponent size={24} className="text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">{metric.value}</h3>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{metric.title}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{metric.description}</p>
+                <div className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{metric.value}</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{metric.title}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{metric.description}</div>
               </motion.div>
             );
           })}
         </motion.div>
-      </div>
 
-      {/* Filter Tabs */}
-      <div className="container mx-auto px-4">
+        {/* Filter Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {industries.map((industry) => (
             <button
               key={industry}
               onClick={() => setSelectedFilter(industry)}
-              className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 selectedFilter === industry
-                  ? 'bg-primary-500 dark:bg-primary-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-secondary-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-secondary-600'
+                  ? 'bg-primary-500 dark:bg-primary-600 text-white shadow-lg scale-105'
+                  : 'bg-gray-100 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-secondary-600'
               }`}
             >
-              <Filter size={14} className="inline-block mr-1" />
-              {industry.charAt(0).toUpperCase() + industry.slice(1)}
+              {industry === 'all' ? 'All Industries' : industry}
             </button>
           ))}
         </div>
@@ -466,8 +440,8 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
         {/* Featured Video Testimonials */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">Video Testimonials</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {extendedTestimonials.filter(t => t.videoUrl).slice(0, 3).map((testimonial) => (
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredTestimonials.filter(t => t.videoUrl).map((testimonial) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -485,9 +459,9 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">Customer Testimonials</h2>
           <div className="max-w-4xl mx-auto">
-            <div className="relative h-96"> {/* Adjust height as needed */}
+            <div className="relative h-96">
               {filteredTestimonials.map((testimonial, index) => (
-                <TestimonialCard // This is the inline TestimonialCard, already styled by this diff
+                <TestimonialCard
                   key={testimonial.id}
                   testimonial={testimonial}
                   isActive={index === selectedTestimonial}
@@ -537,96 +511,96 @@ const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onBackToHome }) => 
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Success Stories Grid */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">All Success Stories</h2>
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {filteredTestimonials.map((testimonial) => (
-            <motion.div
-              key={testimonial.id}
-              variants={itemVariants}
-              className="bg-white dark:bg-secondary-800 rounded-xl shadow-lg border border-gray-100 dark:border-secondary-700 p-6 hover:shadow-xl transition-shadow"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-gray-100">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">{testimonial.company}</p>
-                </div>
-                {testimonial.featured && (
-                  <div className="bg-yellow-100 dark:bg-yellow-700 dark:bg-opacity-30 text-yellow-800 dark:text-yellow-300 text-xs px-2 py-1 rounded-full">
-                    Featured
+        {/* Success Stories Grid */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">All Success Stories</h2>
+          <motion.div
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={controls}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredTestimonials.map((testimonial) => (
+              <motion.div
+                key={testimonial.id}
+                variants={itemVariants}
+                className="bg-white dark:bg-secondary-800 rounded-xl shadow-lg border border-gray-100 dark:border-secondary-700 p-6 hover:shadow-xl transition-shadow"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h3 className="font-semibold text-gray-900 dark:text-gray-100">{testimonial.name}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">{testimonial.company}</p>
                   </div>
-                )}
-              </div>
-              
-              <div className="flex items-center mb-3">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={14} className="text-yellow-400 fill-current" />
-                ))}
-              </div>
-              
-              <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed mb-4 line-clamp-3">
-                {testimonial.quote}
-              </p>
-              
-              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                <span>{testimonial.industry}</span>
-                <span>{testimonial.date}</span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+                  {testimonial.featured && (
+                    <div className="bg-yellow-100 dark:bg-yellow-700 dark:bg-opacity-30 text-yellow-800 dark:text-yellow-300 text-xs px-2 py-1 rounded-full">
+                      Featured
+                    </div>
+                  )}
+                </div>
+                
+                <div className="flex items-center mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={14} className="text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                
+                <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed mb-4 line-clamp-3">
+                  {testimonial.quote}
+                </p>
+                
+                <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                  <span>{testimonial.industry}</span>
+                  <span>{testimonial.date}</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
 
-      {/* CTA Section (already determined to not need changes) */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center"
-      >
-        <div className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-3xl p-12 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Join Our Success Stories?
-            </h2>
-            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Start your journey with InfinitiFlow today and become our next success story.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                className="px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Start Free Trial
-              </motion.button>
-              <motion.button
-                className="px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-primary-600 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Schedule Demo
-              </motion.button>
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-500 dark:to-purple-500 rounded-3xl p-12 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-black opacity-10"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Join Our Success Stories?
+              </h2>
+              <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                Start your journey with InfinitiFlow today and become our next success story.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.button
+                  className="px-8 py-4 bg-white dark:bg-gray-200 text-primary-600 dark:text-primary-500 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Start Free Trial
+                </motion.button>
+                <motion.button
+                  className="px-8 py-4 border-2 border-white dark:border-gray-200 text-white dark:text-gray-200 font-semibold rounded-xl hover:bg-white dark:hover:bg-gray-200 hover:text-primary-600 dark:hover:text-primary-500 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Schedule Demo
+                </motion.button>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };
