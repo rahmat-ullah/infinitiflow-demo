@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
-import { useThemeStore } from '../../../store/themeStore';
+import { useThemeStore } from '../../store/themeStore';
 
 const ThemeToggleButton: React.FC = () => {
   const { theme, toggleTheme } = useThemeStore();
