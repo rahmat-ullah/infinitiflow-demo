@@ -3,6 +3,7 @@ import { Link } from 'react-scroll';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from './ui/Button';
+import ThemeToggleButton from './ui/ThemeToggleButton'; // Import ThemeToggleButton
 import { useAdminStore } from '../store/adminStore';
 
 interface HeaderProps {
@@ -62,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
   const isScrolled = scrollPosition > 10;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white dark:bg-gray-900 shadow-sm' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -71,19 +72,19 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
               onClick={() => incrementLogoClick()}
               className="flex items-center focus:outline-none"
             >
-              <Sparkles className="h-8 w-8 text-primary-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">InfinitiFlow</span>
+              <Sparkles className="h-8 w-8 text-primary-600 dark:text-primary-500" />
+              <span className="ml-2 text-xl font-bold text-gray-900 dark:text-gray-100">InfinitiFlow</span>
             </button>
           </div>
           
           {/* Desktop navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-8 items-center"> {/* Added items-center */}
             {navigation.map((item) => (
               item.isPage ? (
                 <button
                   key={item.name}
                   onClick={() => handleNavigationClick(item)}
-                  className="text-gray-600 hover:text-primary-600 transition-colors cursor-pointer font-medium text-sm"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors cursor-pointer font-medium text-sm"
                 >
                   {item.name}
                 </button>
@@ -95,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
                   smooth={true}
                   offset={-80}
                   duration={500}
-                  className="text-gray-600 hover:text-primary-600 transition-colors cursor-pointer font-medium text-sm"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors cursor-pointer font-medium text-sm"
                 >
                   {item.name}
                 </Link>
@@ -104,32 +105,30 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
             {isAdminMode && (
               <Link
                 to="/admin"
-                className="text-primary-600 hover:text-primary-700 transition-colors cursor-pointer font-medium text-sm"
+                className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors cursor-pointer font-medium text-sm"
               >
                 Admin Panel
               </Link>
             )}
           </nav>
           
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button
-              size="md"
-              variant="primary"
-              className="ml-4"
-            >
+          {/* Right section including CTA and Theme Toggle */}
+          <div className="hidden md:flex items-center"> {/* New wrapper div */}
+            <ThemeToggleButton /> {/* Add this */}
+            <Button size="md" variant="primary" className="ml-4">
               Try for Free
             </Button>
           </div>
           
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
+             <ThemeToggleButton /> {/* Added ThemeToggleButton for mobile view beside hamburger */}
             <button
-              className="text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 p-2"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 p-2 ml-2" // Added ml-2
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open menu</span>
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={24} className="dark:text-gray-300" /> : <Menu size={24} className="dark:text-gray-300" />}
             </button>
           </div>
         </div>
@@ -144,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white"
+            className="md:hidden bg-white dark:bg-gray-800" // Added dark mode bg
           >
             <div className="px-4 pt-2 pb-4 space-y-1 sm:px-6">
               {navigation.map((item) => (
@@ -155,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
                       handleNavigationClick(item);
                       setIsOpen(false);
                     }}
-                    className="block w-full text-left py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md px-3"
+                    className="block w-full text-left py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md px-3"
                   >
                     {item.name}
                   </button>
@@ -167,7 +166,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
                     smooth={true}
                     offset={-80}
                     duration={500}
-                    className="block py-3 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md px-3"
+                    className="block py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md px-3"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
@@ -177,13 +176,18 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
               {isAdminMode && (
                 <Link
                   to="/admin"
-                  className="block py-3 text-base font-medium text-primary-600 hover:text-primary-700 hover:bg-gray-50 rounded-md px-3"
+                  className="block py-3 text-base font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md px-3"
                   onClick={() => setIsOpen(false)}
                 >
                   Admin Panel
                 </Link>
               )}
-              <div className="pt-4">
+              {/* Theme toggle for mobile menu - moved from original plan to be inside the main list for better flow */}
+              {/* The original plan had it in a separate div below, but this is cleaner */}
+              <div className="flex justify-start py-2 px-3"> 
+                  {/* <ThemeToggleButton />  // This was the planned location, but decided to put it near hamburger menu */}
+              </div>
+              <div className="pt-2 border-t border-gray-200 dark:border-gray-700 mt-2"> {/* Adjusted padding and added border */}
                 <Button
                   size="md"
                   variant="primary"

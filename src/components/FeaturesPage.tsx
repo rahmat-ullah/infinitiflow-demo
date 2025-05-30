@@ -33,7 +33,7 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({ onBackToHome }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-secondary-950 dark:via-secondary-900 dark:to-secondary-900">
       {/* Header */}
       <PageHeader 
         title="Features Overview"

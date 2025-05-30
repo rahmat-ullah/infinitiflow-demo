@@ -4,19 +4,19 @@ import { MessageCircle, User, Bot, Send } from 'lucide-react';
 
 const ChatAssistantAnimation: React.FC = () => {
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-accent-900 dark:to-indigo-800 rounded-lg overflow-hidden">
       {/* Document Background */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="absolute top-4 left-4 w-40 h-48 bg-white rounded-lg shadow-lg p-3"
+        className="absolute top-4 left-4 w-40 h-48 bg-white dark:bg-secondary-700 rounded-lg shadow-lg p-3"
       >
         <div className="space-y-2">
           {Array.from({ length: 8 }, (_, i) => (
             <div
               key={i}
-              className={`h-1.5 bg-gray-200 rounded ${
+              className={`h-1.5 bg-gray-200 dark:bg-gray-600 rounded ${
                 i === 2 ? 'w-3/4' : i === 5 ? 'w-1/2' : 'w-full'
               }`}
             />
@@ -29,10 +29,10 @@ const ChatAssistantAnimation: React.FC = () => {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        className="absolute top-4 right-4 w-48 h-48 bg-white rounded-lg shadow-lg"
+        className="absolute top-4 right-4 w-48 h-48 bg-white dark:bg-secondary-800 rounded-lg shadow-lg"
       >
         {/* Chat Header */}
-        <div className="bg-blue-600 text-white p-2 rounded-t-lg flex items-center gap-2">
+        <div className="bg-blue-600 dark:bg-accent-600 text-white p-2 rounded-t-lg flex items-center gap-2">
           <MessageCircle className="w-4 h-4" />
           <span className="text-xs font-medium">AI Assistant</span>
         </div>
@@ -46,12 +46,12 @@ const ChatAssistantAnimation: React.FC = () => {
             transition={{ delay: 1, duration: 0.5 }}
             className="flex justify-end"
           >
-            <div className="bg-blue-100 rounded-lg p-2 max-w-32">
+            <div className="bg-blue-100 dark:bg-accent-700 rounded-lg p-2 max-w-32">
               <div className="flex items-center gap-1 mb-1">
-                <User className="w-3 h-3 text-blue-600" />
-                <span className="text-xs text-blue-600">You</span>
+                <User className="w-3 h-3 text-blue-600 dark:text-accent-300" />
+                <span className="text-xs text-blue-600 dark:text-accent-300">You</span>
               </div>
-              <div className="text-xs text-gray-700">What's this document about?</div>
+              <div className="text-xs text-gray-700 dark:text-gray-200">What's this document about?</div>
             </div>
           </motion.div>
 
@@ -62,12 +62,12 @@ const ChatAssistantAnimation: React.FC = () => {
             transition={{ delay: 2, duration: 0.5 }}
             className="flex justify-start"
           >
-            <div className="bg-gray-100 rounded-lg p-2 max-w-32">
+            <div className="bg-gray-100 dark:bg-secondary-700 rounded-lg p-2 max-w-32">
               <div className="flex items-center gap-1 mb-1">
-                <Bot className="w-3 h-3 text-green-600" />
-                <span className="text-xs text-green-600">AI</span>
+                <Bot className="w-3 h-3 text-green-600 dark:text-success-400" />
+                <span className="text-xs text-green-600 dark:text-success-400">AI</span>
               </div>
-              <div className="text-xs text-gray-700">This document covers AI content generation strategies...</div>
+              <div className="text-xs text-gray-700 dark:text-gray-200">This document covers AI content generation strategies...</div>
             </div>
           </motion.div>
         </div>
@@ -77,12 +77,12 @@ const ChatAssistantAnimation: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 0.5 }}
-          className="border-t p-2 flex items-center gap-2"
+          className="border-t dark:border-t-secondary-700 p-2 flex items-center gap-2"
         >
-          <div className="flex-1 h-6 bg-gray-100 rounded text-xs flex items-center px-2 text-gray-500">
+          <div className="flex-1 h-6 bg-gray-100 dark:bg-secondary-600 rounded text-xs flex items-center px-2 text-gray-500 dark:text-gray-400">
             Ask anything...
           </div>
-          <Send className="w-4 h-4 text-blue-600" />
+          <Send className="w-4 h-4 text-blue-600 dark:text-accent-400" />
         </motion.div>
       </motion.div>
 
@@ -90,7 +90,7 @@ const ChatAssistantAnimation: React.FC = () => {
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-blue-500 text-lg font-bold"
+          className="absolute text-blue-500 dark:text-accent-400 text-lg font-bold"
           initial={{ opacity: 0, scale: 0 }}
           animate={{
             opacity: [0, 1, 0],

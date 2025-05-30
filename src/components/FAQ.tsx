@@ -16,11 +16,11 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gray-50">
+    <section id="faq" className="py-20 bg-gray-50 dark:bg-secondary-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.span
-            className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -38,7 +38,7 @@ const FAQ: React.FC = () => {
           />
           
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -57,17 +57,17 @@ const FAQ: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border border-gray-200 rounded-lg overflow-hidden bg-white"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-secondary-800"
               >
                 <button
                   className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
                   onClick={() => toggleItem(item.id)}
                 >
-                  <span className="text-lg font-medium text-gray-900">{item.question}</span>
+                  <span className="text-lg font-medium text-gray-900 dark:text-gray-100">{item.question}</span>
                   {openItems.includes(item.id) ? (
-                    <ChevronUp size={20} className="text-gray-500" />
+                    <ChevronUp size={20} className="text-gray-500 dark:text-gray-400" />
                   ) : (
-                    <ChevronDown size={20} className="text-gray-500" />
+                    <ChevronDown size={20} className="text-gray-500 dark:text-gray-400" />
                   )}
                 </button>
                 
@@ -77,7 +77,7 @@ const FAQ: React.FC = () => {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6 text-gray-600">
+                  <div className="px-6 pb-6 text-gray-600 dark:text-gray-300">
                     {item.answer}
                   </div>
                 </motion.div>

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-secondary-950 dark:text-secondary-200;
+  }
+}
+
 /* Custom range slider styles for ROI Calculator */
 .slider::-webkit-slider-thumb {
   appearance: none;
@@ -54,7 +60,22 @@
 
 .slider:focus {
   outline: none;
-  ring: 2px;
-  ring-color: #3b82f6;
-  ring-opacity: 0.5;
+  @apply ring-2 ring-opacity-50 ring-accent-500 dark:ring-accent-400;
+}
+
+/* Dark mode slider styles */
+.dark .slider::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #6B46C1, #5f3fae); /* primary-500 to primary-600 */
+}
+
+.dark .slider::-webkit-slider-track {
+  background: linear-gradient(90deg, #334155, #2563eb); /* secondary-700 to accent-600 */
+}
+
+.dark .slider::-moz-range-thumb {
+  background: linear-gradient(135deg, #6B46C1, #5f3fae); /* primary-500 to primary-600 */
+}
+
+.dark .slider::-moz-range-track {
+  background: linear-gradient(90deg, #334155, #2563eb); /* secondary-700 to accent-600 */
 }

@@ -17,31 +17,31 @@ const RoleSolutionCard: React.FC<RoleSolutionCardProps> = ({ solution, index }) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white p-6 rounded-xl border border-gray-200 hover:border-primary-200 hover:shadow-lg transition-all duration-300"
+      className="bg-white dark:bg-secondary-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-200 dark:hover:border-primary-500 hover:shadow-lg transition-all duration-300"
     >
       <div className="flex items-center space-x-3 mb-4">
-        <div className="p-3 rounded-lg bg-primary-100 text-primary-600">
+        <div className="p-3 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400">
           <IconComponent size={24} />
         </div>
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">{solution.title}</h3>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{solution.title}</h3>
         </div>
       </div>
 
-      <p className="text-gray-600 mb-6 leading-relaxed">{solution.description}</p>
+      <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{solution.description}</p>
 
       <div className="space-y-4">
         <div>
-          <h4 className="font-medium text-gray-900 mb-2">Key Features:</h4>
+          <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Key Features:</h4>
           <div className="space-y-2">
             {solution.features.slice(0, 3).map((feature, featureIndex) => (
               <div key={featureIndex} className="flex items-center space-x-2">
-                <CheckCircle2 size={16} className="text-green-500 flex-shrink-0" />
-                <span className="text-sm text-gray-700">{feature}</span>
+                <CheckCircle2 size={16} className="text-green-500 dark:text-success-300 flex-shrink-0" />
+                <span className="text-sm text-gray-700 dark:text-gray-200">{feature}</span>
               </div>
             ))}
             {solution.features.length > 3 && (
-              <span className="text-sm text-primary-600 font-medium">
+              <span className="text-sm text-primary-600 dark:text-primary-400 font-medium">
                 +{solution.features.length - 3} more features
               </span>
             )}
@@ -49,12 +49,12 @@ const RoleSolutionCard: React.FC<RoleSolutionCardProps> = ({ solution, index }) 
         </div>
 
         <div>
-          <h4 className="font-medium text-gray-900 mb-2">Common Use Cases:</h4>
+          <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Common Use Cases:</h4>
           <div className="flex flex-wrap gap-2">
             {solution.useCases.map((useCase, useCaseIndex) => (
               <span
                 key={useCaseIndex}
-                className="px-3 py-1 bg-primary-50 text-primary-700 text-xs rounded-full"
+                className="px-3 py-1 bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs rounded-full"
               >
                 {useCase}
               </span>
@@ -64,7 +64,7 @@ const RoleSolutionCard: React.FC<RoleSolutionCardProps> = ({ solution, index }) 
       </div>
 
       <motion.button
-        className="w-full mt-6 flex items-center justify-center space-x-2 py-3 px-4 border border-primary-200 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-all duration-300"
+        className="w-full mt-6 flex items-center justify-center space-x-2 py-3 px-4 border border-primary-200 dark:border-primary-700 text-primary-600 dark:text-primary-400 font-medium rounded-lg hover:bg-primary-50 dark:hover:bg-primary-800 transition-all duration-300"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >

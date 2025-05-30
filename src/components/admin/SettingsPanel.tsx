@@ -58,42 +58,42 @@ const SettingsPanel: React.FC = () => {
 
   const renderGeneralSettings = () => (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900">General Settings</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">General Settings</h3>
       
       <div className="grid grid-cols-1 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Site Name
           </label>
           <input
             type="text"
             value={settings.siteName}
             onChange={(e) => handleSettingChange('siteName', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Site Description
           </label>
           <textarea
             value={settings.siteDescription}
             onChange={(e) => handleSettingChange('siteDescription', e.target.value)}
             rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100"
           />
         </div>
 
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-medium text-gray-900">Maintenance Mode</h4>
-            <p className="text-sm text-gray-500">Temporarily disable access to the site</p>
+            <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100">Maintenance Mode</h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Temporarily disable access to the site</p>
           </div>
           <button
             onClick={() => handleSettingChange('maintenanceMode', !settings.maintenanceMode)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              settings.maintenanceMode ? 'bg-primary-600' : 'bg-gray-300'
+              settings.maintenanceMode ? 'bg-primary-600 dark:bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'
             }`}
           >
             <span
@@ -106,13 +106,13 @@ const SettingsPanel: React.FC = () => {
 
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-medium text-gray-900">User Registration</h4>
-            <p className="text-sm text-gray-500">Allow new users to register</p>
+            <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100">User Registration</h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Allow new users to register</p>
           </div>
           <button
             onClick={() => handleSettingChange('userRegistration', !settings.userRegistration)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              settings.userRegistration ? 'bg-primary-600' : 'bg-gray-300'
+              settings.userRegistration ? 'bg-primary-600 dark:bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'
             }`}
           >
             <span
@@ -128,15 +128,15 @@ const SettingsPanel: React.FC = () => {
 
   const renderSecuritySettings = () => (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900">Security Settings</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Security Settings</h3>
       
       <div className="space-y-4">
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div className="bg-yellow-50 dark:bg-yellow-700/30 border border-yellow-200 dark:border-yellow-600/50 rounded-lg p-4">
           <div className="flex items-start">
-            <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5 mr-3" />
+            <AlertTriangle className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mt-0.5 mr-3" />
             <div>
-              <h4 className="text-sm font-medium text-yellow-800">Security Notice</h4>
-              <p className="text-sm text-yellow-700 mt-1">
+              <h4 className="text-sm font-medium text-yellow-800 dark:text-yellow-200">Security Notice</h4>
+              <p className="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
                 Make sure to regularly update your security settings and use strong passwords.
               </p>
             </div>
@@ -144,10 +144,10 @@ const SettingsPanel: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Session Timeout (minutes)
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+          <select className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100">
             <option value="30">30 minutes</option>
             <option value="60">1 hour</option>
             <option value="120">2 hours</option>
@@ -156,25 +156,25 @@ const SettingsPanel: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Password Policy
           </label>
           <div className="space-y-2">
             <label className="flex items-center">
-              <input type="checkbox" defaultChecked className="rounded text-primary-600" />
-              <span className="ml-2 text-sm text-gray-700">Minimum 8 characters</span>
+              <input type="checkbox" defaultChecked className="rounded text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:bg-secondary-600 dark:border-secondary-500" />
+              <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Minimum 8 characters</span>
             </label>
             <label className="flex items-center">
-              <input type="checkbox" defaultChecked className="rounded text-primary-600" />
-              <span className="ml-2 text-sm text-gray-700">Require uppercase letters</span>
+              <input type="checkbox" defaultChecked className="rounded text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:bg-secondary-600 dark:border-secondary-500" />
+              <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Require uppercase letters</span>
             </label>
             <label className="flex items-center">
-              <input type="checkbox" defaultChecked className="rounded text-primary-600" />
-              <span className="ml-2 text-sm text-gray-700">Require numbers</span>
+              <input type="checkbox" defaultChecked className="rounded text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:bg-secondary-600 dark:border-secondary-500" />
+              <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Require numbers</span>
             </label>
             <label className="flex items-center">
-              <input type="checkbox" className="rounded text-primary-600" />
-              <span className="ml-2 text-sm text-gray-700">Require special characters</span>
+              <input type="checkbox" className="rounded text-primary-600 dark:text-primary-500 focus:ring-primary-500 dark:focus:ring-primary-400 dark:bg-secondary-600 dark:border-secondary-500" />
+              <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Require special characters</span>
             </label>
           </div>
         </div>
@@ -184,23 +184,23 @@ const SettingsPanel: React.FC = () => {
 
   const renderStorageSettings = () => (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900">Storage Settings</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Storage Settings</h3>
       
       <div className="grid grid-cols-1 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Maximum File Size (MB)
           </label>
           <input
             type="number"
             value={settings.maxFileSize}
             onChange={(e) => handleSettingChange('maxFileSize', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Allowed File Types
           </label>
           <input
@@ -208,20 +208,20 @@ const SettingsPanel: React.FC = () => {
             value={settings.allowedFileTypes}
             onChange={(e) => handleSettingChange('allowedFileTypes', e.target.value)}
             placeholder="jpg,png,pdf,docx"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
           />
-          <p className="text-xs text-gray-500 mt-1">Separate file extensions with commas</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Separate file extensions with commas</p>
         </div>
 
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-medium text-gray-900">Auto Backup</h4>
-            <p className="text-sm text-gray-500">Automatically backup your data</p>
+            <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100">Auto Backup</h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Automatically backup your data</p>
           </div>
           <button
             onClick={() => handleSettingChange('autoBackup', !settings.autoBackup)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              settings.autoBackup ? 'bg-primary-600' : 'bg-gray-300'
+              settings.autoBackup ? 'bg-primary-600 dark:bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'
             }`}
           >
             <span
@@ -234,13 +234,13 @@ const SettingsPanel: React.FC = () => {
 
         {settings.autoBackup && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Backup Frequency
             </label>
             <select 
               value={settings.backupFrequency}
               onChange={(e) => handleSettingChange('backupFrequency', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100"
             >
               <option value="hourly">Hourly</option>
               <option value="daily">Daily</option>
@@ -264,11 +264,11 @@ const SettingsPanel: React.FC = () => {
       default:
         return (
           <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
+            <div className="text-gray-400 dark:text-gray-500 mb-4">
               <Server size={48} className="mx-auto" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Coming Soon</h3>
-            <p className="text-gray-500">This settings section is under development.</p>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Coming Soon</h3>
+            <p className="text-gray-500 dark:text-gray-400">This settings section is under development.</p>
           </div>
         );
     }
@@ -277,7 +277,7 @@ const SettingsPanel: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-900">Settings</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Settings</h2>
         <Button
           variant="primary"
           leftIcon={<Save size={16} />}
@@ -299,8 +299,8 @@ const SettingsPanel: React.FC = () => {
                   onClick={() => setActiveSection(section.id)}
                   className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
                     activeSection === section.id
-                      ? 'bg-primary-50 text-primary-600'
-                      : 'text-gray-600 hover:bg-gray-50'
+                      ? 'bg-primary-50 dark:bg-primary-700 text-primary-600 dark:text-primary-100'
+                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary-700'
                   }`}
                 >
                   <Icon size={18} />
@@ -317,7 +317,7 @@ const SettingsPanel: React.FC = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
-          className="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 p-6"
+          className="flex-1 bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md border border-gray-100 dark:border-secondary-600 p-6"
         >
           {renderContent()}
         </motion.div>

@@ -17,11 +17,11 @@ const Features: React.FC<FeaturesProps> = ({ onViewAllFeatures }) => {
   });
 
   return (
-    <section id="features" className="py-20 bg-gray-50">
+    <section id="features" className="py-20 bg-gray-50 dark:bg-secondary-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.span
-            className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -39,7 +39,7 @@ const Features: React.FC<FeaturesProps> = ({ onViewAllFeatures }) => {
           />
           
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -68,7 +68,7 @@ const Features: React.FC<FeaturesProps> = ({ onViewAllFeatures }) => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <motion.button
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-500 dark:to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onViewAllFeatures}
@@ -76,7 +76,7 @@ const Features: React.FC<FeaturesProps> = ({ onViewAllFeatures }) => {
             <span>Explore All Features in Detail</span>
             <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
           </motion.button>
-          <p className="text-sm text-gray-500 mt-3">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
             See interactive demos and detailed explanations of each feature
           </p>
         </motion.div>

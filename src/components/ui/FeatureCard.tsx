@@ -18,13 +18,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white rounded-xl p-6 shadow-feature hover:shadow-lg transition-all duration-300 border border-gray-100"
+      className="bg-white dark:bg-secondary-800 rounded-xl p-6 shadow-feature hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-secondary-700"
     >
-      <div className="mb-4 bg-primary-100 rounded-lg p-3 w-12 h-12 flex items-center justify-center text-primary-600">
+      <div className="mb-4 bg-primary-100 dark:bg-primary-800 rounded-lg p-3 w-12 h-12 flex items-center justify-center text-primary-600 dark:text-primary-400">
         {IconComponent && <IconComponent size={24} />}
       </div>
-      <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
-      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{feature.title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
     </motion.div>
   );
 };
