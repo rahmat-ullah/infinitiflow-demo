@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAdminStore } from '../../store/adminStore'; // Adjust path if necessary
-import { Button } from '../ui/Button'; // Assuming a Button component exists
+import Button from '../ui/Button'; // Changed from named import to default import
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
