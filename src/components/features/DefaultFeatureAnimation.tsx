@@ -12,8 +12,8 @@ interface DefaultFeatureAnimationProps {
 const DefaultFeatureAnimation: React.FC<DefaultFeatureAnimationProps> = ({ 
   icon: Icon, 
   title, 
-  bgGradient = "from-gray-50 to-blue-100",
-  iconColor = "text-blue-600" 
+  bgGradient = "from-gray-50 to-blue-100 dark:from-secondary-900 dark:to-accent-800",
+  iconColor = "text-blue-600 dark:text-accent-400" 
 }) => {
   return (
     <div className={`relative w-full h-64 bg-gradient-to-br ${bgGradient} rounded-lg overflow-hidden`}>
@@ -24,7 +24,7 @@ const DefaultFeatureAnimation: React.FC<DefaultFeatureAnimationProps> = ({
         transition={{ duration: 0.8, type: "spring", stiffness: 200 }}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
-        <div className="bg-white rounded-full p-8 shadow-xl">
+        <div className="bg-white dark:bg-secondary-700 rounded-full p-8 shadow-xl">
           <Icon className={`w-16 h-16 ${iconColor}`} />
         </div>
       </motion.div>
@@ -36,8 +36,8 @@ const DefaultFeatureAnimation: React.FC<DefaultFeatureAnimationProps> = ({
         transition={{ delay: 0.5, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <div className="bg-white rounded-lg shadow-lg px-4 py-2">
-          <span className="text-sm font-semibold text-gray-700">{title}</span>
+        <div className="bg-white dark:bg-secondary-700 rounded-lg shadow-lg px-4 py-2">
+          <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">{title}</span>
         </div>
       </motion.div>
 
@@ -45,7 +45,7 @@ const DefaultFeatureAnimation: React.FC<DefaultFeatureAnimationProps> = ({
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-3 h-3 bg-white rounded-full shadow-md opacity-70"
+          className="absolute w-3 h-3 bg-white dark:bg-secondary-600 rounded-full shadow-md opacity-70"
           initial={{ opacity: 0 }}
           animate={{
             opacity: [0, 1, 0],

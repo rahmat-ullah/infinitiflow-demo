@@ -38,7 +38,7 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-secondary-950 dark:via-secondary-900 dark:to-secondary-900">
       {/* Header */}
       <PageHeader 
         title="Use Cases"
@@ -67,13 +67,13 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
             className="mb-16"
           >
             <div className="text-center mb-8">
-              <span className="inline-block bg-gradient-to-r from-primary-600 to-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full mb-4">
+              <span className="inline-block bg-gradient-to-r from-primary-600 to-purple-600 text-white text-sm font-medium px-4 py-2 rounded-full mb-4"> {/* Assuming this vibrant banner is OK for dark mode */}
                 Featured
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 Create campaigns across email, social, and more with AI
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Keep your marketing campaigns aligned and on brand with AI-powered integrated marketing.
               </p>
             </div>
@@ -92,8 +92,8 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
         {/* Use Cases Grid */}
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">All Use Cases</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">All Use Cases</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Discover AI-powered solutions for every content and marketing challenge
             </p>
 
@@ -105,8 +105,8 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category.id
-                      ? 'bg-primary-600 text-white shadow-lg'
-                      : 'bg-white text-gray-600 border border-gray-300 hover:border-primary-200'
+                      ? 'bg-primary-600 dark:bg-primary-500 text-white shadow-lg'
+                      : 'bg-white dark:bg-secondary-800 text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-700 hover:border-primary-200 dark:hover:border-primary-500'
                   }`}
                 >
                   {category.label}
@@ -147,14 +147,14 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
+              <span className="inline-block bg-blue-100 dark:bg-accent-800 text-blue-800 dark:text-accent-200 text-sm font-medium px-4 py-2 rounded-full mb-4">
                 <Users size={16} className="inline-block mr-2" />
                 Solutions by Role
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 Tailored solutions for every marketing role
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Get role-specific AI tools and workflows designed for your unique challenges and objectives.
               </p>
             </motion.div>
@@ -180,14 +180,14 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full mb-4">
+              <span className="inline-block bg-green-100 dark:bg-success-800 text-green-800 dark:text-success-200 text-sm font-medium px-4 py-2 rounded-full mb-4">
                 <Building2 size={16} className="inline-block mr-2" />
                 Solutions by Industry
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 Industry-specific AI solutions
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Specialized features and workflows designed for the unique needs of your industry.
               </p>
             </motion.div>
@@ -225,58 +225,58 @@ const UseCasesPage: React.FC<UseCasesPageProps> = ({ onBackToHome }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" // Overlay is already dark
           onClick={() => setSelectedUseCase(null)}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            className="bg-white dark:bg-secondary-800 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold text-gray-900">{selectedUseCase.title}</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{selectedUseCase.title}</h3>
               <button
                 onClick={() => setSelectedUseCase(null)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
               >
                 ×
               </button>
             </div>
             
-            <p className="text-gray-600 mb-6">{selectedUseCase.description}</p>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">{selectedUseCase.description}</p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {selectedUseCase.metrics.map((metric, index) => (
-                <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary-600 mb-1">{metric.value}</div>
-                  <div className="text-sm font-medium text-gray-900 mb-1">{metric.label}</div>
-                  <div className="text-xs text-gray-500">{metric.description}</div>
+                <div key={index} className="text-center p-4 bg-gray-50 dark:bg-secondary-700 rounded-lg">
+                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-1">{metric.value}</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">{metric.label}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">{metric.description}</div>
                 </div>
               ))}
             </div>
             
             <div className="space-y-4">
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Benefits:</h4>
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Benefits:</h4>
                 <ul className="space-y-2">
                   {selectedUseCase.benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start space-x-2">
-                      <span className="text-green-500 mt-1">✓</span>
-                      <span className="text-gray-700">{benefit}</span>
+                      <span className="text-green-500 dark:text-success-300 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-200">{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Examples:</h4>
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Examples:</h4>
                 <ul className="space-y-2">
                   {selectedUseCase.examples.map((example, index) => (
                     <li key={index} className="flex items-start space-x-2">
-                      <span className="text-blue-500 mt-1">•</span>
-                      <span className="text-gray-700">{example}</span>
+                      <span className="text-blue-500 dark:text-accent-400 mt-1">•</span>
+                      <span className="text-gray-700 dark:text-gray-200">{example}</span>
                     </li>
                   ))}
                 </ul>

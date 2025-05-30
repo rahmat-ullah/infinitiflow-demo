@@ -6,11 +6,11 @@ import { integrationLogos } from '../data/content';
 
 const Integrations: React.FC = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white dark:bg-secondary-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <motion.span
-            className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -28,7 +28,7 @@ const Integrations: React.FC = () => {
           />
           
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -58,7 +58,7 @@ const Integrations: React.FC = () => {
               <img
                 src={logo.logoUrl}
                 alt={logo.name}
-                className="h-12 w-auto mx-auto"
+                className="h-12 w-auto mx-auto dark:invert"
               />
             </motion.div>
           ))}

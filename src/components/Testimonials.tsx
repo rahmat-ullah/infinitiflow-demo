@@ -30,11 +30,11 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-white overflow-hidden">
+    <section id="testimonials" className="py-20 bg-white dark:bg-secondary-800 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.span
-            className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -52,7 +52,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
           />
           
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -83,8 +83,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
                     key={idx}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       idx === activeIndex 
-                        ? 'w-8 bg-primary-500' 
-                        : 'w-2 bg-gray-300 hover:bg-gray-400'
+                        ? 'w-8 bg-primary-500 dark:bg-primary-400' 
+                        : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                     }`}
                     onClick={() => setActiveIndex(idx)}
                   />
@@ -94,15 +94,15 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
               <div className="flex space-x-2">
                 <button 
                   onClick={handlePrev}
-                  className="p-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors"
+                  className="p-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-secondary-700 transition-colors"
                 >
-                  <ChevronLeft size={20} className="text-gray-600" />
+                  <ChevronLeft size={20} className="text-gray-600 dark:text-gray-300" />
                 </button>
                 <button 
                   onClick={handleNext}
-                  className="p-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors"
+                  className="p-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-secondary-700 transition-colors"
                 >
-                  <ChevronRight size={20} className="text-gray-600" />
+                  <ChevronRight size={20} className="text-gray-600 dark:text-gray-300" />
                 </button>
               </div>
             </div>
@@ -118,7 +118,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <motion.button
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-500 dark:to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onViewAllTestimonials}
@@ -126,7 +126,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
             <span>View All Success Stories</span>
             <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
           </motion.button>
-          <p className="text-sm text-gray-500 mt-3">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
             Discover detailed customer journeys and video testimonials
           </p>
         </motion.div>

@@ -56,7 +56,7 @@ const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
         return (
           <motion.span
             key={index}
-            className={`inline-block mr-2 ${isHighlighted ? 'text-primary-500' : ''}`}
+            className={`inline-block mr-2 ${isHighlighted ? 'text-primary-500 dark:text-primary-400' : ''}`}
             variants={word}
           >
             {item}

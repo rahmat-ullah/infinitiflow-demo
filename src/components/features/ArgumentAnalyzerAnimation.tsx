@@ -247,10 +247,10 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 dark:from-violet-900 dark:via-purple-800 dark:to-indigo-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-violet-400 to-purple-400 transform rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-violet-400 to-purple-400 dark:from-violet-700 dark:to-purple-700 transform rotate-12 scale-150"></div>
       </div>
 
       {/* Argument Analytics Dashboard */}
@@ -258,12 +258,12 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-44 h-36 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-44 h-36 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-1">
-            <Scale className="w-4 h-4 text-violet-600" />
-            <span className="text-xs font-semibold text-gray-700">Argument Strength</span>
+            <Scale className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Argument Strength</span>
           </div>
         </div>
 
@@ -272,48 +272,48 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             <div className="space-y-2">
               {/* Overall Strength */}
               <div className="text-center">
-                <div className={`text-lg font-bold ${getScoreColor(argumentMetrics.overallStrength)}`}>
+                <div className={`text-lg font-bold ${getScoreColor(argumentMetrics.overallStrength).replace('text-','dark:text-')}`}>
                   {argumentMetrics.overallStrength}%
                 </div>
-                <div className="text-xs text-gray-600">Overall Strength</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Overall Strength</div>
               </div>
 
               {/* Quality Metrics */}
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <Target className="w-3 h-3 text-blue-500" />
-                    <span className="text-xs text-gray-700">Claims</span>
+                    <Target className="w-3 h-3 text-blue-500 dark:text-accent-400" />
+                    <span className="text-xs text-gray-700 dark:text-gray-300">Claims</span>
                   </div>
-                  <span className="text-xs font-medium text-blue-600">
+                  <span className="text-xs font-medium text-blue-600 dark:text-accent-400">
                     {argumentMetrics.totalClaims}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <BarChart3 className="w-3 h-3 text-green-500" />
-                    <span className="text-xs text-gray-700">Evidence</span>
+                    <BarChart3 className="w-3 h-3 text-green-500 dark:text-success-400" />
+                    <span className="text-xs text-gray-700 dark:text-gray-300">Evidence</span>
                   </div>
-                  <span className="text-xs font-medium text-green-600">
+                  <span className="text-xs font-medium text-green-600 dark:text-success-400">
                     {argumentMetrics.totalEvidence}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1">
-                    <TrendingUp className="w-3 h-3 text-purple-500" />
-                    <span className="text-xs text-gray-700">Logic</span>
+                    <TrendingUp className="w-3 h-3 text-purple-500 dark:text-primary-400" /> {/* Assuming purple is primary-like */}
+                    <span className="text-xs text-gray-700 dark:text-gray-300">Logic</span>
                   </div>
-                  <span className={`text-xs font-medium ${getScoreColor(argumentMetrics.logicalFlow)}`}>
+                  <span className={`text-xs font-medium ${getScoreColor(argumentMetrics.logicalFlow).replace('text-','dark:text-')}`}>
                     {argumentMetrics.logicalFlow}%
                   </span>
                 </div>
               </div>
 
               {/* Weaknesses */}
-              <div className="pt-2 border-t border-gray-100">
+              <div className="pt-2 border-t border-gray-100 dark:border-secondary-700">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Issues:</span>
-                  <span className="px-1 py-0.5 bg-red-100 text-red-700 rounded">
+                  <span className="text-gray-600 dark:text-gray-400">Issues:</span>
+                  <span className="px-1 py-0.5 bg-red-100 dark:bg-error-700/30 text-red-700 dark:text-error-300 rounded">
                     {argumentMetrics.weaknesses}
                   </span>
                 </div>
@@ -327,9 +327,9 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   className="w-8 h-8 mx-auto mb-2"
                 >
-                  <Scale className="w-full h-full text-violet-500" />
+                  <Scale className="w-full h-full text-violet-500 dark:text-violet-400" />
                 </motion.div>
-                <div className="text-xs text-gray-600">Analyzing...</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Analyzing...</div>
               </div>
             </div>
           )}
@@ -343,7 +343,7 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -356,9 +356,9 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Brain className="w-8 h-8 text-violet-500" />
+                <Brain className="w-8 h-8 text-violet-500 dark:text-violet-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Argument Structure...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Argument Structure...</div>
               <div className="space-y-2 w-40">
                 {['Text parsing', 'Claim identification', 'Logic mapping'].map((item, i) => (
                   <motion.div
@@ -366,9 +366,9 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.6, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-violet-400 to-purple-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-violet-400 to-purple-500 dark:from-violet-600 dark:to-purple-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -384,17 +384,18 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-52 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-52 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Network className="w-4 h-4 text-violet-500" />
-              <span className="text-sm font-semibold text-gray-700">Argument Types</span>
+              <Network className="w-4 h-4 text-violet-500 dark:text-violet-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Argument Types</span>
             </div>
 
             <div className="space-y-1 max-h-36 overflow-y-auto">
               {argumentTypes.map((type, i) => {
                 const isSelected = selectedArgumentTypes.includes(type.id);
                 const IconComponent = type.icon;
+                const darkColor = type.color.replace('-500', '-600');
                 
                 return (
                   <motion.button
@@ -405,27 +406,27 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                     onClick={() => handleArgumentTypeToggle(type.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${type.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${type.color} dark:${darkColor} text-white shadow-lg scale-105`
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
-                        <IconComponent className="w-3 h-3" />
+                        <IconComponent className={`w-3 h-3 ${isSelected ? 'text-white' : type.color.replace('bg-','text-').replace('-500', '-600')} dark:${isSelected ? 'text-white' : type.color.replace('bg-','text-').replace('-500', '-400')}`} />
                         <span className="text-xs font-medium">{type.label}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <span className={`text-xs px-1 py-0.5 rounded ${
-                          isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-600'
+                          isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 dark:bg-secondary-600 text-gray-600 dark:text-gray-300'
                         }`}>
                           {type.count}
                         </span>
                         <div className={`w-3 h-3 rounded border-2 ${
                           isSelected 
                             ? 'bg-white border-white' 
-                            : 'border-gray-300'
+                            : 'border-gray-300 dark:border-gray-500'
                         }`}>
                           {isSelected && (
                             <motion.div
@@ -437,7 +438,7 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
+                    <div className={`text-xs ${isSelected ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
                       {type.description}
                     </div>
                   </motion.button>
@@ -455,30 +456,30 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-72"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-72"
           >
             <div className="flex items-center gap-3 mb-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
-                <Zap className="w-6 h-6 text-violet-500" />
+                <Zap className="w-6 h-6 text-violet-500 dark:text-violet-400" />
               </motion.div>
               <div>
-                <div className="text-sm font-medium text-gray-700">Argument Identification</div>
-                <div className="text-xs text-gray-500">🔍 Mapping {selectedArgumentTypes.length} argument types...</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Argument Identification</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">🔍 Mapping {selectedArgumentTypes.length} argument types...</div>
               </div>
             </div>
 
             {/* Progress Bar */}
             <div className="space-y-3">
-              <div className="flex justify-between text-xs text-gray-600">
+              <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
                 <span>Analysis Progress</span>
                 <span>{analysisProgress.toFixed(0)}%</span>
               </div>
-              <div className="bg-gray-200 rounded-full h-2">
+              <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <motion.div
-                  className="bg-gradient-to-r from-violet-400 to-purple-500 h-2 rounded-full"
+                  className="bg-gradient-to-r from-violet-400 to-purple-500 dark:from-violet-600 dark:to-purple-700 h-2 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${analysisProgress}%` }}
                   transition={{ duration: 0.3 }}
@@ -498,11 +499,11 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                     className="flex items-center gap-2 text-xs"
                   >
                     {analysisProgress > (i + 1) * 25 ? (
-                      <CheckCircle className="w-3 h-3 text-green-500" />
+                      <CheckCircle className="w-3 h-3 text-green-500 dark:text-success-400" />
                     ) : (
-                      <div className="w-3 h-3 border border-gray-300 rounded-full" />
+                      <div className="w-3 h-3 border border-gray-300 dark:border-gray-500 rounded-full" />
                     )}
-                    <span className={analysisProgress > i * 25 ? 'text-gray-700' : 'text-gray-400'}>
+                    <span className={analysisProgress > i * 25 ? 'text-gray-700 dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'}>
                       {step}
                     </span>
                   </motion.div>
@@ -520,48 +521,48 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 w-80"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50 w-80"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Scale className="w-6 h-6 text-violet-500" />
+              <Scale className="w-6 h-6 text-violet-500 dark:text-violet-400" />
               <div>
-                <div className="text-sm font-medium text-gray-700">Argument Evaluation</div>
-                <div className="text-xs text-gray-500">Assessing logical strength and coherence</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Argument Evaluation</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Assessing logical strength and coherence</div>
               </div>
             </div>
 
             {/* Evaluation Preview */}
-            <div className="bg-gray-50 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
-              <div className="text-xs font-medium text-gray-600 mb-2">Argument Structure:</div>
+            <div className="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3 mb-4 max-h-32 overflow-auto">
+              <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Argument Structure:</div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">Main Claim → Remote work increases productivity</span>
+                  <div className="w-2 h-2 bg-blue-500 dark:bg-accent-500 rounded-full"></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Main Claim → Remote work increases productivity</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">Supporting Evidence → 13% increase study</span>
+                  <div className="w-2 h-2 bg-green-500 dark:bg-success-500 rounded-full"></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Supporting Evidence → 13% increase study</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-xs text-gray-700">Logical Fallacy → Hasty generalization</span>
+                  <div className="w-2 h-2 bg-red-500 dark:bg-error-500 rounded-full"></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">Logical Fallacy → Hasty generalization</span>
                 </div>
               </div>
             </div>
 
             {/* Strength Preview */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="text-center p-2 bg-green-50 rounded">
-                <div className="text-xs font-bold text-green-600">85%</div>
-                <div className="text-xs text-gray-600">Claims</div>
+              <div className="text-center p-2 bg-green-50 dark:bg-success-700/20 rounded">
+                <div className="text-xs font-bold text-green-600 dark:text-success-300">85%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Claims</div>
               </div>
-              <div className="text-center p-2 bg-yellow-50 rounded">
-                <div className="text-xs font-bold text-yellow-600">78%</div>
-                <div className="text-xs text-gray-600">Evidence</div>
+              <div className="text-center p-2 bg-yellow-50 dark:bg-warning-700/20 rounded">
+                <div className="text-xs font-bold text-yellow-600 dark:text-warning-300">78%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Evidence</div>
               </div>
-              <div className="text-center p-2 bg-red-50 rounded">
-                <div className="text-xs font-bold text-red-600">65%</div>
-                <div className="text-xs text-gray-600">Logic</div>
+              <div className="text-center p-2 bg-red-50 dark:bg-error-700/20 rounded">
+                <div className="text-xs font-bold text-red-600 dark:text-error-300">65%</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400">Logic</div>
               </div>
             </div>
           </motion.div>
@@ -575,15 +576,16 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Result Controls */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-violet-600" />
-                  <span className="text-sm font-semibold text-gray-700">Argument Analysis</span>
-                  <span className={`text-xs px-2 py-1 rounded ${getScoreColor(argumentMetrics.overallStrength) === 'text-green-600' ? 'bg-green-500' : getScoreColor(argumentMetrics.overallStrength) === 'text-yellow-600' ? 'bg-yellow-500' : 'bg-red-500'} text-white`}>
+                  <Scale className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Argument Analysis</span>
+                  {/* Dynamic color for strength badge - needs JS logic or more Tailwind classes */}
+                  <span className={`text-xs px-2 py-1 rounded ${getScoreColor(argumentMetrics.overallStrength) === 'text-green-600' ? 'bg-green-500 dark:bg-success-600' : getScoreColor(argumentMetrics.overallStrength) === 'text-yellow-600' ? 'bg-yellow-500 dark:bg-warning-600' : 'bg-red-500 dark:bg-error-600'} text-white`}>
                     {argumentMetrics.overallStrength}% strength
                   </span>
                 </div>
@@ -591,7 +593,7 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   <motion.button
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-violet-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-violet-600 transition-colors"
+                    className="bg-violet-500 dark:bg-violet-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-violet-600 dark:hover:bg-violet-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -601,7 +603,7 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-gray-400 hover:text-gray-600 p-1"
+                    className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -617,8 +619,8 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Logic</div>
-                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.logicalFlow)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Logic</div>
+                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.logicalFlow).replace('text-','dark:text-')}`}>
                     {argumentMetrics.logicalFlow}%
                   </div>
                 </motion.div>
@@ -628,8 +630,8 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   transition={{ delay: 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Evidence</div>
-                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.evidenceQuality)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Evidence</div>
+                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.evidenceQuality).replace('text-','dark:text-')}`}>
                     {argumentMetrics.evidenceQuality}%
                   </div>
                 </motion.div>
@@ -639,8 +641,8 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   transition={{ delay: 0.2 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Support</div>
-                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.claimSupport)}`}>
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Support</div>
+                  <div className={`text-xs font-bold ${getScoreColor(argumentMetrics.claimSupport).replace('text-','dark:text-')}`}>
                     {argumentMetrics.claimSupport}%
                   </div>
                 </motion.div>
@@ -650,8 +652,8 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                   transition={{ delay: 0.3 }}
                   className="text-center"
                 >
-                  <div className="text-xs font-medium text-gray-700 mb-1">Issues</div>
-                  <div className="text-xs font-bold text-red-600">
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Issues</div>
+                  <div className="text-xs font-bold text-red-600 dark:text-error-300">
                     {argumentMetrics.weaknesses}
                   </div>
                 </motion.div>
@@ -661,34 +663,34 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
             {/* Argument Text Display */}
             <div className="p-3 max-h-24 overflow-auto">
               <div className="space-y-2">
-                <div className="text-xs font-medium text-gray-600 mb-2">Document with Argument Structure:</div>
-                <div className="text-xs text-gray-700 leading-relaxed bg-gray-50 p-2 rounded">
-                  <span className="bg-blue-200 px-1 rounded cursor-pointer hover:bg-blue-300 transition-colors"
+                <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Document with Argument Structure:</div>
+                <div className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-secondary-700 p-2 rounded">
+                  <span className="bg-blue-200 dark:bg-accent-700/40 px-1 rounded cursor-pointer hover:bg-blue-300 dark:hover:bg-accent-600/50 transition-colors"
                         onClick={() => setSelectedArgument(sampleArguments[0])}>
                     Remote work significantly increases employee productivity
                   </span>
                   , as demonstrated by{' '}
-                  <span className="bg-green-200 px-1 rounded cursor-pointer hover:bg-green-300 transition-colors"
+                  <span className="bg-green-200 dark:bg-success-700/40 px-1 rounded cursor-pointer hover:bg-green-300 dark:hover:bg-success-600/50 transition-colors"
                         onClick={() => setSelectedArgument(sampleArguments[1])}>
                     studies showing a 13% productivity increase
                   </span>
                   .{' '}
-                  <span className="bg-purple-200 px-1 rounded cursor-pointer hover:bg-purple-300 transition-colors"
+                  <span className="bg-purple-200 dark:bg-primary-700/40 px-1 rounded cursor-pointer hover:bg-purple-300 dark:hover:bg-primary-600/50 transition-colors" // Assuming purple is primary-like
                         onClick={() => setSelectedArgument(sampleArguments[2])}>
                     This increased productivity leads to better business outcomes
                   </span>
                   .{' '}
-                  <span className="bg-orange-200 px-1 rounded cursor-pointer hover:bg-orange-300 transition-colors"
+                  <span className="bg-orange-200 dark:bg-warning-700/40 px-1 rounded cursor-pointer hover:bg-orange-300 dark:hover:bg-warning-600/50 transition-colors"
                         onClick={() => setSelectedArgument(sampleArguments[3])}>
                     However, remote work may reduce team collaboration
                   </span>
                   .{' '}
-                  <span className="bg-indigo-200 px-1 rounded cursor-pointer hover:bg-indigo-300 transition-colors"
+                  <span className="bg-indigo-200 dark:bg-indigo-700/40 px-1 rounded cursor-pointer hover:bg-indigo-300 dark:hover:bg-indigo-600/50 transition-colors"
                         onClick={() => setSelectedArgument(sampleArguments[4])}>
                     Modern collaboration tools effectively bridge this gap
                   </span>
                   .{' '}
-                  <span className="bg-red-200 px-1 rounded cursor-pointer hover:bg-red-300 transition-colors"
+                  <span className="bg-red-200 dark:bg-error-700/40 px-1 rounded cursor-pointer hover:bg-red-300 dark:hover:bg-error-600/50 transition-colors"
                         onClick={() => setSelectedArgument(sampleArguments[5])}>
                     Everyone prefers remote work because it's convenient
                   </span>
@@ -702,30 +704,30 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="bg-white border border-gray-200 rounded-lg p-2 mt-2"
+                      className="bg-white dark:bg-secondary-700 border border-gray-200 dark:border-secondary-600 rounded-lg p-2 mt-2"
                     >
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center gap-2">
-                          <span className={`px-2 py-1 rounded text-xs font-medium ${getArgumentColor(selectedArgument.type)} text-white`}>
+                          <span className={`px-2 py-1 rounded text-xs font-medium ${getArgumentColor(selectedArgument.type).replace('-500', '-600')} dark:${getArgumentColor(selectedArgument.type).replace('-500','-500')} text-white`}>
                             {selectedArgument.type}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
                             {selectedArgument.category}
                           </span>
-                          {getStrengthIcon(selectedArgument.strength)}
+                          {getStrengthIcon(selectedArgument.strength)} {/* Icons in getStrengthIcon need dark variants */}
                         </div>
-                        <span className={`text-xs font-medium ${getStrengthColor(selectedArgument.strength)}`}>
+                        <span className={`text-xs font-medium ${getStrengthColor(selectedArgument.strength).replace('text-','dark:text-')}`}>
                           {(selectedArgument.strength * 100).toFixed(0)}% strength
                         </span>
                       </div>
-                      <div className="text-xs text-gray-600 mb-1">{selectedArgument.context}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">{selectedArgument.context}</div>
                       {selectedArgument.support.length > 0 && (
-                        <div className="text-xs text-green-700 bg-green-50 p-1 rounded mb-1">
+                        <div className="text-xs text-green-700 dark:text-success-300 bg-green-50 dark:bg-success-700/20 p-1 rounded mb-1">
                           ✓ Support: {selectedArgument.support.join(', ')}
                         </div>
                       )}
                       {selectedArgument.weaknesses.length > 0 && (
-                        <div className="text-xs text-red-700 bg-red-50 p-1 rounded">
+                        <div className="text-xs text-red-700 dark:text-error-300 bg-red-50 dark:bg-error-700/20 p-1 rounded">
                           ⚠ Issues: {selectedArgument.weaknesses.join(', ')}
                         </div>
                       )}
@@ -743,7 +745,7 @@ const ArgumentAnalyzerAnimation: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-violet-500 text-white p-2 rounded-full shadow-lg"
+          className="absolute top-4 right-4 bg-violet-500 dark:bg-violet-600 text-white p-2 rounded-full shadow-lg"
         >
           <Scale className="w-4 h-4" />
         </motion.div>

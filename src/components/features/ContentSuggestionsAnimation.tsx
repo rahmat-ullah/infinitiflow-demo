@@ -118,10 +118,10 @@ const ContentSuggestionsAnimation: React.FC = () => {
     : searchResults.filter(result => selectedCategories.includes(result.category));
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-green-900 dark:via-emerald-800 dark:to-teal-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-400 to-emerald-400 transform -rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-green-400 to-emerald-400 dark:from-green-700 dark:to-emerald-700 transform -rotate-12 scale-150"></div>
       </div>
 
       {/* Document Analysis Panel */}
@@ -129,30 +129,30 @@ const ContentSuggestionsAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-40 h-36 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-40 h-36 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-2">
-            <Search className="w-4 h-4 text-green-600" />
-            <span className="text-xs font-semibold text-gray-700">Content Analysis</span>
+            <Search className="w-4 h-4 text-green-600 dark:text-success-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Content Analysis</span>
           </div>
         </div>
 
         <div className="p-3 space-y-2">
-          <div className="text-xs text-gray-600 leading-relaxed">
+          <div className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
             "AI-powered content creation for modern marketing strategies..."
           </div>
           
           {/* Key Topics Extracted */}
           <div className="space-y-1">
-            <div className="text-xs text-gray-500">Key Topics:</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Key Topics:</div>
             {['AI Content', 'Marketing', 'Strategy', 'Automation'].map((topic, i) => (
               <motion.div
                 key={topic}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + i * 0.2 }}
-                className="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full mr-1"
+                className="inline-block bg-green-100 dark:bg-success-700/30 text-green-700 dark:text-success-300 text-xs px-2 py-1 rounded-full mr-1"
               >
                 {topic}
               </motion.div>
@@ -168,7 +168,7 @@ const ContentSuggestionsAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -181,9 +181,9 @@ const ContentSuggestionsAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Sparkles className="w-8 h-8 text-green-500" />
+                <Sparkles className="w-8 h-8 text-green-500 dark:text-success-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Content...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Content...</div>
               <div className="space-y-2 w-32">
                 {['Topics', 'Keywords', 'Context'].map((item, i) => (
                   <motion.div
@@ -191,9 +191,9 @@ const ContentSuggestionsAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.4, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-green-400 to-emerald-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-green-400 to-emerald-500 dark:from-green-600 dark:to-emerald-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -209,11 +209,11 @@ const ContentSuggestionsAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-44 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-44 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <Search className="w-4 h-4 text-green-500" />
-              <span className="text-sm font-semibold text-gray-700">Generated Queries</span>
+              <Search className="w-4 h-4 text-green-500 dark:text-success-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Generated Queries</span>
             </div>
 
             <div className="space-y-2">
@@ -223,10 +223,10 @@ const ContentSuggestionsAnimation: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.3 }}
-                  className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg"
+                  className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-secondary-700 rounded-lg"
                 >
-                  <Search className="w-3 h-3 text-gray-400" />
-                  <span className="text-xs text-gray-700 leading-relaxed">{query}</span>
+                  <Search className="w-3 h-3 text-gray-400 dark:text-gray-500" />
+                  <span className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">{query}</span>
                 </motion.div>
               ))}
             </div>
@@ -241,7 +241,7 @@ const ContentSuggestionsAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -254,14 +254,15 @@ const ContentSuggestionsAnimation: React.FC = () => {
                   scale: { duration: 1, repeat: Infinity }
                 }}
               >
-                <Globe className="w-8 h-8 text-green-500" />
+                <Globe className="w-8 h-8 text-green-500 dark:text-success-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Searching Multiple Sources...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Searching Multiple Sources...</div>
               
               <div className="space-y-2 w-48">
                 {searchSources.map((source, i) => {
                   const Icon = source.icon;
                   const progress = Math.min(searchProgress - (i * 25), 100);
+                  const darkSourceColor = source.color.replace('-500', '-600');
                   
                   return (
                     <motion.div
@@ -271,18 +272,18 @@ const ContentSuggestionsAnimation: React.FC = () => {
                       transition={{ delay: i * 0.2 }}
                       className="flex items-center gap-2"
                     >
-                      <Icon className="w-4 h-4 text-gray-600" />
-                      <span className="text-xs text-gray-600 w-16">{source.name}</span>
-                      <div className="flex-1 bg-gray-200 rounded-full h-1.5">
+                      <Icon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                      <span className="text-xs text-gray-600 dark:text-gray-400 w-16">{source.name}</span>
+                      <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${Math.max(0, progress)}%` }}
                           transition={{ duration: 0.5 }}
-                          className={`h-1.5 rounded-full ${source.color}`}
+                          className={`h-1.5 rounded-full ${source.color} dark:${darkSourceColor}`}
                         />
                       </div>
                       {progress >= 100 && (
-                        <CheckCircle className="w-3 h-3 text-green-500" />
+                        <CheckCircle className="w-3 h-3 text-green-500 dark:text-success-400" />
                       )}
                     </motion.div>
                   );
@@ -300,19 +301,20 @@ const ContentSuggestionsAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Categories Filter */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center gap-2 mb-2">
-                <Filter className="w-4 h-4 text-green-500" />
-                <span className="text-sm font-semibold text-gray-700">Content Suggestions</span>
-                <span className="text-xs text-gray-500 ml-auto">{filteredResults.length} results</span>
+                <Filter className="w-4 h-4 text-green-500 dark:text-success-400" />
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Content Suggestions</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">{filteredResults.length} results</span>
               </div>
               
               <div className="flex flex-wrap gap-1">
                 {categories.map((category, i) => {
                   const isSelected = selectedCategories.includes(category.id);
+                  const darkColor = category.color.replace('-500', '-600');
                   
                   return (
                     <motion.button
@@ -323,8 +325,8 @@ const ContentSuggestionsAnimation: React.FC = () => {
                       onClick={() => handleCategoryToggle(category.id)}
                       className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                         isSelected
-                          ? `${category.color} text-white shadow-lg scale-105`
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          ? `${category.color} dark:${darkColor} text-white shadow-lg scale-105`
+                          : 'bg-gray-100 dark:bg-secondary-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-secondary-600'
                       }`}
                       whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -345,7 +347,7 @@ const ContentSuggestionsAnimation: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   className={`p-2 rounded-lg cursor-pointer transition-all duration-200 ${
-                    activeResult === result.id ? 'bg-green-50 border border-green-200' : 'bg-gray-50 hover:bg-gray-100'
+                    activeResult === result.id ? 'bg-green-50 dark:bg-success-700/20 border border-green-200 dark:border-success-600' : 'bg-gray-50 dark:bg-secondary-700 hover:bg-gray-100 dark:hover:bg-secondary-600/80'
                   }`}
                   onMouseEnter={() => setActiveResult(result.id)}
                   onMouseLeave={() => setActiveResult(null)}
@@ -354,23 +356,23 @@ const ContentSuggestionsAnimation: React.FC = () => {
                   <div className="flex items-start gap-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-medium text-gray-800 line-clamp-1">
+                        <span className="text-xs font-medium text-gray-800 dark:text-gray-100 line-clamp-1">
                           {result.title}
                         </span>
-                        <ExternalLink className="w-3 h-3 text-gray-400" />
+                        <ExternalLink className="w-3 h-3 text-gray-400 dark:text-gray-500" />
                         <div className="ml-auto flex items-center gap-1">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span className="text-xs text-green-600 font-medium">{result.relevance}%</span>
+                          <div className="w-2 h-2 bg-green-500 dark:bg-success-500 rounded-full"></div>
+                          <span className="text-xs text-green-600 dark:text-success-400 font-medium">{result.relevance}%</span>
                         </div>
                       </div>
                       
-                      <div className="text-xs text-gray-600 mb-1">{result.snippet}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-300 mb-1">{result.snippet}</div>
                       
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">{result.source}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{result.source}</span>
                         <div className="flex gap-1">
                           {result.tags.slice(0, 2).map(tag => (
-                            <span key={tag} className="bg-gray-200 text-gray-600 text-xs px-1 py-0.5 rounded">
+                            <span key={tag} className="bg-gray-200 dark:bg-secondary-600 text-gray-600 dark:text-gray-300 text-xs px-1 py-0.5 rounded">
                               {tag}
                             </span>
                           ))}

@@ -6,7 +6,7 @@ import ROICalculator from './ui/ROICalculator';
 
 const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="py-20 bg-white dark:bg-secondary-800 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -16,7 +16,7 @@ const CTASection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.span
-              className="inline-block bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full mb-4"
+              className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -26,48 +26,48 @@ const CTASection: React.FC = () => {
               Boost Your ROI
             </motion.span>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">
               See how much time and money you could save with InfinitiFlow
             </h2>
             
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Our customers report an average 10x increase in content production speed and 60% reduction in content creation costs.
             </p>
             
             <div className="space-y-6 mb-8">
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 flex items-center justify-center mt-1">
-                  <svg className="h-4 w-4 text-success-600" viewBox="0 0 20 20" fill="currentColor">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 dark:bg-success-700 dark:bg-opacity-40 flex items-center justify-center mt-1">
+                  <svg className="h-4 w-4 text-success-500 dark:text-success-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">Save valuable time</h3>
-                  <p className="mt-1 text-gray-600">Create content in minutes, not hours or days</p>
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Save valuable time</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">Create content in minutes, not hours or days</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 flex items-center justify-center mt-1">
-                  <svg className="h-4 w-4 text-success-600" viewBox="0 0 20 20" fill="currentColor">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 dark:bg-success-700 dark:bg-opacity-40 flex items-center justify-center mt-1">
+                  <svg className="h-4 w-4 text-success-500 dark:text-success-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">Reduce production costs</h3>
-                  <p className="mt-1 text-gray-600">Lower your content creation budget significantly</p>
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Reduce production costs</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">Lower your content creation budget significantly</p>
                 </div>
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 flex items-center justify-center mt-1">
-                  <svg className="h-4 w-4 text-success-600" viewBox="0 0 20 20" fill="currentColor">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-success-100 dark:bg-success-700 dark:bg-opacity-40 flex items-center justify-center mt-1">
+                  <svg className="h-4 w-4 text-success-500 dark:text-success-300" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-lg font-medium text-gray-900">Scale your content strategy</h3>
-                  <p className="mt-1 text-gray-600">Create more content across multiple channels</p>
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Scale your content strategy</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">Create more content across multiple channels</p>
                 </div>
               </div>
             </div>

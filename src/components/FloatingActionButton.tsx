@@ -36,18 +36,18 @@ const FloatingActionButton: React.FC = () => {
           <AnimatePresence>
             {isOpen && (
               <motion.div 
-                className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl p-6 w-72 mb-4"
+                className="absolute bottom-16 right-0 bg-white dark:bg-secondary-700 rounded-lg shadow-xl p-6 w-72 mb-4"
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="text-center">
-                  <h3 className="text-lg font-semibold mb-2">See it in action</h3>
-                  <p className="text-gray-600 text-sm mb-4">
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">See it in action</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                     Watch a 2-minute demo of how our AI transforms content creation.
                   </p>
-                  <button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                  <button className="w-full bg-primary-500 hover:bg-primary-600 dark:bg-primary-600 dark:hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
                     Watch Demo
                   </button>
                 </div>
@@ -57,7 +57,7 @@ const FloatingActionButton: React.FC = () => {
           
           <motion.button
             className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg ${
-              isOpen ? 'bg-gray-800' : 'bg-primary-500'
+              isOpen ? 'bg-gray-800 dark:bg-gray-700' : 'bg-primary-500 dark:bg-primary-600'
             } text-white`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

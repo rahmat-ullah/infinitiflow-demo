@@ -116,10 +116,10 @@ const DiagramGeneratorAnimation: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-64 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 rounded-lg overflow-hidden">
+    <div className="relative w-full h-64 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:from-indigo-900 dark:via-accent-800 dark:to-cyan-800 rounded-lg overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-indigo-400 to-blue-400 transform -rotate-12 scale-150"></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-indigo-400 to-blue-400 dark:from-indigo-700 dark:to-accent-700 transform -rotate-12 scale-150"></div>
       </div>
 
       {/* Source Content Panel */}
@@ -127,17 +127,17 @@ const DiagramGeneratorAnimation: React.FC = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-4 left-4 w-40 h-32 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+        className="absolute top-4 left-4 w-40 h-32 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
       >
-        <div className="p-3 border-b border-gray-100">
+        <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
           <div className="flex items-center gap-2 mb-1">
-            <Edit3 className="w-4 h-4 text-indigo-600" />
-            <span className="text-xs font-semibold text-gray-700">Source Content</span>
+            <Edit3 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Source Content</span>
           </div>
         </div>
 
         <div className="p-3">
-          <div className="text-xs text-gray-600 leading-relaxed line-clamp-4">
+          <div className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-4">
             {sourceText}
           </div>
           
@@ -154,7 +154,7 @@ const DiagramGeneratorAnimation: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 + i * 0.2 }}
-                  className="inline-block bg-indigo-100 text-indigo-700 text-xs px-1 py-0.5 rounded mr-1"
+                  className="inline-block bg-indigo-100 dark:bg-indigo-700/30 text-indigo-700 dark:text-indigo-300 text-xs px-1 py-0.5 rounded mr-1"
                 >
                   {item}
                 </motion.div>
@@ -171,7 +171,7 @@ const DiagramGeneratorAnimation: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-xl shadow-2xl p-6 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex flex-col items-center space-y-4">
               <motion.div
@@ -184,9 +184,9 @@ const DiagramGeneratorAnimation: React.FC = () => {
                   scale: { duration: 1.5, repeat: Infinity }
                 }}
               >
-                <Sparkles className="w-8 h-8 text-indigo-500" />
+                <Sparkles className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />
               </motion.div>
-              <div className="text-sm font-medium text-gray-700">Analyzing Structure...</div>
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">Analyzing Structure...</div>
               <div className="space-y-2 w-32">
                 {['Entities', 'Relationships', 'Flow'].map((item, i) => (
                   <motion.div
@@ -194,9 +194,9 @@ const DiagramGeneratorAnimation: React.FC = () => {
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ delay: i * 0.5, duration: 0.8 }}
-                    className="bg-gray-200 rounded-full h-1.5"
+                    className="bg-gray-200 dark:bg-gray-700 rounded-full h-1.5"
                   >
-                    <div className="bg-gradient-to-r from-indigo-400 to-blue-500 h-1.5 rounded-full"></div>
+                    <div className="bg-gradient-to-r from-indigo-400 to-blue-500 dark:from-indigo-600 dark:to-accent-700 h-1.5 rounded-full"></div>
                   </motion.div>
                 ))}
               </div>
@@ -212,17 +212,18 @@ const DiagramGeneratorAnimation: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
-            className="absolute top-4 right-4 w-44 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50"
+            className="absolute top-4 right-4 w-44 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl p-3 border border-white/50 dark:border-secondary-700/50"
           >
             <div className="flex items-center gap-2 mb-3">
-              <BarChart3 className="w-4 h-4 text-indigo-500" />
-              <span className="text-sm font-semibold text-gray-700">Diagram Types</span>
+              <BarChart3 className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Diagram Types</span>
             </div>
 
             <div className="space-y-2">
               {diagramTypes.map((type, i) => {
                 const Icon = type.icon;
                 const isSelected = selectedDiagramType === type.id;
+                const darkColor = type.color.replace('-500', '-600');
                 
                 return (
                   <motion.button
@@ -233,17 +234,17 @@ const DiagramGeneratorAnimation: React.FC = () => {
                     onClick={() => handleDiagramTypeSelect(type.id)}
                     className={`w-full p-2 rounded-lg text-left transition-all duration-200 ${
                       isSelected
-                        ? `${type.color} text-white shadow-lg scale-105`
-                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        ? `${type.color} dark:${darkColor} text-white shadow-lg scale-105`
+                        : 'bg-gray-50 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-600'
                     }`}
                     whileHover={{ scale: isSelected ? 1.05 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-center gap-2 mb-1">
-                      <Icon className="w-3 h-3" />
+                      <Icon className={`w-3 h-3 ${isSelected ? 'text-white' : type.color.replace('bg-','text-').replace('-500','-600')} dark:${isSelected ? 'text-white' : type.color.replace('bg-','text-').replace('-500','-400')}`} />
                       <span className="text-xs font-medium">{type.label}</span>
                     </div>
-                    <div className="text-xs opacity-75">{type.description}</div>
+                    <div className={`text-xs opacity-75 ${isSelected ? 'dark:text-white/80' : 'dark:text-gray-400'}`}>{type.description}</div>
                   </motion.button>
                 );
               })}
@@ -259,21 +260,21 @@ const DiagramGeneratorAnimation: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 overflow-hidden"
+            className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-secondary-800/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/50 dark:border-secondary-700/50 overflow-hidden"
           >
             {/* Editor Controls */}
-            <div className="p-3 border-b border-gray-100">
+            <div className="p-3 border-b border-gray-100 dark:border-secondary-700">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-indigo-600" />
-                  <span className="text-sm font-semibold text-gray-700">Diagram Editor</span>
+                  <BarChart3 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Diagram Editor</span>
                 </div>
                 {currentStep === 'generated' && (
                   <motion.button
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     onClick={() => setShowMermaid(!showMermaid)}
-                    className="bg-indigo-500 text-white text-xs px-2 py-1 rounded-lg hover:bg-indigo-600 transition-colors"
+                    className="bg-indigo-500 dark:bg-indigo-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-indigo-600 dark:hover:bg-indigo-700 transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -283,10 +284,10 @@ const DiagramGeneratorAnimation: React.FC = () => {
                 )}
               </div>
               
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                 <span>Selected: {selectedDiagramType}</span>
                 {selectedNode && (
-                  <span className="text-indigo-600">• Editing: {selectedNode}</span>
+                  <span className="text-indigo-600 dark:text-indigo-400">• Editing: {selectedNode}</span>
                 )}
               </div>
             </div>
@@ -314,9 +315,9 @@ const DiagramGeneratorAnimation: React.FC = () => {
                         >
                           <motion.button
                             className={`px-3 py-2 border-2 text-xs font-medium cursor-pointer transition-all duration-200 ${
-                              getNodeStyle(node.type)
+                              getNodeStyle(node.type) // This function needs dark mode awareness for its output classes
                             } ${getNodeShape(node.type)} ${
-                              selectedNode === node.id ? 'ring-2 ring-indigo-400' : ''
+                              selectedNode === node.id ? 'ring-2 ring-indigo-400 dark:ring-indigo-500' : ''
                             }`}
                             onClick={() => handleNodeClick(node.id)}
                             whileHover={{ scale: 1.05 }}
@@ -331,7 +332,7 @@ const DiagramGeneratorAnimation: React.FC = () => {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.2 + 0.3 }}
-                              className="absolute top-1/2 -right-6 transform -translate-y-1/2 text-indigo-400"
+                              className="absolute top-1/2 -right-6 transform -translate-y-1/2 text-indigo-400 dark:text-indigo-500"
                             >
                               →
                             </motion.div>
@@ -345,16 +346,16 @@ const DiagramGeneratorAnimation: React.FC = () => {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-indigo-50 rounded-lg p-2 mt-2"
+                        className="bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-2 mt-2"
                       >
-                        <div className="text-xs font-medium text-indigo-700 mb-2">
+                        <div className="text-xs font-medium text-indigo-700 dark:text-indigo-300 mb-2">
                           Edit Node: {selectedNode}
                         </div>
                         <input
                           type="text"
                           value={diagramData.nodes.find(n => n.id === selectedNode)?.label || ''}
                           onChange={(e) => updateNodeLabel(selectedNode, e.target.value)}
-                          className="w-full text-xs px-2 py-1 border border-indigo-200 rounded"
+                          className="w-full text-xs px-2 py-1 border border-indigo-200 dark:border-indigo-700 rounded dark:bg-secondary-700 dark:text-gray-100"
                           placeholder="Node label..."
                         />
                       </motion.div>
@@ -366,14 +367,14 @@ const DiagramGeneratorAnimation: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="bg-gray-900 rounded-lg p-3"
+                    className="bg-gray-900 dark:bg-black rounded-lg p-3" // Already dark, ensure contrast
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-medium text-gray-300">Mermaid Code</span>
+                      <span className="text-xs font-medium text-gray-300 dark:text-gray-400">Mermaid Code</span>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition-colors"
                       >
                         <Copy className="w-3 h-3" />
                       </motion.button>
@@ -394,7 +395,7 @@ const DiagramGeneratorAnimation: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg"
+          className="absolute top-4 right-4 bg-green-500 dark:bg-success-600 text-white p-2 rounded-full shadow-lg"
         >
           <CheckCircle className="w-4 h-4" />
         </motion.div>

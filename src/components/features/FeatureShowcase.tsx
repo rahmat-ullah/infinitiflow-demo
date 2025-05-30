@@ -36,9 +36,9 @@ const FeatureShowcase: React.FC<FeatureShowcaseProps> = ({ feature, index, isEve
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r opacity-20 rounded-2xl blur-xl transform scale-105" 
+          <div className="absolute inset-0 bg-gradient-to-r opacity-20 dark:opacity-10 rounded-2xl blur-xl transform scale-105" 
                style={{ background: `linear-gradient(135deg, ${feature.gradient.replace('from-', '').replace('to-', ', ')})` }} />
-          <div className="relative bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div className="relative bg-white dark:bg-secondary-800 rounded-2xl shadow-xl border border-gray-100 dark:border-secondary-700 overflow-hidden">
             <div className="p-2">
               <AnimationComponent />
             </div>
@@ -49,21 +49,21 @@ const FeatureShowcase: React.FC<FeatureShowcaseProps> = ({ feature, index, isEve
       {/* Content */}
       <div className="w-full lg:w-1/2 space-y-6">
         <div className="flex items-center space-x-3">
-          <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} text-white shadow-lg`}>
+          <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} text-white shadow-lg`}> {/* Assuming feature.gradient is dark-mode compatible or doesn't need explicit dark variant here */}
             <IconComponent size={24} />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">{feature.title}</h2>
-            <p className="text-lg text-gray-600 mt-2">{feature.description}</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{feature.title}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">{feature.description}</p>
           </div>
         </div>
 
-        <p className="text-gray-700 leading-relaxed text-lg">
+        <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg">
           {feature.detailedDescription}
         </p>
 
         <div className="space-y-3">
-          <h4 className="font-semibold text-gray-900 text-lg">Key Benefits:</h4>
+          <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">Key Benefits:</h4>
           <ul className="space-y-2">
             {feature.benefits.map((benefit, benefitIndex) => (
               <motion.li
@@ -74,8 +74,8 @@ const FeatureShowcase: React.FC<FeatureShowcaseProps> = ({ feature, index, isEve
                 transition={{ delay: benefitIndex * 0.1 }}
                 className="flex items-start space-x-3"
               >
-                <CheckCircle2 size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">{benefit}</span>
+                <CheckCircle2 size={20} className="text-green-500 dark:text-success-300 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-200">{benefit}</span>
               </motion.li>
             ))}
           </ul>

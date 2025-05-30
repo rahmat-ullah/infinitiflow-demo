@@ -19,13 +19,13 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-secondary-900'; // Added dark mode focus offset
   
   const variants = {
-    primary: 'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500',
-    secondary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500',
-    outline: 'bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-50 focus:ring-primary-500',
-    ghost: 'bg-transparent text-primary-500 hover:bg-primary-50 focus:ring-primary-500',
+    primary: 'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 dark:bg-primary-600 dark:hover:bg-primary-700 dark:text-white dark:focus:ring-primary-500',
+    secondary: 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 dark:bg-accent-600 dark:hover:bg-accent-700 dark:text-white dark:focus:ring-accent-500',
+    outline: 'bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-50 focus:ring-primary-500 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-secondary-800 dark:focus:ring-primary-400',
+    ghost: 'bg-transparent text-primary-500 hover:bg-primary-50 focus:ring-primary-500 dark:text-primary-400 dark:hover:bg-secondary-800 dark:focus:ring-primary-400',
   };
 
   const sizes = {

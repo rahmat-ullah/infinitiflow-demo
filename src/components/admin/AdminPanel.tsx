@@ -40,25 +40,25 @@ const AdminPanel: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-secondary-950">
       {/* Top Bar */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-white dark:bg-secondary-900 shadow-sm dark:shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <button
             onClick={() => setAdminMode(false)}
-            className="flex items-center text-gray-600 hover:text-gray-900"
+            className="flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
           >
             <ChevronLeft size={20} className="mr-1" />
             Back to Site
           </button>
-          <h1 className="text-xl font-semibold text-gray-900">Admin Panel</h1>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Admin Panel</h1>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Sidebar */}
-          <div className="w-full md:w-64 bg-white rounded-lg shadow-sm p-4">
+          <div className="w-full md:w-64 bg-white dark:bg-secondary-800 rounded-lg shadow-sm dark:shadow-md p-4">
             <nav className="space-y-2">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -68,8 +68,8 @@ const AdminPanel: React.FC = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                       activeTab === tab.id
-                        ? 'bg-primary-50 text-primary-600'
-                        : 'text-gray-600 hover:bg-gray-50'
+                        ? 'bg-primary-50 dark:bg-primary-700 text-primary-600 dark:text-primary-100'
+                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary-700'
                     }`}
                   >
                     <Icon size={20} />
@@ -86,7 +86,7 @@ const AdminPanel: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
-            className="flex-1 bg-white rounded-lg shadow-sm p-6"
+            className="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-sm dark:shadow-md p-6"
           >
             {renderContent()}
           </motion.div>

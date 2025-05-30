@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -17,8 +17,13 @@ import TestimonialsPage from './components/TestimonialsPage';
 import ROICalculatorPage from './components/ROICalculatorPage';
 import UseCasesPage from './components/UseCasesPage';
 import { useAdminStore } from './store/adminStore';
+import { useThemeStore } from './store/themeStore';
 
 function App() {
+  useEffect(() => {
+    useThemeStore.getState().initTheme();
+  }, []);
+
   const { isAdminMode } = useAdminStore();
   const [showFeaturesPage, setShowFeaturesPage] = useState(false);
   const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
@@ -62,7 +67,7 @@ function App() {
   }
 
   return (
-    <div className="font-sans antialiased text-gray-900 bg-white">
+    <div className="font-sans antialiased">
       <Header 
         onROICalculatorClick={() => setShowROICalculatorPage(true)}
         onUseCasesClick={() => setShowUseCasesPage(true)}
