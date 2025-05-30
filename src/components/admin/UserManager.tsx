@@ -1,246 +1,26 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Plus, 
-  Edit2, 
-  Trash2, 
-  Shield, 
-  Mail,
-  Calendar,
-  Search,
-  Filter
-} from 'lucide-react';
-import Button from '../ui/Button';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: 'admin' | 'user' | 'moderator';
-  status: 'active' | 'inactive' | 'pending';
-  joinDate: string;
-  lastLogin: string;
-}
+import React from 'react';
+import { Users } from 'lucide-react'; // Using Users icon as per example
 
 const UserManager: React.FC = () => {
-  const [users] = useState<User[]>([
-    {
-      id: '1',
-      name: 'John Doe',
-      email: 'john@example.com',
-      role: 'admin',
-      status: 'active',
-      joinDate: '2024-01-15',
-      lastLogin: '2025-01-15'
-    },
-    {
-      id: '2',
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      role: 'user',
-      status: 'active',
-      joinDate: '2024-02-20',
-      lastLogin: '2025-01-14'
-    },
-    {
-      id: '3',
-      name: 'Mike Johnson',
-      email: 'mike@example.com',
-      role: 'moderator',
-      status: 'inactive',
-      joinDate: '2024-03-10',
-      lastLogin: '2025-01-10'
-    },
-    {
-      id: '4',
-      name: 'Sarah Wilson',
-      email: 'sarah@example.com',
-      role: 'user',
-      status: 'pending',
-      joinDate: '2025-01-14',
-      lastLogin: 'Never'
-    }
-  ]);
-
-  const [selectedRole, setSelectedRole] = useState<'all' | 'admin' | 'user' | 'moderator'>('all');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredUsers = users.filter(user => {
-    const matchesRole = selectedRole === 'all' || user.role === selectedRole;
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesRole && matchesSearch;
-  });
-
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">User Management</h2>
-        <Button
-          variant="primary"
-          leftIcon={<Plus size={16} />}
-        >
-          Add User
-        </Button>
-      </div>
-
-      {/* Search and Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-          <input
-            type="text"
-            placeholder="Search users..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100 dark:placeholder-gray-500"
-          />
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <Filter size={20} className="text-gray-400 dark:text-gray-500" />
-          <select
-            value={selectedRole}
-            onChange={(e) => setSelectedRole(e.target.value as 'all' | 'admin' | 'user' | 'moderator')}
-            className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700 dark:text-gray-100"
-          >
-            <option value="all">All Roles</option>
-            <option value="admin">Admin</option>
-            <option value="moderator">Moderator</option>
-            <option value="user">User</option>
-          </select>
-        </div>
-      </div>
-
-      {/* User Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md p-4 border border-gray-100 dark:border-secondary-600">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Total Users</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{users.length}</p>
-            </div>
-            <Shield className="h-8 w-8 text-primary-600 dark:text-primary-400" />
-          </div>
-        </div>
-        <div className="bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md p-4 border border-gray-100 dark:border-secondary-600">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Active</p>
-              <p className="text-2xl font-bold text-green-600 dark:text-success-300">{users.filter(u => u.status === 'active').length}</p>
-            </div>
-            <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-success-700/30 flex items-center justify-center">
-              <div className="h-3 w-3 rounded-full bg-green-500 dark:bg-success-400"></div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md p-4 border border-gray-100 dark:border-secondary-600">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Pending</p>
-              <p className="text-2xl font-bold text-yellow-600 dark:text-warning-400">{users.filter(u => u.status === 'pending').length}</p>
-            </div>
-            <div className="h-8 w-8 rounded-full bg-yellow-100 dark:bg-warning-700/30 flex items-center justify-center">
-              <div className="h-3 w-3 rounded-full bg-yellow-500 dark:bg-warning-500"></div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md p-4 border border-gray-100 dark:border-secondary-600">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-300">Admins</p>
-              <p className="text-2xl font-bold text-purple-600 dark:text-primary-400">{users.filter(u => u.role === 'admin').length}</p> {/* Assuming purple is primary-like */}
-            </div>
-            <Shield className="h-8 w-8 text-purple-600 dark:text-primary-400" /> {/* Assuming purple is primary-like */}
-          </div>
-        </div>
-      </div>
-
-      {/* Users Table */}
-      <div className="bg-white dark:bg-secondary-700 rounded-xl shadow-sm dark:shadow-md border border-gray-100 dark:border-secondary-600 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-50 dark:bg-secondary-600">
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">User</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Role</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Join Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Login</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-secondary-600">
-              {filteredUsers.map((user) => (
-                <motion.tr
-                  key={user.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="hover:bg-gray-50 dark:hover:bg-secondary-600/50"
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
-                      <div className="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center">
-                        <span className="text-sm font-medium text-primary-600 dark:text-primary-300">
-                          {user.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.name}</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{user.email}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      user.role === 'admin'
-                        ? 'bg-purple-100 text-purple-800 dark:bg-primary-700/30 dark:text-primary-300' // Assuming purple is primary-like
-                        : user.role === 'moderator'
-                        ? 'bg-blue-100 text-blue-800 dark:bg-accent-700/30 dark:text-accent-300'
-                        : 'bg-gray-100 text-gray-800 dark:bg-secondary-600 dark:text-gray-200'
-                    }`}>
-                      {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      user.status === 'active'
-                        ? 'bg-green-100 text-green-800 dark:bg-success-700/30 dark:text-success-300'
-                        : user.status === 'pending'
-                        ? 'bg-yellow-100 text-yellow-800 dark:bg-warning-700/30 dark:text-warning-300'
-                        : 'bg-red-100 text-red-800 dark:bg-error-700/30 dark:text-error-300'
-                    }`}>
-                      {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                    {new Date(user.joinDate).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
-                    {user.lastLogin === 'Never' ? 'Never' : new Date(user.lastLogin).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end space-x-2">
-                      <button className="text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-                        <Mail size={16} />
-                      </button>
-                      <button className="text-gray-400 dark:text-gray-500 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-                        <Edit2 size={16} />
-                      </button>
-                      <button className="text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-error-400 transition-colors">
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div className="p-6 flex flex-col items-center justify-center text-center h-[calc(100vh-150px)] bg-white dark:bg-secondary-800 rounded-lg shadow">
+      {/* Adjusted height to be more dynamic based on viewport, assuming some header/nav height */}
+      <Users size={60} className="text-gray-400 dark:text-gray-500 mb-6" />
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+        User Management
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400 max-w-md">
+        Full user management capabilities, including creating, editing, and deleting users,
+        require a backend system to handle authentication and data persistence.
+      </p>
+      <p className="text-gray-600 dark:text-gray-400 max-w-md mt-2">
+        This section is currently a placeholder. Future development will integrate these features.
+      </p>
+      {/* You could add a link to future documentation or a contact point if desired 
+      <Button variant="link" className="mt-4">Learn More</Button>
+      */}
     </div>
   );
 };
 
-export default UserManager; 
+export default UserManager;

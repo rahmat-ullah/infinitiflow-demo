@@ -12,6 +12,7 @@ import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import FloatingActionButton from './components/FloatingActionButton';
 import AdminPanel from './components/admin/AdminPanel';
+import LoginPage from './components/auth/LoginPage'; // Added import
 import FeaturesPage from './components/FeaturesPage';
 import TestimonialsPage from './components/TestimonialsPage';
 import ROICalculatorPage from './components/ROICalculatorPage';
@@ -25,13 +26,24 @@ function App() {
   }, []);
 
   const { isAdminMode } = useAdminStore();
+  const [showLoginPage, setShowLoginPage] = useState(false); // Added state
   const [showFeaturesPage, setShowFeaturesPage] = useState(false);
   const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
   const [showROICalculatorPage, setShowROICalculatorPage] = useState(false);
   const [showUseCasesPage, setShowUseCasesPage] = useState(false);
 
+  // Handle login success
+  const handleLoginSuccess = () => {
+    useAdminStore.getState().setAdminMode(true);
+    setShowLoginPage(false);
+  };
+
   if (isAdminMode) {
     return <AdminPanel />;
+  }
+
+  if (showLoginPage) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
   }
 
   if (showFeaturesPage) {
@@ -71,6 +83,10 @@ function App() {
       <Header 
         onROICalculatorClick={() => setShowROICalculatorPage(true)}
         onUseCasesClick={() => setShowUseCasesPage(true)}
+        // This is a way to trigger the login page.
+        // The Header component would need to be modified to actually use this prop.
+        // For now, we are just passing it as per the conceptual snippet.
+        onLoginClick={() => setShowLoginPage(true)} 
       />
       <Hero />
       <Features onViewAllFeatures={() => setShowFeaturesPage(true)} />

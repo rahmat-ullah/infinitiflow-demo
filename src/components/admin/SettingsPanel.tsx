@@ -13,8 +13,10 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import Button from '../ui/Button';
+import { useThemeStore } from '../../store/themeStore'; // Import useThemeStore
 
 const SettingsPanel: React.FC = () => {
+  const { theme, toggleTheme } = useThemeStore(); // Get theme and toggleTheme
   const [activeSection, setActiveSection] = useState('general');
   const [settings, setSettings] = useState({
     siteName: 'InfinitiFlow',
@@ -29,7 +31,7 @@ const SettingsPanel: React.FC = () => {
     allowedFileTypes: 'jpg,png,pdf,docx',
     primaryColor: '#3B82F6',
     secondaryColor: '#10B981',
-    darkMode: false,
+    // darkMode: false, // Removed darkMode from local settings
     analyticsEnabled: true,
     cookieConsent: true
   });
@@ -55,6 +57,60 @@ const SettingsPanel: React.FC = () => {
     console.log('Saving settings:', settings);
     // Show success notification
   };
+
+  const renderAppearanceSettings = () => (
+    <div className="space-y-6">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Appearance Settings</h3>
+      
+      <div className="grid grid-cols-1 gap-6">
+        {/* Dark Mode Toggle using useThemeStore */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100">Dark Mode</h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Toggle dark mode for the application</p>
+          </div>
+          <button
+            onClick={toggleTheme}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+              theme === 'dark' ? 'bg-primary-600 dark:bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Mock Primary Color Setting */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Primary Color
+          </label>
+          <input
+            type="color"
+            value={settings.primaryColor}
+            onChange={(e) => handleSettingChange('primaryColor', e.target.value)}
+            className="w-full h-10 px-1 py-1 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700"
+          />
+        </div>
+
+        {/* Mock Secondary Color Setting */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Secondary Color
+          </label>
+          <input
+            type="color"
+            value={settings.secondaryColor}
+            onChange={(e) => handleSettingChange('secondaryColor', e.target.value)}
+            className="w-full h-10 px-1 py-1 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent dark:bg-secondary-700"
+          />
+        </div>
+      </div>
+    </div>
+  );
 
   const renderGeneralSettings = () => (
     <div className="space-y-6">
@@ -261,6 +317,8 @@ const SettingsPanel: React.FC = () => {
         return renderSecuritySettings();
       case 'storage':
         return renderStorageSettings();
+      case 'appearance': // Added case for appearance
+        return renderAppearanceSettings();
       default:
         return (
           <div className="text-center py-12">
@@ -276,6 +334,21 @@ const SettingsPanel: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Disclaimer Notice */}
+      <div className="bg-blue-50 dark:bg-blue-700/30 border border-blue-200 dark:border-blue-600/50 rounded-lg p-4">
+        <div className="flex items-start">
+          <AlertTriangle className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 mr-3 flex-shrink-0" />
+          <div>
+            <h4 className="text-sm font-medium text-blue-800 dark:text-blue-200">Important Note</h4>
+            <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+              Most settings displayed here require backend integration to persist. 
+              Currently, only the Dark Mode theme setting (under Appearance) is functional and saved globally. 
+              Changes to other settings are for demonstration and will be logged to the console when you click 'Save Changes'.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Settings</h2>
         <Button
