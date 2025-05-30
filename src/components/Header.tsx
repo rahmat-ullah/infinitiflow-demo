@@ -9,12 +9,13 @@ import { useAdminStore } from '../store/adminStore';
 interface HeaderProps {
   onROICalculatorClick?: () => void;
   onUseCasesClick?: () => void;
+  onLoginClick?: () => void; // Added onLoginClick prop
 }
 
-const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }) => {
+const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick, onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const { incrementLogoClick, isAdminMode } = useAdminStore();
+  const { isAdminMode } = useAdminStore(); // Removed incrementLogoClick
   
   const navigation = [
     { name: 'Features', href: 'features' },
@@ -68,10 +69,8 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <button 
-              onClick={() => incrementLogoClick()}
-              className="flex items-center focus:outline-none"
-            >
+            {/* Removed onClick from logo button */}
+            <button className="flex items-center focus:outline-none">
               <Sparkles className="h-8 w-8 text-primary-600 dark:text-primary-500" />
               <span className="ml-2 text-xl font-bold text-gray-900 dark:text-gray-100">InfinitiFlow</span>
             </button>
@@ -102,9 +101,17 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
                 </Link>
               )
             ))}
+            {!isAdminMode && onLoginClick && (
+              <button
+                onClick={onLoginClick}
+                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors cursor-pointer font-medium text-sm"
+              >
+                Admin Login
+              </button>
+            )}
             {isAdminMode && (
               <Link
-                to="/admin"
+                to="/admin" // This should ideally navigate within the React app, not a full page load
                 className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors cursor-pointer font-medium text-sm"
               >
                 Admin Panel
@@ -173,9 +180,20 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick }
                   </Link>
                 )
               ))}
+              {!isAdminMode && onLoginClick && (
+                <button
+                  onClick={() => {
+                    if (onLoginClick) onLoginClick();
+                    setIsOpen(false);
+                  }}
+                  className="block w-full text-left py-3 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md px-3"
+                >
+                  Admin Login
+                </button>
+              )}
               {isAdminMode && (
                 <Link
-                  to="/admin"
+                  to="/admin" // This should ideally navigate within the React app
                   className="block py-3 text-base font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md px-3"
                   onClick={() => setIsOpen(false)}
                 >
