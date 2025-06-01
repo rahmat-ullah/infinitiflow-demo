@@ -11,6 +11,7 @@
     "lint": "eslint src --ext .ts",
     "test": "jest",
     "clean": "rimraf dist",
+    "seed": "tsx src/seeds/index.ts",
     "seed:hero": "tsx src/scripts/seedHero.ts",
     "seed:hero-frontend": "tsx src/scripts/seedHeroFromFrontend.ts"
   },

@@ -4,14 +4,20 @@ import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import { Request } from 'express';
 
-// Ensure upload directory exists
-const uploadDir = path.join(process.cwd(), 'uploads', 'blog-images');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+// Ensure upload directories exist
+const blogUploadDir = path.join(process.cwd(), 'uploads', 'blog-images');
+const testimonialUploadDir = path.join(process.cwd(), 'uploads', 'testimonial-images');
+
+if (!fs.existsSync(blogUploadDir)) {
+  fs.mkdirSync(blogUploadDir, { recursive: true });
 }
 
-// Configure storage
-const storage = multer.diskStorage({
+if (!fs.existsSync(testimonialUploadDir)) {
+  fs.mkdirSync(testimonialUploadDir, { recursive: true });
+}
+
+// Create storage configuration for different types
+const createStorage = (uploadDir: string) => multer.diskStorage({
   destination: (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) => {
     cb(null, uploadDir);
   },
@@ -31,9 +37,9 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilt
   }
 };
 
-// Multer configuration
-export const uploadConfig = multer({
-  storage: storage,
+// Multer configurations for different types
+const blogUploadConfig = multer({
+  storage: createStorage(blogUploadDir),
   fileFilter: fileFilter,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
@@ -41,21 +47,51 @@ export const uploadConfig = multer({
   }
 });
 
-// Single image upload
-export const uploadSingle = uploadConfig.single('image');
+const testimonialUploadConfig = multer({
+  storage: createStorage(testimonialUploadDir),
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+    files: 1 // Only single file for testimonials
+  }
+});
 
-// Multiple images upload
-export const uploadMultiple = uploadConfig.array('images', 10);
+// Legacy configuration for backward compatibility
+export const uploadConfig = blogUploadConfig;
 
-// Helper function to get file URL
+// Blog image uploads
+export const uploadSingle = blogUploadConfig.single('image');
+export const uploadMultiple = blogUploadConfig.array('images', 10);
+
+// Testimonial image uploads
+export const uploadTestimonialImage = testimonialUploadConfig.single('image');
+
+// Helper functions to get file URLs
 export const getImageUrl = (filename: string): string => {
   return `/uploads/blog-images/${filename}`;
 };
 
-// Helper function to delete file
+export const getTestimonialImageUrl = (filename: string): string => {
+  return `/uploads/testimonial-images/${filename}`;
+};
+
+// Helper functions to delete files
 export const deleteImage = (filename: string): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const filePath = path.join(uploadDir, filename);
+    const filePath = path.join(blogUploadDir, filename);
+    fs.unlink(filePath, (err) => {
+      if (err && err.code !== 'ENOENT') {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
+export const deleteTestimonialImage = (filename: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const filePath = path.join(testimonialUploadDir, filename);
     fs.unlink(filePath, (err) => {
       if (err && err.code !== 'ENOENT') {
         reject(err);

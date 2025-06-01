@@ -3,23 +3,64 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, MessageSquare, ArrowRight } from 'lucide-react';
 import TestimonialCard from './ui/TestimonialCard';
 import AnimatedTitle from './ui/AnimatedTitle';
-import { testimonials } from '../data/content';
+import { testimonialsApi, type Testimonial } from '../services/testimonialsApi';
 
 interface TestimonialsProps {
   onViewAllTestimonials?: () => void;
 }
 
 const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch featured testimonials on component mount
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        console.log('🔍 Fetching testimonials from API...');
+        
+        // First, test the backend connection
+        try {
+          const healthResponse = await fetch('http://localhost:3001/health');
+          const healthData = await healthResponse.json();
+          console.log('🏥 Backend health check:', healthData);
+        } catch (healthError) {
+          console.error('💔 Backend health check failed:', healthError);
+        }
+        
+        setLoading(true);
+        const response = await testimonialsApi.getFeaturedTestimonials(6); // Get more for rotation
+        console.log('📡 API Response:', response);
+        if (response.success) {
+          console.log('✅ Testimonials loaded:', response.data.length);
+          setTestimonials(response.data);
+        } else {
+          console.error('❌ API returned success: false');
+          setError('Failed to load testimonials');
+        }
+      } catch (err) {
+        console.error('💥 Error fetching testimonials:', err);
+        setError('Failed to load testimonials');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   // Auto-rotate testimonials
   useEffect(() => {
+    if (testimonials.length === 0) return;
+    
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
     }, 8000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [testimonials.length]);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -28,6 +69,46 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
   };
+
+  // Convert API testimonial to component format
+  const convertTestimonial = (testimonial: Testimonial, index: number) => ({
+    id: index + 1, // Use index as numeric id
+    name: testimonial.name,
+    role: testimonial.role,
+    company: testimonial.company,
+    quote: testimonial.quote,
+    image: testimonial.image
+  });
+
+  if (loading) {
+    return (
+      <section id="testimonials" className="py-20 bg-white dark:bg-secondary-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-64 mx-auto mb-4"></div>
+              <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded w-96 mx-auto mb-6"></div>
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-80 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || testimonials.length === 0) {
+    return (
+      <section id="testimonials" className="py-20 bg-white dark:bg-secondary-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-400">
+              {error || 'No testimonials available at the moment.'}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="testimonials" className="py-20 bg-white dark:bg-secondary-800 overflow-hidden">
@@ -68,8 +149,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onViewAllTestimonials }) =>
             <div className="relative h-80 sm:h-64">
               {testimonials.map((testimonial, idx) => (
                 <TestimonialCard
-                  key={testimonial.id}
-                  testimonial={testimonial}
+                  key={testimonial._id}
+                  testimonial={convertTestimonial(testimonial, idx)}
                   isActive={idx === activeIndex}
                 />
               ))}

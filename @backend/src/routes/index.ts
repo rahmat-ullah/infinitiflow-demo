@@ -4,6 +4,7 @@ import toolsRoutes from './tools';
 import heroRoutes from './hero';
 import featuresRoutes from './features';
 import blogsRoutes from './blogs';
+import testimonialsRoutes from './testimonials';
 
 const router = Router();
 
@@ -57,6 +58,22 @@ router.get('/', (req, res) => {
         categories: 'GET /api/blogs/categories',
         tags: 'GET /api/blogs/tags'
       },
+      testimonials: {
+        list: 'GET /api/testimonials',
+        featured: 'GET /api/testimonials/featured',
+        random: 'GET /api/testimonials/random',
+        getById: 'GET /api/testimonials/:id',
+        adminList: 'GET /api/testimonials/admin/all',
+        create: 'POST /api/testimonials',
+        update: 'PUT /api/testimonials/:id',
+        toggleActive: 'PATCH /api/testimonials/:id/toggle-active',
+        toggleFeatured: 'PATCH /api/testimonials/:id/toggle-featured',
+        delete: 'DELETE /api/testimonials/:id',
+        uploadImage: 'POST /api/testimonials/upload/image',
+        stats: 'GET /api/testimonials/stats/summary',
+        industries: 'GET /api/testimonials/meta/industries',
+        companies: 'GET /api/testimonials/meta/companies'
+      },
       tools: {
         list: 'GET /api/tools',
         featured: 'GET /api/tools/featured',
@@ -75,12 +92,13 @@ router.get('/', (req, res) => {
       'Hero Section Management',
       'Features Section Management',
       'Blog Management',
+      'Testimonials Management',
       'Rich Text & Markdown Support',
       'Image Upload & Management',
       'Tools Management',
       'Categories & Filtering',
       'Search & Pagination',
-      'Featured Tools',
+      'Featured Content',
       'Statistics & Analytics'
     ]
   });
@@ -91,6 +109,7 @@ router.use('/auth', authRoutes);
 router.use('/hero', heroRoutes);
 router.use('/features', featuresRoutes);
 router.use('/blogs', blogsRoutes);
+router.use('/testimonials', testimonialsRoutes);
 router.use('/tools', toolsRoutes);
 
 export default router; 
