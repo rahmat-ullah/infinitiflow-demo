@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import dotenv from 'dotenv';
+import path from 'path';
 import { createLogger } from './utils/logger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { rateLimiter } from './middleware/rateLimiter.js';
@@ -20,7 +21,9 @@ const logger = createLogger();
 connectDatabase();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(compression());
 
 // CORS configuration
@@ -32,9 +35,12 @@ app.use(cors({
 // Rate limiting
 app.use('/api', rateLimiter);
 
-// Body parsing middleware
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Static file serving for uploads
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+// Body parsing middleware (increased limits for image uploads)
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -63,6 +69,7 @@ app.listen(PORT, () => {
   logger.info(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
   logger.info(`🔗 Health check: http://localhost:${PORT}/health`);
   logger.info(`📚 API documentation: http://localhost:${PORT}/api`);
+  logger.info(`📁 Static files: http://localhost:${PORT}/uploads`);
 });
 
 export default app; 

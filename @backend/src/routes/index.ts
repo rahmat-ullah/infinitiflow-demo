@@ -3,6 +3,7 @@ import authRoutes from './auth';
 import toolsRoutes from './tools';
 import heroRoutes from './hero';
 import featuresRoutes from './features';
+import blogsRoutes from './blogs';
 
 const router = Router();
 
@@ -38,6 +39,24 @@ router.get('/', (req, res) => {
         delete: 'DELETE /api/features/:id',
         stats: 'GET /api/features/stats/summary'
       },
+      blogs: {
+        list: 'GET /api/blogs',
+        getBySlug: 'GET /api/blogs/slug/:slug',
+        getById: 'GET /api/blogs/:id',
+        adminList: 'GET /api/blogs/admin/all',
+        create: 'POST /api/blogs',
+        update: 'PUT /api/blogs/:id',
+        publish: 'PATCH /api/blogs/:id/publish',
+        unpublish: 'PATCH /api/blogs/:id/unpublish',
+        delete: 'DELETE /api/blogs/:id',
+        uploadImage: 'POST /api/blogs/upload/image',
+        uploadImages: 'POST /api/blogs/upload/images',
+        popular: 'GET /api/blogs/stats/popular',
+        recent: 'GET /api/blogs/stats/recent',
+        stats: 'GET /api/blogs/stats/summary',
+        categories: 'GET /api/blogs/categories',
+        tags: 'GET /api/blogs/tags'
+      },
       tools: {
         list: 'GET /api/tools',
         featured: 'GET /api/tools/featured',
@@ -55,11 +74,14 @@ router.get('/', (req, res) => {
       'User Authentication',
       'Hero Section Management',
       'Features Section Management',
+      'Blog Management',
+      'Rich Text & Markdown Support',
+      'Image Upload & Management',
       'Tools Management',
       'Categories & Filtering',
       'Search & Pagination',
       'Featured Tools',
-      'Tool Statistics'
+      'Statistics & Analytics'
     ]
   });
 });
@@ -68,6 +90,7 @@ router.get('/', (req, res) => {
 router.use('/auth', authRoutes);
 router.use('/hero', heroRoutes);
 router.use('/features', featuresRoutes);
+router.use('/blogs', blogsRoutes);
 router.use('/tools', toolsRoutes);
 
 export default router; 

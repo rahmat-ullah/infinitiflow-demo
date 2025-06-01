@@ -17,6 +17,8 @@ import FeaturesPage from './components/FeaturesPage';
 import TestimonialsPage from './components/TestimonialsPage';
 import ROICalculatorPage from './components/ROICalculatorPage';
 import UseCasesPage from './components/UseCasesPage';
+import BlogList from './pages/BlogList';
+import BlogDetail from './pages/BlogDetail';
 import { useAdminStore } from './store/adminStore';
 import { useThemeStore } from './store/themeStore';
 
@@ -31,11 +33,23 @@ function App() {
   const [showTestimonialsPage, setShowTestimonialsPage] = useState(false);
   const [showROICalculatorPage, setShowROICalculatorPage] = useState(false);
   const [showUseCasesPage, setShowUseCasesPage] = useState(false);
+  const [showBlogPage, setShowBlogPage] = useState(false);
+  const [blogSlug, setBlogSlug] = useState<string | null>(null);
 
   // Handle login success
   const handleLoginSuccess = () => {
     useAdminStore.getState().setAdminMode(true);
     setShowLoginPage(false);
+  };
+
+  const handleBlogNavigation = (slug?: string) => {
+    setBlogSlug(slug || null);
+    setShowBlogPage(true);
+  };
+
+  const handleBackToBlogList = () => {
+    setBlogSlug(null);
+    // Stay on blog page but show list
   };
 
   if (isAdminMode) {
@@ -78,11 +92,30 @@ function App() {
     );
   }
 
+  if (showBlogPage) {
+    if (blogSlug) {
+      return (
+        <BlogDetail 
+          slug={blogSlug}
+          onBackToBlogList={handleBackToBlogList}
+          onBackToHome={() => setShowBlogPage(false)}
+        />
+      );
+    }
+    return (
+      <BlogList 
+        onBlogClick={handleBlogNavigation}
+        onBackToHome={() => setShowBlogPage(false)}
+      />
+    );
+  }
+
   return (
     <div className="font-sans antialiased">
       <Header 
         onROICalculatorClick={() => setShowROICalculatorPage(true)}
         onUseCasesClick={() => setShowUseCasesPage(true)}
+        onBlogClick={() => setShowBlogPage(true)}
         // This is a way to trigger the login page.
         // The Header component would need to be modified to actually use this prop.
         // For now, we are just passing it as per the conceptual snippet.

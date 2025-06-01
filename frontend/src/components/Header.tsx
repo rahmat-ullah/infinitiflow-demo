@@ -9,10 +9,11 @@ import { useAdminStore } from '../store/adminStore';
 interface HeaderProps {
   onROICalculatorClick?: () => void;
   onUseCasesClick?: () => void;
+  onBlogClick?: () => void;
   onLoginClick?: () => void; // Added onLoginClick prop
 }
 
-const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick, onLoginClick }) => {
+const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick, onBlogClick, onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const { isAdminMode } = useAdminStore(); // Removed incrementLogoClick
@@ -21,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick, 
     { name: 'Features', href: 'features' },
     { name: 'Use Cases', href: 'use-cases', isPage: true },
     { name: 'ROI Calculator', href: 'roi-calculator', isPage: true },
+    { name: 'Blog', href: 'blog', isPage: true },
     { name: 'Testimonials', href: 'testimonials' },
     { name: 'Pricing', href: 'pricing' },
     { name: 'FAQ', href: 'faq' },
@@ -58,6 +60,8 @@ const Header: React.FC<HeaderProps> = ({ onROICalculatorClick, onUseCasesClick, 
       onROICalculatorClick();
     } else if (item.isPage && item.href === 'use-cases' && onUseCasesClick) {
       onUseCasesClick();
+    } else if (item.isPage && item.href === 'blog' && onBlogClick) {
+      onBlogClick();
     }
   };
 

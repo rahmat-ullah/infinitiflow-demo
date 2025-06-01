@@ -7,7 +7,8 @@ import {
   Settings,
   ChevronLeft,
   Home,
-  Grid3X3
+  Grid3X3,
+  BookOpen
 } from 'lucide-react';
 import { useAdminStore } from '../../store/adminStore';
 import Dashboard from './Dashboard';
@@ -16,6 +17,7 @@ import UserManager from './UserManager';
 import SettingsPanel from './SettingsPanel';
 import HeroManager from './HeroManager';
 import FeaturesManager from './FeaturesManager';
+import BlogManager from './BlogManager';
 
 const AdminPanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -25,6 +27,7 @@ const AdminPanel: React.FC = () => {
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
     { id: 'hero', name: 'Hero Section', icon: Home },
     { id: 'features', name: 'Features', icon: Grid3X3 },
+    { id: 'blogs', name: 'Blog', icon: BookOpen },
     { id: 'content', name: 'Content', icon: FileText },
     { id: 'users', name: 'Users', icon: Users },
     { id: 'settings', name: 'Settings', icon: Settings },
@@ -38,6 +41,8 @@ const AdminPanel: React.FC = () => {
         return <HeroManager />;
       case 'features':
         return <FeaturesManager />;
+      case 'blogs':
+        return <BlogManager />;
       case 'content':
         return <ContentManager />;
       case 'users':
