@@ -1,87 +1,27 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRightIcon } from 'lucide-react'; // Keep ChevronRightIcon
-import Particles from 'react-particles';
-import { loadSlim } from 'tsparticles-slim';
-import { useThemeStore } from '../store/themeStore'; // Import theme store
-import type { Engine } from 'tsparticles-engine';
-import Button from './ui/Button';
+import { ChevronRightIcon, RefreshCwIcon } from 'lucide-react';
+import Button from './Button';
 
-const Hero: React.FC = () => {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
+interface HeroErrorProps {
+  error: string;
+  onRetry: () => void;
+}
 
-  const { theme } = useThemeStore(); // Get current theme
-
-  const particleOptions = {
-    background: {
-      color: {
-        value: "transparent",
-      },
-    },
-    fpsLimit: 120,
-    particles: {
-      color: {
-        value: theme === 'dark' ? "#9871D6" : "#6B46C1", // primary-400 for dark, primary-500 for light
-      },
-      links: {
-        color: theme === 'dark' ? "#9871D6" : "#6B46C1", // primary-400 for dark, primary-500 for light
-        distance: 150,
-        enable: true,
-        opacity: 0.2,
-        width: 1,
-      },
-      move: {
-        direction: "none",
-        enable: true,
-        outModes: {
-          default: "bounce",
-        },
-        random: true,
-        speed: 1,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 800,
-        },
-        value: 80,
-      },
-      opacity: {
-        value: 0.3,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        value: { min: 1, max: 3 },
-      },
-    },
-    detectRetina: true,
-  }; // End of particleOptions
-
+const HeroError: React.FC<HeroErrorProps> = ({ error, onRetry }) => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Particle background needs to be outside the main container for full width */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={particleOptions}
-        className="absolute inset-0 z-0"
-      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Hero content */}
+          {/* Fallback hero content */}
           <div className="text-center lg:text-left">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-300 text-sm font-medium px-3 py-1 rounded-full mb-4">
-                AI-Powered Content Generation
+              <span className="inline-block bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-300 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                Content Loading Error
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-gray-100">
                 Create <span className="text-primary-500 dark:text-primary-400">exceptional content</span> in seconds
@@ -108,10 +48,40 @@ const Hero: React.FC = () => {
               <div className="mt-8 text-sm text-gray-500 dark:text-gray-400">
                 No credit card required • Free 14-day trial
               </div>
+
+              {/* Error message and retry */}
+              <div className="mt-8 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-5 h-5 rounded-full bg-red-400 dark:bg-red-500 flex items-center justify-center">
+                      <span className="text-white text-xs">!</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-red-800 dark:text-red-200 font-medium">
+                      Failed to load dynamic content
+                    </p>
+                    <p className="text-sm text-red-600 dark:text-red-300 mt-1">
+                      {error}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={onRetry}
+                    leftIcon={<RefreshCwIcon size={16} />}
+                    className="text-red-600 dark:text-red-400 border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+                  >
+                    Retry Loading
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           </div>
           
-          {/* Hero image/animation */}
+          {/* Fallback hero image/animation */}
           <motion.div
             className="relative"
             initial={{ opacity: 0 }}
@@ -171,4 +141,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default HeroError; 
