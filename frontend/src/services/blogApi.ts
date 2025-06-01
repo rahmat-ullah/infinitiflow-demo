@@ -31,6 +31,12 @@ class BlogApiService {
         errorData
       });
       
+      // Handle rate limit errors specifically
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After') || errorData.retryAfter || 60;
+        throw new Error(`Rate limit exceeded. Please wait ${retryAfter} seconds before trying again.`);
+      }
+      
       // Show detailed validation errors if available
       if (errorData.details && Array.isArray(errorData.details)) {
         const validationErrors = errorData.details.map((detail: any) => detail.msg || detail).join(', ');

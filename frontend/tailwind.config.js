@@ -105,7 +105,96 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'hero-pattern': 'linear-gradient(135deg, rgba(107, 70, 193, 0.15) 0%, rgba(79, 209, 197, 0.1) 100%)',
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.700'),
+            maxWidth: 'none',
+            a: {
+              color: theme('colors.primary.600'),
+              '&:hover': {
+                color: theme('colors.primary.700'),
+              },
+            },
+            h1: {
+              color: theme('colors.gray.900'),
+            },
+            h2: {
+              color: theme('colors.gray.900'),
+            },
+            h3: {
+              color: theme('colors.gray.900'),
+            },
+            h4: {
+              color: theme('colors.gray.900'),
+            },
+            code: {
+              color: theme('colors.primary.600'),
+              backgroundColor: theme('colors.gray.100'),
+              paddingLeft: theme('spacing.1'),
+              paddingRight: theme('spacing.1'),
+              paddingTop: theme('spacing.0.5'),
+              paddingBottom: theme('spacing.0.5'),
+              borderRadius: theme('borderRadius.md'),
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+        invert: {
+          css: {
+            color: theme('colors.gray.300'),
+            a: {
+              color: theme('colors.primary.400'),
+              '&:hover': {
+                color: theme('colors.primary.300'),
+              },
+            },
+            h1: {
+              color: theme('colors.white'),
+            },
+            h2: {
+              color: theme('colors.white'),
+            },
+            h3: {
+              color: theme('colors.white'),
+            },
+            h4: {
+              color: theme('colors.white'),
+            },
+            code: {
+              color: theme('colors.primary.400'),
+              backgroundColor: theme('colors.gray.800'),
+            },
+            blockquote: {
+              borderLeftColor: theme('colors.gray.600'),
+              color: theme('colors.gray.300'),
+            },
+            hr: {
+              borderColor: theme('colors.gray.700'),
+            },
+            strong: {
+              color: theme('colors.white'),
+            },
+            thead: {
+              color: theme('colors.white'),
+              borderBottomColor: theme('colors.gray.600'),
+            },
+            tbody: {
+              tr: {
+                borderBottomColor: theme('colors.gray.700'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
